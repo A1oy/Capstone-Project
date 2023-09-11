@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="height: 40px; background-image: resource(&apos;forsenE&apos;); width: 49px;" />
+    <ui:Label text="Game OVER" display-tooltip-when-elided="true" style="align-items: center; justify-content: center; height: 50px; width: 233px; color: rgb(255, 255, 255); font-size: 40%; -unity-text-outline-color: rgb(255, 255, 255); position: absolute; top: 30%; left: 40%; -unity-text-align: upper-center; right: 30px; bottom: 0; background-color: rgba(0, 0, 0, 0);" />
+</ui:UXML>

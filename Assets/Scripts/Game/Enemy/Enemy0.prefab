@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8340484010097992239}
   - component: {fileID: 6772989458605898501}
-  - component: {fileID: -2637168529395437841}
   - component: {fileID: 5183457609053363967}
-  - component: {fileID: -7782098763541589880}
+  - component: {fileID: -7727030513452663728}
+  - component: {fileID: 3828643224639200834}
   m_Layer: 0
-  m_Name: Enemy
-  m_TagString: Untagged
+  m_Name: Enemy0
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,18 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-2637168529395437841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2699818096667120980}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3239ab9b7c7ebc349b3d43c4f9ab66aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &5183457609053363967
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &-7782098763541589880
+--- !u!114 &-7727030513452663728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,6 +122,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 2699818096667120980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edcc440c44051294a849521ebb9c2ec7, type: 3}
+  m_Script: {fileID: 11500000, guid: 89d96c6156af26e4a9ad025e73afa531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 1
+  damage: 1
+--- !u!114 &3828643224639200834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699818096667120980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4932d379480998242ac87515c6e09ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
