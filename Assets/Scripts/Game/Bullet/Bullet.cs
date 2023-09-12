@@ -10,15 +10,14 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("bullet collision!");
-        Health health =collision.gameObject.GetComponent<Health>();
-        if (collision.gameObject.CompareTag("Enemy")
-            && health!=null)
+        Enemy enemy =collision.gameObject.GetComponent<Enemy>();
+        if (enemy !=null)
         {
-            GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-            Destroy(effect, 5f);
-            health.DoDamage(damage);
-            Destroy(gameObject);
+            enemy.DoAttack(damage);
         }
+        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 5f);
+        Destroy(gameObject);
     }
 
     void OnBecameInvisible()

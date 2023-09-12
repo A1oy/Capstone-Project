@@ -6,22 +6,28 @@ public class Shooting : MonoBehaviour
 {
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public GameObject grenadePrefab;
 
     public float bulletForce = 20f;
+    public float grenadeForce = 2f;
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
         {
-            Shoot();
+            Shoot(bulletPrefab, bulletForce);
+        }
+        else if (Input.GetButtonDown("Fire2"))
+        {
+            Shoot(grenadePrefab, grenadeForce);
         }
     }
 
-    void Shoot()
+    void Shoot(GameObject projectile, float force)
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(projectile, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        rb.AddForce(firePoint.up * force, ForceMode2D.Impulse);
     }
 }

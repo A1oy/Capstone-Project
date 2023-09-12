@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
         while (--i >0)
         {
             // do spawning ..
-            Instantiate(enemyPrefab, transform);
+            Instantiate(enemyPrefab, (new Vector3(0.0f, Random.Range(-4.0f, 4.0f), 0.0f)) + transform.position, Quaternion.identity);
             yield return waitTime;
         }
     }
