@@ -28,7 +28,7 @@ public class Grenade : MonoBehaviour
         Destroy(gameObject);
         Vector2 position =new Vector2(transform.position.x, transform.position.y);
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 5f);
+        Destroy(effect, 1f);
         Collider2D[] collisions =Physics2D.OverlapCircleAll(position, explosionRadius);
         foreach (Collider2D collision in collisions)
         {
