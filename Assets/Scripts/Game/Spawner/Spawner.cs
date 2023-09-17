@@ -6,10 +6,17 @@ public class Spawner : MonoBehaviour
 {
     public int maxEnemies;
     public int spawnDelay;
+    public int initialSpawnDelay;
     public GameObject enemyPrefab;
 
     void Awake()
     {
+        StartCoroutine(WaitSpawnDelayRoutine());
+    }
+
+    IEnumerator WaitSpawnDelayRoutine()
+    {
+        yield return new WaitForSeconds(initialSpawnDelay);
         StartCoroutine(SpawningRoutine());
     }
 

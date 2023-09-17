@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsDeplay: 1
-  explosionRadius: 3
+  explosionRadius: 4
   maxDamage: 1
   minDamage: 0
   force: 20

@@ -881,6 +881,7 @@ MonoBehaviour:
   grenadePrefab: {fileID: 2540137865167992298, guid: aa2a38dafc86a4940b23f4fdfb903672, type: 3}
   bulletForce: 20
   grenadeForce: 2
+  baseDamage: 0
 --- !u!114 &1591134805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,7 +1128,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 99
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -128,8 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 1
   acceleration: 0.02
-  damage: 1
+  damage: 2
   loseInterestDelay: 3
+  exp: 1
 --- !u!114 &3828643224639200834
 MonoBehaviour:
   m_ObjectHideFlags: 0

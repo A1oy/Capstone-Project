@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     public float acceleration;
     public int damage;
     public int loseInterestDelay;
+    public int exp;
 
     void Start()
     {
@@ -78,7 +79,7 @@ public class Enemy : MonoBehaviour
         rigidBody!.AddForce(vectorDiff * acceleration, ForceMode2D.Impulse);
         if (Vector2.Dot(rigidBody!.velocity, vectorDiff) > movementSpeed)
         {
-              rigidBody!.velocity = vectorDiff.normalized * movementSpeed;
+            rigidBody!.velocity = vectorDiff.normalized * movementSpeed;
         }
     }
     
@@ -90,6 +91,7 @@ public class Enemy : MonoBehaviour
             damageRoutine =DoDamageRoutine(collision.gameObject);
             StartCoroutine(damageRoutine);
             StopCoroutine(deInterestRoutine);
+            deInterestRoutine =null;
         }
         else if (enemyState == EnemyState.BaseChasing
             && collision.gameObject ==baseRef)
@@ -111,11 +113,26 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collision)
     {
+        if (damageRoutine !=null)
+        {
+            StopCoroutine(damageRoutine);
+            damageRoutine =null;
+        }
         if (enemyState ==EnemyState.PlayerChasing
             && collision.gameObject ==playerRef)
         {
             deInterestRoutine = DeInterestRoutine();
             StartCoroutine(deInterestRoutine);   
+        }
+    }
+
+    void OnDestroy()
+    {
+        GameObject player =GameObject.FindWithTag("Player");
+        if (player !=null)
+        {
+            Player playerComponent = player.GetComponent<Player>();
+            playerComponent.AddExp(exp);
         }
     }
 }
