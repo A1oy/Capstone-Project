@@ -16,13 +16,16 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
-        {
-            Shoot(bulletPrefab, bulletForce);
-        }
-        else if (Input.GetButtonDown("Fire2"))
-        {
-            Shoot(grenadePrefab, grenadeForce);
+		if (!Pause.isPaused)
+		{
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Shoot(bulletPrefab, bulletForce);
+            }
+            else if (Input.GetButtonDown("Fire2"))
+            {
+                Shoot(grenadePrefab, grenadeForce);
+            }
         }
     }
 
