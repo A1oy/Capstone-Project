@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     enum  EnemyState :ushort
     {
         BaseChasing =0,
-        PlayerChasing =1
+        AttackerChasing =1
     };
     private IEnumerator? damageRoutine=null;
     private IEnumerator? deInterestRoutine=null;
@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
 
     private EnemyState enemyState;
     private GameObject? baseRef;
-    private GameObject? playerRef;
+    private GameObject? attackerRef;
 
     public float movementSpeed;
     public float acceleration;
@@ -34,20 +34,20 @@ public class Enemy : MonoBehaviour
         enemyState =EnemyState.BaseChasing;
         health =gameObject.GetComponent<Health>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
-        playerRef =GameObject.FindWithTag("Player");
         baseRef =GameObject.FindWithTag("Base");
     }
 
-    public void DoAttack(int damage)
+    public void DoAttack(GameObject attacker, int damage)
     {
         health!.DoDamage(damage);
         if (enemyState ==EnemyState.BaseChasing)
         {
-            enemyState = EnemyState.PlayerChasing;
+            attackerRef =attacker;
+            enemyState = EnemyState.AttackerChasing;
             deInterestRoutine =DeInterestRoutine();
             StartCoroutine(deInterestRoutine);
         }
-        else if (enemyState == EnemyState.PlayerChasing
+        else if (enemyState == EnemyState.AttackerChasing
             && deInterestRoutine !=null)
         {
             StopCoroutine(deInterestRoutine);
@@ -62,14 +62,14 @@ public class Enemy : MonoBehaviour
         enemyState =EnemyState.BaseChasing;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // move based on the state ..
         Vector2 vectorDiff =new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        if (enemyState == EnemyState.PlayerChasing)
+        if (enemyState == EnemyState.AttackerChasing)
         {
-            Vector2 playerPosition =new Vector2(playerRef!.transform.position.x, playerRef!.transform.position.y);
-            vectorDiff = playerPosition - vectorDiff;
+            Vector2 attackerPosition =new Vector2(attackerRef!.transform.position.x, attackerRef!.transform.position.y);
+            vectorDiff = attackerPosition - vectorDiff;
         }
         else
         {
@@ -85,8 +85,8 @@ public class Enemy : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (enemyState == EnemyState.PlayerChasing
-            && collision.gameObject ==playerRef)
+        if (enemyState == EnemyState.AttackerChasing
+            && collision.gameObject ==attackerRef)
         {
             damageRoutine =DoDamageRoutine(collision.gameObject);
             StartCoroutine(damageRoutine);
@@ -106,7 +106,10 @@ public class Enemy : MonoBehaviour
         Health targetHealth =target.GetComponent<Health>();
         while (true)
         {
-            targetHealth.DoDamage(damage);
+            if (targetHealth.DoDamage(damage))
+            {
+                break;
+            }
             yield return new WaitForSeconds(1);
         }
     }
@@ -118,8 +121,8 @@ public class Enemy : MonoBehaviour
             StopCoroutine(damageRoutine);
             damageRoutine =null;
         }
-        if (enemyState ==EnemyState.PlayerChasing
-            && collision.gameObject ==playerRef)
+        if (enemyState ==EnemyState.AttackerChasing
+            && collision.gameObject ==attackerRef)
         {
             deInterestRoutine = DeInterestRoutine();
             StartCoroutine(deInterestRoutine);   

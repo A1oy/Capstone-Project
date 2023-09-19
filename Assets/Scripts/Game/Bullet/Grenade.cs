@@ -6,6 +6,7 @@ public class Grenade : MonoBehaviour
 {
     private IEnumerator explosionDelayRoutine;
     private float damageRange;
+    private GameObject playerRef;
 
     public int secondsDeplay;
     public int explosionRadius;
@@ -19,6 +20,7 @@ public class Grenade : MonoBehaviour
         explosionDelayRoutine = ExplosionDelay();
         damageRange = (float)minDamage - (float)maxDamage;
         StartCoroutine(explosionDelayRoutine);
+        playerRef =GameObject.FindWithTag("Player");
     }
 
     IEnumerator ExplosionDelay()
@@ -43,7 +45,7 @@ public class Grenade : MonoBehaviour
                 vectorDiff = vectorDiff.normalized;
                 float fDamage = damageRange * ((float)distance/(float)explosionRadius)  + (float) minDamage;
 
-                enemy.DoAttack((int)fDamage +1);
+                enemy.DoAttack(playerRef, (int)fDamage +1);
                 Debug.Log("Did " +  fDamage.ToString() + " Damage.");
                 float forceMagnitude = force;
 
