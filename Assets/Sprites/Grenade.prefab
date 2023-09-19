@@ -103,7 +103,7 @@ MonoBehaviour:
   explosionRadius: 4
   maxDamage: 1
   minDamage: 0
-  force: 20
+  force: 10
   hitEffect: {fileID: 43520982865979776, guid: 7a2e8afce80da7f45b7d6bb7c8b035fd, type: 3}
 --- !u!61 &-2268292268110720440
 BoxCollider2D:

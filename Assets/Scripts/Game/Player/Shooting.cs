@@ -8,10 +8,13 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject grenadePrefab;
 
-    public float bulletForce = 20f;
+    public float cooldown =0;
+
+    public float bulletForce = 2.0f;
     public float grenadeForce = 2f;
 
     public int baseDamage =0;
+    public float cooldownDelay =5;
 
     // Update is called once per frame
     void Update()
@@ -22,9 +25,20 @@ public class Shooting : MonoBehaviour
             {
                 Shoot(bulletPrefab, bulletForce);
             }
-            else if (Input.GetButtonDown("Fire2"))
+            else if (Input.GetButtonDown("Fire2")
+                && cooldown ==0)
             {
                 Shoot(grenadePrefab, grenadeForce);
+                cooldown =cooldownDelay;
+
+            }
+        }
+        if (cooldown >0.0f)
+        {
+            cooldown -=Time.deltaTime;
+            if (cooldown <0.0f)
+            {
+                cooldown =0.0f;
             }
         }
     }
