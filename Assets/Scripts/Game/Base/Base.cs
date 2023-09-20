@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Health))]
 public class Base : MonoBehaviour
 {
     private Texture2D pixelTexture;
@@ -13,6 +14,9 @@ public class Base : MonoBehaviour
 
     void OnDestroy()
     {
-        SceneManager.LoadScene("GameOverScene");
+        if (gameObject.GetComponent<Health>().isKilled)
+        {
+            SceneManager.LoadScene("Game Over");
+        }
     }
 }

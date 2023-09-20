@@ -27,10 +27,9 @@ public class Enemy : MonoBehaviour
         attackerRef =GameObject.FindWithTag("Base");
     }
 
-    public void DoAttack(GameObject attacker, int damage)
+    public void DoAttack(int damage)
     {
         health!.DoDamage(damage);
-        attackerRef =attacker;
     }
 
     float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
@@ -62,7 +61,7 @@ public class Enemy : MonoBehaviour
             GameObject gameObjTarget =baseRef;
             float dist =(currentPos -baseRef.transform.position).magnitude;
             dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
-            dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
+            dist = DetermineClosest(currentPos, dist, turretsRef, ref gameObjTarget);
             
             attackerRef =gameObjTarget;
             Debug.Log(attackerRef);

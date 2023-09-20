@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
 
     void OnDestroy()
     {
-        SceneManager.LoadScene("GameOverScene");
+        if (gameObject.GetComponent<Health>().isKilled)
+        {
+            SceneManager.LoadScene("Game Over");
+        }
     }
 }

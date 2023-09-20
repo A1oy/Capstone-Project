@@ -15,6 +15,7 @@ public class Turret : MonoBehaviour
     public float detectRadius;
     public float force;
     public float delay;
+    public int damage =1;
 
     void Start()
     {
@@ -111,7 +112,7 @@ public class Turret : MonoBehaviour
                 //Debug.Log(raycast.point);
                 GameObject effect = Instantiate(hitEffect, new Vector3(raycast.point.x, raycast.point.y, 1.0f), Quaternion.identity);
                 Destroy(effect, 2f);
-                gameObjLock.GetComponent<Enemy>().DoAttack(gameObject, 1);
+                gameObjLock.GetComponent<Enemy>().DoAttack(damage);
             }
         }
     }

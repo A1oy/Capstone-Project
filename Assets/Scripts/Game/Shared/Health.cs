@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public bool isKilled =false;
     public int health;
 
     public bool DoDamage(int damage)
@@ -11,6 +12,7 @@ public class Health : MonoBehaviour
         health -=damage;
         if (health <=0)
         {
+            isKilled =true;
             Destroy(gameObject);
             return true;
         }
