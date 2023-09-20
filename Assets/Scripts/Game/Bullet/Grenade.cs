@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Grenade : MonoBehaviour
 {
@@ -45,8 +46,10 @@ public class Grenade : MonoBehaviour
                 vectorDiff = vectorDiff.normalized;
                 float fDamage = damageRange * ((float)distance/(float)explosionRadius)  + (float) minDamage;
 
-                enemy.DoAttack(playerRef, (int)fDamage +1);
-                Debug.Log("Did " +  fDamage.ToString() + " Damage.");
+                int iDamage =(int)fDamage +1;
+
+                enemy.DoAttack(playerRef, iDamage);
+                Debug.Log("Did " +  Convert.ToString(iDamage) + " Damage.");
                 float forceMagnitude = force;
 
                 Rigidbody2D rigidBody = gameObj.GetComponent<Rigidbody2D>();

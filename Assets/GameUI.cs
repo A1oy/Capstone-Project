@@ -4,25 +4,46 @@ using UnityEngine;
 using TMPro;
 using System;
 
+#nullable enable
+
 public class GameUI : MonoBehaviour
 {
-    public GameObject baseRef;
-    public GameObject playerRef;
-    public GameObject turretRef;
+    public GameObject? baseRef;
+    public GameObject? playerRef;
+    public GameObject? turretRef;
 
-    public TMP_Text baseHealth;
-    public TMP_Text playerHealth;
-    public TMP_Text playerEXP;
-    public TMP_Text cooldown;
-    public TMP_Text turret;
+    public TMP_Text baseHealth =null!;
+
+    public TMP_Text playerHealth =null!;
+    public TMP_Text playerHoney =null!;
+    public TMP_Text cooldown =null!;
+
+    public TMP_Text turret =null!;
+    public TMP_Text turretText =null!;
 
     // Update is called once per frame
+
     void FixedUpdate()
     {
-        baseHealth.text = Convert.ToString(baseRef.GetComponent<Health>().health);
-        playerHealth.text =Convert.ToString(playerRef.GetComponent<Health>().health);
-        playerEXP.text =Convert.ToString(playerRef.GetComponent<Player>().playerExp) + " / " + "20";
-        cooldown.text =Convert.ToString((int)playerRef.GetComponent<Shooting>().cooldown) + " s";
-        turret.text =Convert.ToString((int)turretRef.GetComponent<Health>().health);
+        if (baseRef)
+        {
+            baseHealth.text = Convert.ToString(baseRef!.GetComponent<Health>().health);
+        }
+        if (playerRef)
+        {
+            playerHealth.text =Convert.ToString(playerRef!.GetComponent<Health>().health);
+            cooldown.text =Convert.ToString((int)playerRef!.GetComponent<Shooting>().cooldown) + " s";
+            playerHoney.text = Convert.ToString(playerRef!.GetComponent<Player>()._honey);
+        }
+        if (turretRef)
+        {
+            turret.text =Convert.ToString((int)turretRef!.GetComponent<Health>().health);
+        }
+        else if (turretText
+            && turretText.GetComponent<CanvasRenderer>().gameObject)
+        {
+            Destroy(turretText.GetComponent<CanvasRenderer>().gameObject);
+            Destroy(turret.GetComponent<CanvasRenderer>().gameObject);
+        }
     }
 }

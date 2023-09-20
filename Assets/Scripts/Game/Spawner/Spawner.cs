@@ -5,8 +5,8 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public int maxEnemies;
-    public int spawnDelay;
-    public int initialSpawnDelay;
+    public float spawnDelay;
+    public float initialSpawnDelay;
     public GameObject enemyPrefab;
 
     void Awake()

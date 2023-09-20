@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private Texture2D pixelTexture;
     private GUIStyle rectStyle;
 
-    public int playerExp=0;
+    public int _honey=0;
 
     public Color color;
 
@@ -23,15 +23,9 @@ public class Player : MonoBehaviour
         rectStyle.normal.background = pixelTexture;
     }
 
-    public void AddExp(int exp)
+    public void GiveHoney(int honey)
     {
-        playerExp += exp;
-        while (playerExp >= 20)
-        {
-            Shooting shooting = gameObject.GetComponent<Shooting>();
-            shooting.baseDamage ++;
-            playerExp -=20;
-        }
+        _honey += honey;
     }
 
     void OnDestroy()

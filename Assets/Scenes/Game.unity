@@ -1002,7 +1002,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4994716325623124342, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: spawnDelay
-      value: 1
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: -4994716325623124342, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: enemyPrefab
@@ -1018,11 +1018,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8508755780993393082, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 6.97
       objectReference: {fileID: 0}
     - target: {fileID: 8508755780993393082, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.56
       objectReference: {fileID: 0}
     - target: {fileID: 8508755780993393082, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 598495947}
   - component: {fileID: 598495946}
   m_Layer: 5
-  m_Name: PlayerEXPText
+  m_Name: HoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player EXP
+  m_text: Honey
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1674,7 +1674,7 @@ GameObject:
   - component: {fileID: 772012435}
   - component: {fileID: 772012434}
   m_Layer: 5
-  m_Name: exp
+  m_Name: honey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2458,9 +2458,10 @@ MonoBehaviour:
   turretRef: {fileID: 2044105092}
   baseHealth: {fileID: 434902229}
   playerHealth: {fileID: 647533803}
-  playerEXP: {fileID: 772012434}
+  playerHoney: {fileID: 772012434}
   cooldown: {fileID: 1367503934}
   turret: {fileID: 1120614754}
+  turretText: {fileID: 1747832010}
 --- !u!222 &1239736342
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2952,7 +2953,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4994716325623124342, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: spawnDelay
-      value: 1
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: -4994716325623124342, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: enemyPrefab
@@ -2968,11 +2969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8508755780993393082, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: -6.79
       objectReference: {fileID: 0}
     - target: {fileID: 8508755780993393082, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.29
       objectReference: {fileID: 0}
     - target: {fileID: 8508755780993393082, guid: 49ac91a02b2a1314c8190912af8c9507, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3136,7 +3137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530122305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.98, y: 0.09, z: 0}
+  m_LocalPosition: {x: -0.17, y: -0.02, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3238,11 +3239,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4212891228991004755, guid: afbd3742cfd25974696dcac3e6098d77, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.7892933
+      value: -4.68
       objectReference: {fileID: 0}
     - target: {fileID: 4212891228991004755, guid: afbd3742cfd25974696dcac3e6098d77, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.3280563
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 4212891228991004755, guid: afbd3742cfd25974696dcac3e6098d77, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3425,7 +3426,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591134799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.21, y: -4.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3481,7 +3482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4932d379480998242ac87515c6e09ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 6
 --- !u!61 &1591134806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3520,7 +3521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ffa05f4f4139c47b70afc49f0b4083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerExp: 0
+  _honey: 0
   color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1685975330
 GameObject:
