@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 #nullable enable
 
+[RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour
@@ -14,9 +16,8 @@ public class Enemy : MonoBehaviour
     private Health? health;
 
     private GameObject? attackerRef;
+    private NavMeshAgent agent;
 
-    public float movementSpeed;
-    public float acceleration;
     public int damage;
     public int honeyDrops =1;
 
@@ -25,6 +26,10 @@ public class Enemy : MonoBehaviour
         health =gameObject.GetComponent<Health>();
         rigidBody = gameObject.GetComponent<Rigidbody2D>();
         attackerRef =GameObject.FindWithTag("Base");
+        agent = gameObject.GetComponent<NavMeshAgent>();
+
+        agent.updateRotation =false;
+        agent.updateUpAxis =false;
     }
 
     public void DoAttack(int damage)
@@ -64,25 +69,15 @@ public class Enemy : MonoBehaviour
             dist = DetermineClosest(currentPos, dist, turretsRef, ref gameObjTarget);
             
             attackerRef =gameObjTarget;
-            Debug.Log(attackerRef);
         }
     }
 
     void FixedUpdate()
     {
         DetermineTarget();
-
-        Vector2 vectorDiff =new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         if (attackerRef)
         {
-            Vector2 attackerPosition =new Vector2(attackerRef!.transform.position.x, attackerRef!.transform.position.y);
-            vectorDiff = attackerPosition -vectorDiff;
-        }
-        Debug.Log(vectorDiff);
-        rigidBody!.AddForce(vectorDiff * acceleration, ForceMode2D.Impulse);
-        if (Vector2.Dot(rigidBody!.velocity, vectorDiff) > movementSpeed)
-        {
-            rigidBody!.velocity = vectorDiff.normalized * movementSpeed;
+            agent.destination =attackerRef!.transform.position;
         }
     }
     
