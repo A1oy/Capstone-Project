@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     private Health? health;
 
     private GameObject? attackerRef;
-    private NavMeshAgent agent;
+    private NavMeshAgent agent =null!;
 
     public int damage;
     public int honeyDrops =1;

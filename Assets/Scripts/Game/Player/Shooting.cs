@@ -11,7 +11,7 @@ public class Shooting : MonoBehaviour
     public float cooldown =0;
 
     public float bulletForce = 2.0f;
-    public float grenadeForce = 2f;
+    public float grenadeForce = 1.0f;
 
     public int baseDamage =0;
     public float cooldownDelay =5;

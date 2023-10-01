@@ -49,11 +49,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 43520982865979776, guid: 7a2e8afce80da7f45b7d6bb7c8b035fd, type: 3}
   firePoint: {fileID: 0}
   detectRadius: 32
   force: 0
   delay: 0
+  damage: 1
 --- !u!212 &607157124462723626
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -183,7 +184,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
