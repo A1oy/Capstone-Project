@@ -3,47 +3,104 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 #nullable enable
 
 public class GameUI : MonoBehaviour
 {
-    public GameObject? baseRef;
-    public GameObject? playerRef;
-    public GameObject? turretRef;
+    float time=0.0f;
+    int day=1;
+    bool isDaytime=true;
+    float alpha=0.0f;
 
-    public TMP_Text baseHealth =null!;
+    bool isDaylightChanging=false;
 
-    public TMP_Text playerHealth =null!;
+    public GameObject player =null!;
+    public GameObject blackout =null!;
+
     public TMP_Text playerHoney =null!;
-    public TMP_Text cooldown =null!;
+    public TMP_Text playerGrenade =null!;
+    public TMP_Text dayText =null!;
+    public TMP_Text timeText =null!;
 
-    public TMP_Text turret =null!;
-    public TMP_Text turretText =null!;
+    public float daylightInSeconds;
+    public float nightInSeconds;
+    public float daylightSmoothingInSeconds;
 
     // Update is called once per frame
 
+    void Start()
+    {
+        time =daylightInSeconds;
+        dayText.text ="Day 1";
+        daylightSmoothingInSeconds = 1.0f/daylightSmoothingInSeconds;
+    }
+
+    void DoDaylightChange()
+    {
+        if (isDaylightChanging)
+        {
+            if (isDaytime)
+            {
+                alpha -= Time.deltaTime * daylightSmoothingInSeconds;
+                if (alpha <=0.0f)
+                {
+                    alpha =0.0f;
+                    isDaylightChanging =false;
+                }
+            }
+            else
+            {
+                alpha += Time.deltaTime *daylightSmoothingInSeconds;
+                if (alpha >=1.0f)
+                {
+                    alpha =1.0f;
+                    isDaylightChanging =false;
+                }
+            }
+            SpriteRenderer sr =blackout!.GetComponent<SpriteRenderer>();
+            sr.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+        }
+    }
+
+    void HandleDaylightUI()
+    {
+        time -=Time.deltaTime;
+        if (time <0.0f)
+        {
+            if (isDaytime)
+            {
+                time =nightInSeconds;
+            }
+            else
+            {
+                time =daylightInSeconds;
+                day++;
+                dayText.text = $"Day {day}";
+            }
+            isDaytime =!isDaytime;
+            isDaylightChanging =true;
+        }
+        int iTime =(int)time;
+        int mins =iTime /60;
+        int secs = iTime - (mins *60);
+        string pad =secs<10? "0":"";
+        timeText.text = $"{mins}:{pad}{secs}";
+        DoDaylightChange();
+    }
+
     void FixedUpdate()
     {
-        if (baseRef)
+        if (player)
         {
-            baseHealth.text = Convert.ToString(baseRef!.GetComponent<Health>().health);
+            playerHoney.text = Convert.ToString(player!.GetComponent<Player>().honey);
+            playerGrenade.text =Convert.ToString(player!.GetComponent<Shooting>().grenades);
         }
-        if (playerRef)
-        {
-            playerHealth.text =Convert.ToString(playerRef!.GetComponent<Health>().health);
-            cooldown.text =Convert.ToString((int)playerRef!.GetComponent<Shooting>().cooldown) + " s";
-            playerHoney.text = Convert.ToString(playerRef!.GetComponent<Player>()._honey);
-        }
-        if (turretRef)
-        {
-            turret.text =Convert.ToString((int)turretRef!.GetComponent<Health>().health);
-        }
-        else if (turretText
-            && turretText.GetComponent<CanvasRenderer>().gameObject)
-        {
-            Destroy(turretText.GetComponent<CanvasRenderer>().gameObject);
-            Destroy(turret.GetComponent<CanvasRenderer>().gameObject);
-        }
+    }
+
+    void Update()
+    {
+        HandleDaylightUI();
     }
 }

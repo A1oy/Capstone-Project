@@ -19,14 +19,14 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent =null!;
 
     public int damage;
-    public int honeyDrops =1;
+    public float detectRadius =4.0f;
 
     void Start()
     {
-        health =gameObject.GetComponent<Health>();
-        rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        health =GetComponent<Health>();
+        rigidBody = GetComponent<Rigidbody2D>();
         attackerRef =GameObject.FindWithTag("Base");
-        agent = gameObject.GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
 
         agent.updateRotation =false;
         agent.updateUpAxis =false;
@@ -42,7 +42,6 @@ public class Enemy : MonoBehaviour
         Vector3 vectorDiff =new Vector3(0.0f, 0.0f, 0.0f);
         foreach (GameObject gameObj in gameObjs)
         {
-            
             vectorDiff =currentPos-gameObj.transform.position;
             if (vectorDiff.magnitude < bestDist)
             {
@@ -55,7 +54,14 @@ public class Enemy : MonoBehaviour
 
     void DetermineTarget()
     {
-        Vector3 currentPos =gameObject.transform.position;
+        Vector3 currentPos =transform.position;
+
+        Collider2D baitCollide =Physics2D.OverlapCircle(transform.position, detectRadius, 1<<8);
+        if (baitCollide)
+        {
+            attackerRef =baitCollide.gameObject;
+            return ;
+        }
 
         GameObject baseRef =GameObject.FindWithTag("Base");
         GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
@@ -70,6 +76,12 @@ public class Enemy : MonoBehaviour
             
             attackerRef =gameObjTarget;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.3f);
+        Gizmos.DrawSphere(transform.position, detectRadius);
     }
 
     void FixedUpdate()
@@ -109,16 +121,6 @@ public class Enemy : MonoBehaviour
         {
             StopCoroutine(damageRoutine);
             damageRoutine =null;
-        }
-    }
-
-    void OnDestroy()
-    {
-        GameObject player =GameObject.FindWithTag("Player");
-        if (player)
-        {
-            Player playerComponent = player.GetComponent<Player>();
-            playerComponent.GiveHoney(honeyDrops);
         }
     }
 }

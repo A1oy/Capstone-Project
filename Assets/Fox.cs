@@ -5,9 +5,6 @@ using UnityEngine.AI;
 
 public class Fox : MonoBehaviour
 {
-
-    float detectRadius =10.0f;
-
     NavMeshAgent agent =null!;
     void Start()
     {
