@@ -10,6 +10,7 @@ public class BuyMenuUI : MonoBehaviour
 
     public int grenadePrice =2;
     public int honeyPrice =1;
+    public int maxGrenades =2;
     public GameObject player =null!;
 
     public TMP_Text grenadePriceText =null!;
@@ -29,13 +30,17 @@ public class BuyMenuUI : MonoBehaviour
 
     public void SellHoney()
     {
-        playerComp.honey --;
-        playerComp.money+=honeyPrice;
+        if (playerComp.honey >0)
+        {
+            playerComp.honey --;
+            playerComp.money+=honeyPrice;
+        }
     }
 
     public void BuyGrenade()
     {
-        if (playerComp.money >=grenadePrice)
+        if (playerComp.money >=grenadePrice
+            && playerComp.grenades <maxGrenades)
         {
             playerComp.money -= grenadePrice;
             playerComp.grenades ++;

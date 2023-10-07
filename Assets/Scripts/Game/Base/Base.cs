@@ -68,6 +68,9 @@ public class Base : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color =new Color(1.0f, 1.0f, 0.6f, 0.3f);
-        Gizmos.DrawSphere(transform.position, interactable.touchRadius);
+        if (interactable)
+        {
+            Gizmos.DrawSphere(transform.position, interactable.touchRadius);
+        }
     }
 }
