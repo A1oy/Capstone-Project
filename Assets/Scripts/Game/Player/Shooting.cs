@@ -11,8 +11,6 @@ public class Shooting : MonoBehaviour
     public GameObject grenadePrefab =null!;
     public GameObject honeyPrefab =null!;
 
-    public int grenades =2;
-
     public float bulletForce = 5.0f;
     public float grenadeForce = 0.5f;
     public float honeyForce = 0.7f;
@@ -24,7 +22,8 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-		if (!Pause.isPaused)
+        
+		if (!UIController.isPaused)
 		{
             if (Input.GetButtonDown("Fire1"))
             {
@@ -32,10 +31,10 @@ public class Shooting : MonoBehaviour
             }
             else if (Input.GetButtonDown("Fire2"))
             {
-                if (grenades >0)
+                if (player.grenades >0)
                 {
                     Shoot(grenadePrefab, grenadeForce);
-                    grenades--;
+                    player.grenades--;
                 }
             }
             else if (Input.GetButtonDown("Fire3"))

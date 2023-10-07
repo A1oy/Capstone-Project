@@ -5,46 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
-    public GameObject pauseMenu;
+    public GameObject pauseMenu =null!;
 	public GameObject settingsMenu =null!;
-	public GameObject darkPanel =null!;
-	public static bool isPaused;
-
-	void Start()
-	{
-		pauseMenu.SetActive(false);
-		settingsMenu.SetActive(false);
-		darkPanel.SetActive(false);
-	}
 
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			if (isPaused)
-			{
-				Resume();
-			}
-			else
-			{
-				PauseGame();
-			}
+			Resume();
 		}
 	}
-	public void PauseGame()
+
+	void OnEnable()
 	{
-		pauseMenu.SetActive(true);
-		darkPanel.SetActive(true);
-		Time.timeScale = 0;
-		isPaused = true;
+		settingsMenu.SetActive(false);
 	}
 
 	public void Resume()
 	{
-		pauseMenu.SetActive(false);
-		darkPanel.SetActive(false);
+		gameObject.SetActive(false);
 		Time.timeScale = 1;
-		isPaused = false;
+		UIController.isPaused = false;
 	}
 
 	public void Restart()

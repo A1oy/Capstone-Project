@@ -25,7 +25,6 @@ public class Grenade : MonoBehaviour
     IEnumerator ExplosionDelay()
     {
         yield return new WaitForSeconds(secondsDeplay);
-        Debug.Log("ExplosionDelay called!");
         Destroy(gameObject);
         Vector2 position =new Vector2(transform.position.x, transform.position.y);
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);

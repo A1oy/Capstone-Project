@@ -10,19 +10,24 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     float time=0.0f;
-    int day=1;
-    bool isDaytime=true;
     float alpha=0.0f;
 
     bool isDaylightChanging=false;
+
+    public static bool isDaytime=true;
+    static public int day=1;
+    GameObject? prevInteractable =null;
 
     public GameObject player =null!;
     public GameObject blackout =null!;
 
     public TMP_Text playerHoney =null!;
     public TMP_Text playerGrenade =null!;
+    public TMP_Text playerMoney =null!;
+
     public TMP_Text dayText =null!;
     public TMP_Text timeText =null!;
+    public TMP_Text interactableText =null!;
 
     public float daylightInSeconds;
     public float nightInSeconds;
@@ -90,17 +95,61 @@ public class GameUI : MonoBehaviour
         DoDaylightChange();
     }
 
-    void FixedUpdate()
+
+    void HandleInteractables()
     {
-        if (player)
+        GameObject? curInteractable =null;
+        GameObject? player=null;
+        Interactable? interactable =null;
+        
+        foreach (GameObject gameObj in Interactable.gameInteractables)
         {
-            playerHoney.text = Convert.ToString(player!.GetComponent<Player>().honey);
-            playerGrenade.text =Convert.ToString(player!.GetComponent<Shooting>().grenades);
+            if (gameObj)
+            {
+                interactable =gameObj.GetComponent<Interactable>();
+                Collider2D playerCollide =Physics2D.OverlapCircle(gameObj.transform.position, interactable.touchRadius, 1<<7);
+                if (playerCollide)
+                {
+                    curInteractable =gameObj;
+                    player =playerCollide.gameObject;
+                    break;
+                }
+            }
+        }
+        if (prevInteractable!=null)
+        {
+            if (curInteractable ==null
+                || !prevInteractable!.GetComponent<Interactable>().isEnabled)
+            {
+                prevInteractable!.SendMessage("OnLeaveInteract");
+                interactableText.text = "";
+            }
+        }
+        else if (prevInteractable ==null
+            && curInteractable !=null
+            && interactable!.isEnabled)
+        {
+            curInteractable.SendMessage("OnInteract", player);
+            interactableText.text =interactable!.text;
+        }
+        prevInteractable =curInteractable;
+
+        if (prevInteractable
+            && Input.anyKeyDown
+            && prevInteractable!.GetComponent<Interactable>().isEnabled)
+        {
+            prevInteractable!.SendMessage("OnInteracting");
         }
     }
 
     void Update()
     {
         HandleDaylightUI();
+        HandleInteractables();
+
+
+        playerHoney.text = Convert.ToString(player!.GetComponent<Player>().honey);
+        playerGrenade.text =Convert.ToString(player!.GetComponent<Player>().grenades);
+        playerMoney.text = $"{player!.GetComponent<Player>().money}";
     }
 }

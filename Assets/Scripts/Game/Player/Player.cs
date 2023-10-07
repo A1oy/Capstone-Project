@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public int honey=3;
+    public int grenades =2;
+    public int money=0;
 
     void OnDestroy()
     {

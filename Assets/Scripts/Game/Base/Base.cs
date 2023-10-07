@@ -5,18 +5,20 @@ using System;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Interactable))]
 public class Base : MonoBehaviour
 {
     int honey =0;
+    int prevDay=-1;
+    Interactable interactable;
 
-    public GameObject gameUI =null!;
     public float touchRadius =2.0f;
     public int honeyEachRound =5;
-
+    public GameObject buyMenuUI;
 
     void Start()
     {
-        honey += honeyEachRound;
+        interactable =GetComponent<Interactable>();
     }
 
     void OnDestroy()
@@ -27,24 +29,45 @@ public class Base : MonoBehaviour
         }
     }
 
-    public void DispenseHoney()
+    void Update()
     {
-        honey += honeyEachRound;
+        if (prevDay <GameUI.day)
+        {
+            honey += honeyEachRound;
+            prevDay =GameUI.day;
+        }
+        if (GameUI.isDaytime == !interactable.isEnabled)
+        {
+            interactable.isEnabled =GameUI.isDaytime;
+        }
     }
 
-    void FixedUpdate()
+    void OnInteract(GameObject player)
     {
-        Collider2D playerCollide =Physics2D.OverlapCircle(transform.position, touchRadius, 1<<7);
-        if (playerCollide)
+        player.GetComponent<Player>().honey += honey;
+        honey =0;
+    }
+
+    void OnInteracting()
+    {
+        if (Input.GetKeyDown(KeyCode.E)
+            && GameUI.isDaytime)
         {
-            playerCollide.gameObject.GetComponent<Player>().honey += honey;
-            honey =0;
+            buyMenuUI.SetActive(true);
+        }
+    }
+
+    void OnLeaveInteract()
+    {
+        if (buyMenuUI.activeSelf)
+        {
+            buyMenuUI.SetActive(false);
         }
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color =new Color(1.0f, 1.0f, 0.6f, 0.3f);
-        Gizmos.DrawSphere(transform.position, touchRadius);
+        Gizmos.DrawSphere(transform.position, interactable.touchRadius);
     }
 }
