@@ -16,7 +16,6 @@ public class GameUI : MonoBehaviour
 
     public static bool isDaytime=true;
     static public int day=1;
-    GameObject? prevInteractable =null;
 
     public GameObject player =null!;
     public GameObject blackout =null!;
@@ -95,58 +94,9 @@ public class GameUI : MonoBehaviour
         DoDaylightChange();
     }
 
-
-    void HandleInteractables()
-    {
-        GameObject? curInteractable =null;
-        GameObject? player=null;
-        Interactable? interactable =null;
-        
-        foreach (GameObject gameObj in Interactable.gameInteractables)
-        {
-            if (gameObj)
-            {
-                interactable =gameObj.GetComponent<Interactable>();
-                Collider2D playerCollide =Physics2D.OverlapCircle(gameObj.transform.position, interactable.touchRadius, 1<<7);
-                if (playerCollide)
-                {
-                    curInteractable =gameObj;
-                    player =playerCollide.gameObject;
-                    break;
-                }
-            }
-        }
-        if (prevInteractable!=null)
-        {
-            if (curInteractable ==null
-                || !prevInteractable!.GetComponent<Interactable>().isEnabled)
-            {
-                prevInteractable!.SendMessage("OnLeaveInteract");
-                interactableText.text = "";
-            }
-        }
-        else if (prevInteractable ==null
-            && curInteractable !=null
-            && interactable!.isEnabled)
-        {
-            curInteractable.SendMessage("OnInteract", player);
-            interactableText.text =interactable!.text;
-        }
-        prevInteractable =curInteractable;
-
-        if (prevInteractable
-            && Input.anyKeyDown
-            && prevInteractable!.GetComponent<Interactable>().isEnabled)
-        {
-            prevInteractable!.SendMessage("OnInteracting");
-        }
-    }
-
     void Update()
     {
         HandleDaylightUI();
-        HandleInteractables();
-
 
         playerHoney.text = Convert.ToString(player!.GetComponent<Player>().honey);
         playerGrenade.text =Convert.ToString(player!.GetComponent<Player>().grenades);

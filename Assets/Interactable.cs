@@ -4,20 +4,50 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public static List<GameObject> gameInteractables = new List<GameObject>();
-
     public bool isEnabled =true;
+    public bool isInteracting =false;
 
     public float touchRadius =2.0f;
     public string text;
 
-    void Start()
+    void Update()
     {
-        gameInteractables.Add(gameObject);
+        Collider2D collision =Physics2D.OverlapCircle(gameObject.transform.position, touchRadius, 1<<7);
+        if (collision)
+        {
+            if (!isInteracting)
+            {
+                isInteracting =true;
+                gameObject.SendMessage("OnInteract", collision.gameObject);
+                InteractController.singleton!.text =text;
+            }
+        }
+        else
+        {
+            if (isInteracting)
+            {
+                isInteracting =false;
+                InteractController.singleton!.text =null;
+                gameObject.SendMessage("OnLeaveInteract");
+            }
+        }
+        if (!isEnabled
+            && isInteracting)
+        {
+            gameObject.SendMessage("OnLeaveInteract");
+        }
+
+        if (Input.anyKeyDown
+            && isEnabled
+            && isInteracting)
+        {
+            gameObject.SendMessage("OnInteracting");
+        }
     }
 
-    void Destroy()
+    void OnDrawGizmos()
     {
-        gameInteractables.Remove(gameObject);
+        Gizmos.color =new Color(1.0f, 1.0f, 0.6f, 0.3f);
+        Gizmos.DrawSphere(transform.position, touchRadius);
     }
 }

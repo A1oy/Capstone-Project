@@ -10,20 +10,21 @@ public class Base : MonoBehaviour
 {
     int honey =0;
     int prevDay=-1;
-    Interactable interactable;
 
     public float touchRadius =2.0f;
     public int honeyEachRound =5;
     public GameObject buyMenuUI;
 
-    void Start()
+    private Interactable interactable;
+
+    void Awake()
     {
         interactable =GetComponent<Interactable>();
     }
 
     void OnDestroy()
     {
-        if (gameObject.GetComponent<Health>().isKilled)
+        if (GetComponent<Health>().isKilled)
         {
             SceneManager.LoadScene("Game Over");
         }
@@ -62,15 +63,6 @@ public class Base : MonoBehaviour
         if (buyMenuUI.activeSelf)
         {
             buyMenuUI.SetActive(false);
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color =new Color(1.0f, 1.0f, 0.6f, 0.3f);
-        if (interactable)
-        {
-            Gizmos.DrawSphere(transform.position, interactable.touchRadius);
         }
     }
 }
