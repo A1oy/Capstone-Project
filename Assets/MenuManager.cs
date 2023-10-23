@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIController : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     private bool _isPaused =false;
+
+    [System.NonSerialized]
     public  bool isMovement =true;
 
-    public static UIController singleton =null!;
+    public static MenuManager singleton =null!;
     public bool isPaused { set { PauseGame(value); } get { return _isPaused; }}
 
     public GameObject pauseMenu =null!;
 
     void Awake()
     {
-        singleton =GetComponent<UIController>();
+        singleton =GetComponent<MenuManager>();
     }
 
     void Update()

@@ -13,11 +13,16 @@ public class PlayerMovement : MonoBehaviour
     // Update every frame
     void Update()
     {
-        if (UIController.singleton!.isMovement)
+        if (MenuManager.singleton!.isMovement)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        }
+        else
+        {
+            movement.x =0;
+            movement.y =0;
         }
     }
 

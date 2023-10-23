@@ -13,24 +13,30 @@ public class BuyMenuUI : MonoBehaviour
     public int maxGrenades =2;
     public GameObject player =null!;
 
+    [SerializeField]
+    private GameObject buyContainer;
+    
+
     public TMP_Text grenadePriceText =null!;
     public TMP_Text honeyPriceText =null!;
 
     void Start()
     {
         playerComp =player.GetComponent<Player>();
-        honeyPriceText.text = $"${honeyPrice}";
-        grenadePriceText.text = $"${grenadePrice}";
     }
 
     void OnEnable()
     {
-        UIController.singleton!.isMovement =false;
+        MenuManager.singleton!.isMovement =false;
+        honeyPriceText.text = $"${honeyPrice}";
+        grenadePriceText.text = $"${grenadePrice}";
+        buyContainer.SetActive(true);
     }
     
     void OnDisable()
     {
-        UIController.singleton!.isMovement =true;
+        MenuManager.singleton!.isMovement =true;
+        buyContainer.SetActive(false);
     }
 
     public void Exit()

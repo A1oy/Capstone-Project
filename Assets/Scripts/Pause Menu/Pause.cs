@@ -8,6 +8,9 @@ public class Pause : MonoBehaviour
     public GameObject pauseMenu =null!;
 	public GameObject settingsMenu =null!;
 
+	[SerializeField]
+	private GameObject pauseContainer;
+
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -19,18 +22,25 @@ public class Pause : MonoBehaviour
 	void OnEnable()
 	{
 		settingsMenu.SetActive(false);
-		UIController.singleton!.isPaused =true;
+		MenuManager.singleton!.isPaused =true;
+		pauseContainer.SetActive(true);
 	}
 
 	void OnDisable()
 	{
-		UIController.singleton!.isPaused =false;		
+		MenuManager.singleton!.isPaused =false;
+		pauseContainer.SetActive(false);
+	}
+
+	public void Resume()
+	{
+		gameObject.SetActive(false);
 	}
 
 	public void Restart()
 	{
 		SceneManager.LoadScene("Game");
-		UIController.singleton!.isPaused =false;
+		MenuManager.singleton!.isPaused =false;
 	}
 
 	public void Settings()

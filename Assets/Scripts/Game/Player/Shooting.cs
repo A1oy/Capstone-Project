@@ -23,7 +23,7 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         
-		if (UIController.singleton!.isMovement)
+		if (MenuManager.singleton!.isMovement)
 		{
             if (Input.GetButtonDown("Fire1"))
             {
