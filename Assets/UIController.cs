@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    public static bool isPaused =false;
+    private bool _isPaused =false;
+    public  bool isMovement =true;
+
+    public static UIController singleton =null!;
+    public bool isPaused { set { PauseGame(value); } get { return _isPaused; }}
 
     public GameObject pauseMenu =null!;
+
+    void Awake()
+    {
+        singleton =GetComponent<UIController>();
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            pauseMenu.SetActive(true);
         }
     }
 
-    public void Pause()
-	{
-        pauseMenu.SetActive(true);
-		Time.timeScale = 0;
-		isPaused = true;
-	}
+    void PauseGame(bool value)
+    {
+        _isPaused =value;
+        isMovement =!value;
+        Time.timeScale = _isPaused ? 0 :1;
+    }
 }

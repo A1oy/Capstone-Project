@@ -12,26 +12,25 @@ public class Pause : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			Resume();
+			gameObject.SetActive(false);
 		}
 	}
 
 	void OnEnable()
 	{
 		settingsMenu.SetActive(false);
+		UIController.singleton!.isPaused =true;
 	}
 
-	public void Resume()
+	void OnDisable()
 	{
-		gameObject.SetActive(false);
-		Time.timeScale = 1;
-		UIController.isPaused = false;
+		UIController.singleton!.isPaused =false;		
 	}
 
 	public void Restart()
 	{
 		SceneManager.LoadScene("Game");
-		Time.timeScale = 1;
+		UIController.singleton!.isPaused =false;
 	}
 
 	public void Settings()

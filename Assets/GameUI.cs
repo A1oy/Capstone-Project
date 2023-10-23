@@ -32,8 +32,6 @@ public class GameUI : MonoBehaviour
     public float nightInSeconds;
     public float daylightSmoothingInSeconds;
 
-    // Update is called once per frame
-
     void Start()
     {
         time =daylightInSeconds;

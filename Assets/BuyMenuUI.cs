@@ -23,6 +23,16 @@ public class BuyMenuUI : MonoBehaviour
         grenadePriceText.text = $"${grenadePrice}";
     }
 
+    void OnEnable()
+    {
+        UIController.singleton!.isMovement =false;
+    }
+    
+    void OnDisable()
+    {
+        UIController.singleton!.isMovement =true;
+    }
+
     public void Exit()
     {
         gameObject.SetActive(false);
