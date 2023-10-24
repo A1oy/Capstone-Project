@@ -177,9 +177,9 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "file:C:/Users/joshu/Desktop/InputSystem/Packages/com.unity.inputsystem",
+      "version": "file:com.unity.inputsystem",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {
         "com.unity.modules.uielements": "1.0.0"
       }
