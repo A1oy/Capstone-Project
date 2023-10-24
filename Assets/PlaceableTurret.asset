@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aa5d8a55d21434e915f58297dee706, type: 3}
+  m_Name: PlaceableTurret
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 06d3681ae73a3c5458c071de4ff1b1f5, type: 3}
+  objectPrefab: {fileID: 2751959643139573574, guid: afbd3742cfd25974696dcac3e6098d77, type: 3}
+  cost: 5

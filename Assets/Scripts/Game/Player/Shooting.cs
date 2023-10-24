@@ -15,6 +15,9 @@ public class Shooting : MonoBehaviour
     public float grenadeForce = 0.5f;
     public float honeyForce = 0.7f;
 
+    public Texture image;
+
+
     void Start()
     {
         player =GetComponent<Player>();
@@ -23,7 +26,8 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         
-		if (MenuManager.singleton!.isMovement)
+		if (MenuManager.singleton!.isMovement
+            && !GetComponent<Player>().isBuildMode)
 		{
             if (Input.GetButtonDown("Fire1"))
             {
@@ -47,7 +51,7 @@ public class Shooting : MonoBehaviour
             }
         }
     }
-
+    
     void Shoot(GameObject projectile, float force)
     {
         GameObject bullet = Instantiate(projectile, firePoint.position, firePoint.rotation);
