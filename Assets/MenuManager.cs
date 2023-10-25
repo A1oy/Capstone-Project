@@ -21,6 +21,7 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(isMovement);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(true);
