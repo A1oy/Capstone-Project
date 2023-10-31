@@ -51,7 +51,7 @@ public class Base : MonoBehaviour
 
     void OnInteracting()
     {
-        if (Input.GetKeyDown(KeyCode.E)
+        if (Input.GetKeyDown(KeyCode.F)
             && GameUI.isDaytime)
         {
             buyMenuUI.SetActive(true);
