@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf6a641742e7f54cb3e7d8d1769f4db, type: 3}
   m_Name: ReloadUpgrade
   m_EditorClassIdentifier: 
-  upgradeLevels: 
-  upgradeName: 
+  sprite: {fileID: 0}
+  moneyReq: 05000000
+  description:
+  - Increase Reload by 10%
+  Name: Reload

@@ -25,7 +25,7 @@ public partial class @BaseInput: IInputActionCollection2, IDisposable
     ""name"": ""BaseInput"",
     ""maps"": [
         {
-            ""name"": ""GamePlay"",
+            ""name"": ""Gameplay"",
             ""id"": ""afc463a0-9e2f-47d1-b24c-b5ad3838ab70"",
             ""actions"": [
                 {
@@ -194,14 +194,14 @@ public partial class @BaseInput: IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // GamePlay
-        m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
-        m_GamePlay_SwitchMode = m_GamePlay.FindAction("Switch Mode", throwIfNotFound: true);
-        m_GamePlay_SwitchItem = m_GamePlay.FindAction("Switch Item", throwIfNotFound: true);
-        m_GamePlay_Use = m_GamePlay.FindAction("Use", throwIfNotFound: true);
-        m_GamePlay_Throw = m_GamePlay.FindAction("Throw", throwIfNotFound: true);
-        m_GamePlay_ThrowHoney = m_GamePlay.FindAction("Throw Honey", throwIfNotFound: true);
-        m_GamePlay_Pause = m_GamePlay.FindAction("Pause", throwIfNotFound: true);
+        // Gameplay
+        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
+        m_Gameplay_SwitchMode = m_Gameplay.FindAction("Switch Mode", throwIfNotFound: true);
+        m_Gameplay_SwitchItem = m_Gameplay.FindAction("Switch Item", throwIfNotFound: true);
+        m_Gameplay_Use = m_Gameplay.FindAction("Use", throwIfNotFound: true);
+        m_Gameplay_Throw = m_Gameplay.FindAction("Throw", throwIfNotFound: true);
+        m_Gameplay_ThrowHoney = m_Gameplay.FindAction("Throw Honey", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // Base
         m_Base = asset.FindActionMap("Base", throwIfNotFound: true);
         m_Base_Interact = m_Base.FindAction("Interact", throwIfNotFound: true);
@@ -209,7 +209,7 @@ public partial class @BaseInput: IInputActionCollection2, IDisposable
 
     ~@BaseInput()
     {
-        Debug.Assert(!m_GamePlay.enabled, "This will cause a leak and performance issues, BaseInput.GamePlay.Disable() has not been called.");
+        Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, BaseInput.Gameplay.Disable() has not been called.");
         Debug.Assert(!m_Base.enabled, "This will cause a leak and performance issues, BaseInput.Base.Disable() has not been called.");
     }
 
@@ -269,34 +269,34 @@ public partial class @BaseInput: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // GamePlay
-    private readonly InputActionMap m_GamePlay;
-    private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
-    private readonly InputAction m_GamePlay_SwitchMode;
-    private readonly InputAction m_GamePlay_SwitchItem;
-    private readonly InputAction m_GamePlay_Use;
-    private readonly InputAction m_GamePlay_Throw;
-    private readonly InputAction m_GamePlay_ThrowHoney;
-    private readonly InputAction m_GamePlay_Pause;
-    public struct GamePlayActions
+    // Gameplay
+    private readonly InputActionMap m_Gameplay;
+    private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
+    private readonly InputAction m_Gameplay_SwitchMode;
+    private readonly InputAction m_Gameplay_SwitchItem;
+    private readonly InputAction m_Gameplay_Use;
+    private readonly InputAction m_Gameplay_Throw;
+    private readonly InputAction m_Gameplay_ThrowHoney;
+    private readonly InputAction m_Gameplay_Pause;
+    public struct GameplayActions
     {
         private @BaseInput m_Wrapper;
-        public GamePlayActions(@BaseInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @SwitchMode => m_Wrapper.m_GamePlay_SwitchMode;
-        public InputAction @SwitchItem => m_Wrapper.m_GamePlay_SwitchItem;
-        public InputAction @Use => m_Wrapper.m_GamePlay_Use;
-        public InputAction @Throw => m_Wrapper.m_GamePlay_Throw;
-        public InputAction @ThrowHoney => m_Wrapper.m_GamePlay_ThrowHoney;
-        public InputAction @Pause => m_Wrapper.m_GamePlay_Pause;
-        public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
+        public GameplayActions(@BaseInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SwitchMode => m_Wrapper.m_Gameplay_SwitchMode;
+        public InputAction @SwitchItem => m_Wrapper.m_Gameplay_SwitchItem;
+        public InputAction @Use => m_Wrapper.m_Gameplay_Use;
+        public InputAction @Throw => m_Wrapper.m_Gameplay_Throw;
+        public InputAction @ThrowHoney => m_Wrapper.m_Gameplay_ThrowHoney;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GamePlayActions set) { return set.Get(); }
-        public void AddCallbacks(IGamePlayActions instance)
+        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
+        public void AddCallbacks(IGameplayActions instance)
         {
-            if (instance == null || m_Wrapper.m_GamePlayActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GamePlayActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_GameplayActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Add(instance);
             @SwitchMode.started += instance.OnSwitchMode;
             @SwitchMode.performed += instance.OnSwitchMode;
             @SwitchMode.canceled += instance.OnSwitchMode;
@@ -317,7 +317,7 @@ public partial class @BaseInput: IInputActionCollection2, IDisposable
             @Pause.canceled += instance.OnPause;
         }
 
-        private void UnregisterCallbacks(IGamePlayActions instance)
+        private void UnregisterCallbacks(IGameplayActions instance)
         {
             @SwitchMode.started -= instance.OnSwitchMode;
             @SwitchMode.performed -= instance.OnSwitchMode;
@@ -339,21 +339,21 @@ public partial class @BaseInput: IInputActionCollection2, IDisposable
             @Pause.canceled -= instance.OnPause;
         }
 
-        public void RemoveCallbacks(IGamePlayActions instance)
+        public void RemoveCallbacks(IGameplayActions instance)
         {
-            if (m_Wrapper.m_GamePlayActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_GameplayActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IGamePlayActions instance)
+        public void SetCallbacks(IGameplayActions instance)
         {
-            foreach (var item in m_Wrapper.m_GamePlayActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_GameplayActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_GamePlayActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_GameplayActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public GamePlayActions @GamePlay => new GamePlayActions(this);
+    public GameplayActions @Gameplay => new GameplayActions(this);
 
     // Base
     private readonly InputActionMap m_Base;
@@ -400,7 +400,7 @@ public partial class @BaseInput: IInputActionCollection2, IDisposable
         }
     }
     public BaseActions @Base => new BaseActions(this);
-    public interface IGamePlayActions
+    public interface IGameplayActions
     {
         void OnSwitchMode(InputAction.CallbackContext context);
         void OnSwitchItem(InputAction.CallbackContext context);

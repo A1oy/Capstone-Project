@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf6a641742e7f54cb3e7d8d1769f4db, type: 3}
-  m_Name: DamageUpgrade
+  m_Script: {fileID: 11500000, guid: e24343c97fe51b6459e7961298154c66, type: 3}
+  m_Name: Grenade
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  moneyReq: 01000000
-  description:
-  - Increase Damage by 10%
-  Name: Damage
+  Name: Grenade
+  description: American made!
+  cost: 5

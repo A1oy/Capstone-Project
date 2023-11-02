@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class UpgradeSlot : ScriptableObject
+public class BuyItemSlot : ScriptableObject
 {
     public Sprite sprite;
-    public List<int> moneyReq;
-    public List<string> description;
     public string Name;
+    public string description;
+    public int cost;
 }

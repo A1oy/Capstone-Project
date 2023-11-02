@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddf6a641742e7f54cb3e7d8d1769f4db, type: 3}
-  m_Name: FireRateUpgrade
+  m_Name: FirerateUpgrade
   m_EditorClassIdentifier: 
-  m_sprite: {fileID: 0}
-  m_moneyReq: 05000000
-  m_description: Increase Fire Rate
-  m_name: Fire Rate
+  sprite: {fileID: 0}
+  moneyReq: 03000000
+  description:
+  - Increase Firerate by 10%
+  Name: Firerate

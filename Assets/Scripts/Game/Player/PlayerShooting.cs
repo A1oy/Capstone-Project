@@ -2,8 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooting : MonoBehaviour
+public class PlayerShooting : MonoBehaviour
 {
+    public class Weapon
+    {
+        Sprite sprite;
+
+        int fireSpeed;
+        int reloadSpeed;
+        int ammoCapacity;
+        int ammo;
+        int damage;
+    };
     Player player =null!;
 
     public Transform firePoint =null!;
@@ -15,7 +25,7 @@ public class Shooting : MonoBehaviour
     public float grenadeForce = 0.5f;
     public float honeyForce = 0.7f;
 
-    public Texture image;
+    public Weapon weapon;
 
 
     void Start()

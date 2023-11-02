@@ -22,25 +22,27 @@ public class UpgradeSlotUI : MonoBehaviour
     [SerializeField]
     TMP_Text m_cost;
 
-    int currentLevel=0;
+    int m_currentLevel=0;
 
     void Start()
     {
         m_name.text =m_upgradeSlot.Name;
-        if (m_upgradeSlot.Sprite)
+        if (m_upgradeSlot.sprite)
         {
-            m_icon.sprite =m_upgradeSlot.Sprite;
+            m_icon.sprite =m_upgradeSlot.sprite;
         }
-        m_description.text =m_upgradeSlot.Desc;
-        m_cost.text =Convert.ToString(m_upgradeSlot.GetMoneyReq(currentLevel));
+        m_description.text =m_upgradeSlot.description[m_currentLevel];
+        m_cost.text = "$" +Convert.ToString(m_upgradeSlot.moneyReq[m_currentLevel]);
     }
 
     public void Upgrade(int money)
     {
-        if (money < m_upgradeSlot.GetMoneyReq(currentLevel))
+        if (money < m_upgradeSlot.moneyReq[m_currentLevel])
         {
             return;
         }
-        money -= m_upgradeSlot.GetMoneyReq(currentLevel);
+        money -= m_upgradeSlot.moneyReq[m_currentLevel];
+        m_currentLevel++;
+        m_cost.text ="$" +Convert.ToString(m_upgradeSlot.moneyReq[m_currentLevel]);
     }
 }
