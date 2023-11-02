@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    [System.NonSerialized]
     public bool isEnabled =true;
     public bool isInteracting =false;
 
@@ -15,7 +16,8 @@ public class Interactable : MonoBehaviour
         Collider2D collision =Physics2D.OverlapCircle(gameObject.transform.position, touchRadius, 1<<7);
         if (collision)
         {
-            if (!isInteracting)
+            if (!isInteracting
+                && isEnabled)
             {
                 isInteracting =true;
                 gameObject.SendMessage("OnInteract", collision.gameObject);

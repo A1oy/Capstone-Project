@@ -22,7 +22,22 @@ public class UpgradeSlotUI : MonoBehaviour
     [SerializeField]
     TMP_Text m_cost;
 
+    [SerializeField]
+    Slider m_slider;
+    
+    [SerializeField]
     int m_currentLevel=0;
+
+    public int lvl
+    {
+        set 
+        {
+            m_currentLevel =value;
+            m_slider.value =value *0.2f;
+        }
+
+        get { return m_currentLevel; }
+    }
 
     void Start()
     {
@@ -35,14 +50,15 @@ public class UpgradeSlotUI : MonoBehaviour
         m_cost.text = "$" +Convert.ToString(m_upgradeSlot.moneyReq[m_currentLevel]);
     }
 
-    public void Upgrade(int money)
+    public bool Upgrade(PlayerInventory inventory)
     {
-        if (money < m_upgradeSlot.moneyReq[m_currentLevel])
+        if (inventory.money < m_upgradeSlot.moneyReq[m_currentLevel])
         {
-            return;
+            return false;
         }
-        money -= m_upgradeSlot.moneyReq[m_currentLevel];
-        m_currentLevel++;
+        inventory.money -= m_upgradeSlot.moneyReq[m_currentLevel];
+        lvl++;
         m_cost.text ="$" +Convert.ToString(m_upgradeSlot.moneyReq[m_currentLevel]);
+        return true;
     }
 }

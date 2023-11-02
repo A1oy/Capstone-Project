@@ -20,10 +20,6 @@ public class GameUI : MonoBehaviour
     public GameObject player =null!;
     public GameObject blackout =null!;
 
-    public TMP_Text playerHoney =null!;
-    public TMP_Text playerGrenade =null!;
-    public TMP_Text playerMoney =null!;
-
     public TMP_Text dayText =null!;
     public TMP_Text timeText =null!;
     public TMP_Text interactableText =null!;
@@ -95,9 +91,5 @@ public class GameUI : MonoBehaviour
     void Update()
     {
         HandleDaylightUI();
-
-        playerHoney.text = Convert.ToString(player!.GetComponent<Player>().honey);
-        playerGrenade.text =Convert.ToString(player!.GetComponent<Player>().grenades);
-        playerMoney.text = $"{player!.GetComponent<Player>().money}";
     }
 }

@@ -11,20 +11,24 @@ public class Base : MonoBehaviour
     int honey =0;
     int prevDay=-1;
 
-    public float touchRadius =2.0f;
     public int honeyEachRound =5;
+    public int honeyProductionLvl =0;
+
+
     public GameObject buyMenuUI;
 
-    private Interactable interactable;
+    [SerializeField]
+    Interactable interactable;
 
-    void Awake()
-    {
-        interactable =GetComponent<Interactable>();
-    }
+    [SerializeField]
+    Health health;
+
+    [SerializeField]
+    Interactable healthbar;
 
     void OnDestroy()
     {
-        if (GetComponent<Health>().isKilled)
+        if (health.isKilled)
         {
             SceneManager.LoadScene("Game Over");
         }
@@ -40,12 +44,13 @@ public class Base : MonoBehaviour
         if (GameUI.isDaytime == !interactable.isEnabled)
         {
             interactable.isEnabled =GameUI.isDaytime;
+            healthbar.isEnabled =GameUI.isDaytime;
         }
     }
 
     void OnInteract(GameObject player)
     {
-        player.GetComponent<Player>().honey += honey;
+        player.GetComponent<PlayerInventory>().honey += honey;
         honey =0;
     }
 

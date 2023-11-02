@@ -14,6 +14,9 @@ public class Placement : MonoBehaviour
     int curScroll =0;
     const int scrollPerPlaceables =30;
 
+    [SerializeField]
+    PlayerInventory inventory;
+
     void Awake()
     {
         placer.GetComponent<SpriteRenderer>().sprite =placeables[0].sprite;
@@ -53,10 +56,10 @@ public class Placement : MonoBehaviour
             }
 
             if (Input.GetButtonDown("Fire1")
-                && GetComponent<Player>().money >= placeables[currentIdx].cost
+                && inventory.money >= placeables[currentIdx].cost
                 && isPlaceable)
             {
-                GetComponent<Player>().money -= placeables[currentIdx].cost;
+                 inventory.money -= placeables[currentIdx].cost;
                 Instantiate(placeables[currentIdx].objectPrefab, placer.transform.position, Quaternion.identity);
             }
         }

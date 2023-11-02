@@ -4,18 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public class Weapon
-    {
-        Sprite sprite;
-
-        int fireSpeed;
-        int reloadSpeed;
-        int ammoCapacity;
-        int ammo;
-        int damage;
-    };
-    Player player =null!;
-
+    
     public Transform firePoint =null!;
     public GameObject bulletPrefab =null!;
     public GameObject grenadePrefab =null!;
@@ -25,13 +14,10 @@ public class PlayerShooting : MonoBehaviour
     public float grenadeForce = 0.5f;
     public float honeyForce = 0.7f;
 
-    public Weapon weapon;
 
+    [SerializeField]
+    PlayerInventory inventory;
 
-    void Start()
-    {
-        player =GetComponent<Player>();
-    }
 
     void Update()
     {
@@ -43,20 +29,22 @@ public class PlayerShooting : MonoBehaviour
             {
                 Shoot(bulletPrefab, bulletForce);
             }
+            /*
             else if (Input.GetButtonDown("Fire2"))
             {
-                if (player.grenades >0)
+                if (inventory.grenades >0)
                 {
                     Shoot(grenadePrefab, grenadeForce);
-                    player.grenades--;
+                    inventory.grenades--;
                 }
             }
+            */
             else if (Input.GetButtonDown("Fire3"))
             {
-                if (player.honey >0)
+                if (inventory.honey >0)
                 {
                     Shoot(honeyPrefab, honeyForce);
-                    player.honey--;
+                    inventory.honey--;
                 }
             }
         }

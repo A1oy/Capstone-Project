@@ -34,7 +34,6 @@ public class Health : MonoBehaviour
     {
         if (healthBar)
         {
-            Debug.Log(healthBar.GetComponent<Slider>().value + " "+  health + " " + maxHealth);
             healthBar.GetComponent<Slider>().value = (float)health/(float)maxHealth;
         }
     }

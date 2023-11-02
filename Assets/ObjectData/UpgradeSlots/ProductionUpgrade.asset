@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProductionUpgrade
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  moneyReq: 02000000
+  moneyReq: 020000000200000002000000
   description:
   - Increase Production by 10%
   Name: Honey Production
