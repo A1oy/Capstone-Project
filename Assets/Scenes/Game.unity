@@ -2244,7 +2244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 3.37, z: -10}
+  m_LocalPosition: {x: 0.19, y: 9.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5632,6 +5632,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1266081242343484295, guid: 6f11c0d3e5203e0449a19b251017d068, type: 3}
   m_PrefabInstance: {fileID: 817369072}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1182130449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 163447922076399798, guid: 6f11c0d3e5203e0449a19b251017d068, type: 3}
+  m_PrefabInstance: {fileID: 817369072}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0bc196e2fdc5e40ac290ed3d00cdf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1206005276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13214,7 +13225,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1479203246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 3.37, z: -10}
+  m_LocalPosition: {x: 0.19, y: 9.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13505,7 +13516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isKilled: 0
   health: 50
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1182130449}
 --- !u!114 &1530122311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13534,7 +13545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7fc37d7a1cb77e4a3746b062666304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteracting: 0
   touchRadius: 2
   text: Press "F" to enter base
 --- !u!1 &1538908597
@@ -13875,14 +13885,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1591134802}
-  - component: {fileID: 1591134801}
-  - component: {fileID: 1591134800}
-  - component: {fileID: 1591134805}
   - component: {fileID: 1591134803}
   - component: {fileID: 1591134809}
   - component: {fileID: 1591134807}
-  - component: {fileID: 1591134808}
   - component: {fileID: 1591134810}
+  - component: {fileID: 1591134808}
+  - component: {fileID: 1591134805}
+  - component: {fileID: 1591134801}
+  - component: {fileID: 1591134800}
   - component: {fileID: 1591134806}
   m_Layer: 7
   m_Name: Player
@@ -13972,7 +13982,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1591134799}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 3.37, z: 0}
+  m_LocalPosition: {x: 0.19, y: 9.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14050,7 +14060,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ffa05f4f4139c47b70afc49f0b4083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isBuildMode: 0
   health: {fileID: 1591134805}
   placement: {fileID: 1591134808}
 --- !u!114 &1591134808
@@ -14065,12 +14074,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264affd5b761fde44bbfbd187582ae83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placementPoint: {fileID: 1092675693}
+  m_placementPoint: {fileID: 1092675693}
   placer: {fileID: 1589449089}
-  placerMask: {fileID: 1134334237}
-  placeables:
+  m_placerSr: {fileID: 1589449091}
+  m_placerMask: {fileID: 1134334237}
+  m_placeables:
   - {fileID: 11400000, guid: 0a203b6f4aff0214f90cbb571cd0ebd9, type: 2}
-  inventory: {fileID: 1591134810}
+  m_inventory: {fileID: 1591134810}
+  m_status: {fileID: 1591134807}
 --- !u!114 &1591134809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14083,13 +14094,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982c2e39024fc2b4885850505ab1109d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePoint: {fileID: 554613921}
-  bulletPrefab: {fileID: 6314713987900935165, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
-  grenadePrefab: {fileID: 2540137865167992298, guid: aa2a38dafc86a4940b23f4fdfb903672, type: 3}
-  honeyPrefab: {fileID: 4476852072266371193, guid: 2a8dd125537340e418e78e3e55ee1efd, type: 3}
+  m_bulletPrefab: {fileID: 6314713987900935165, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
+  m_explodePrefab: {fileID: 43520982865979776, guid: 7a2e8afce80da7f45b7d6bb7c8b035fd, type: 3}
+  m_honeyPrefab: {fileID: 4476852072266371193, guid: 2a8dd125537340e418e78e3e55ee1efd, type: 3}
   bulletForce: 5
-  honeyForce: 0.7
-  inventory: {fileID: 1591134810}
+  firePoint: {fileID: 554613921}
+  m_honeyForce: 0.7
+  m_inventory: {fileID: 1591134810}
   status: {fileID: 1591134807}
 --- !u!114 &1591134810
 MonoBehaviour:

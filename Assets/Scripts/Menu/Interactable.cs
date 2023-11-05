@@ -6,6 +6,8 @@ public class Interactable : MonoBehaviour
 {
     [System.NonSerialized]
     public bool isEnabled =true;
+
+    [System.NonSerialized]
     public bool isInteracting =false;
 
     public float touchRadius =2.0f;

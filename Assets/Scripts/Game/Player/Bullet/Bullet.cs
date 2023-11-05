@@ -4,23 +4,34 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject hitEffect;
-    public int damage;
+    Vector2 m_direction;
+    Vector2 m_startPos;
+    bool m_isSet =false;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    [SerializeField]
+    Rigidbody2D m_rb;
+
+    [SerializeField]
+    float m_speed;
+
+    void Update()
     {
-        Enemy enemy =collision.gameObject.GetComponent<Enemy>();
-        if (enemy !=null)
+        if (m_isSet)
         {
-            enemy.DoAttack(damage);
+            float coeff =(transform.position.x -m_startPos.x)/m_direction.x;
+            if (coeff>=1)
+            {
+                Destroy(gameObject);
+            }
         }
-        GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        Destroy(effect, 1f);
-        Destroy(gameObject);
     }
 
-    void OnBecameInvisible()
+    public void Shoot(Vector2 direction, Vector2 startPos)
     {
-        Destroy(gameObject);
+        m_direction =direction;
+        m_startPos =startPos;
+        Debug.Log(m_speed *m_direction);
+        m_rb.AddForce(m_speed *m_direction, ForceMode2D.Impulse);
+        m_isSet=true;
     }
 }

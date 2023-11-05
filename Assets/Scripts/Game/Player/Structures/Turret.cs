@@ -133,4 +133,10 @@ public class Turret : MonoBehaviour
             StopCoroutine(shootRoutine);
         }
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color =new Color(1f, 0f, 0f, 0.3f);
+        Gizmos.DrawSphere(transform.position, detectRadius);
+    }
 }

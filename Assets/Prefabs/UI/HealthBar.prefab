@@ -51,7 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0bc196e2fdc5e40ac290ed3d00cdf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intermBar: {fileID: 5000806546023735811}
+  m_intermBar: {fileID: 5000806546023735811}
+  m_slider: {fileID: 103426462906085062}
   interactable: {fileID: 2163515337070324971}
 --- !u!114 &2163515337070324971
 MonoBehaviour:
@@ -65,7 +66,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7fc37d7a1cb77e4a3746b062666304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isInteracting: 0
   touchRadius: 2
   text: 
 --- !u!1 &1266081242981545673

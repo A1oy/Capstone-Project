@@ -8,10 +8,10 @@ public class Health : MonoBehaviour
     public bool isKilled =false;
     public int health;
     
-    int maxHealth=1;
+    int maxHealth;
 
     [SerializeField]
-    GameObject healthBar;
+    HealthBar healthBar;
 
     void Start()
     {
@@ -32,9 +32,10 @@ public class Health : MonoBehaviour
 
     void Update()
     {
-        if (healthBar)
+        if (healthBar
+            &&maxHealth>0)
         {
-            healthBar.GetComponent<Slider>().value = (float)health/(float)maxHealth;
+            healthBar.value = (float)health/(float)maxHealth;
         }
     }
 }
