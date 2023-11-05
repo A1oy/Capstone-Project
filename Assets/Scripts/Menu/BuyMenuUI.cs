@@ -6,18 +6,8 @@ using TMPro;
 
 public class BuyMenuUI : MonoBehaviour
 {
-    Player playerComp;
-
-    public GameObject player =null!;
-
     [SerializeField]
     private GameObject buyContainer;
-    
-
-    void Start()
-    {
-        playerComp =player.GetComponent<Player>();
-    }
 
     void OnEnable()
     {

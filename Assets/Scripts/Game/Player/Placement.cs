@@ -7,7 +7,7 @@ public class Placement : MonoBehaviour
 {
     public Transform placementPoint;
     public GameObject placer;
-    public GameObject placerMask;
+    public SpriteRenderer placerMask;
     public List <PlaceableObject> placeables;
     
     int currentIdx =0;
@@ -42,18 +42,15 @@ public class Placement : MonoBehaviour
                     curScroll += scrollPerPlaceables *placeables.Count;
                 }
                 currentIdx =curScroll/scrollPerPlaceables;
+                if (currentIdx >= placeables.Count)
+                {
+                    currentIdx = currentIdx %placeables.Count;
+                }
             }
             placer.GetComponent<SpriteRenderer>().sprite =placeables[currentIdx].sprite;
 
             bool isPlaceable =Physics2D.OverlapArea(new Vector2(worldTilePlacement.x, worldTilePlacement.y), Vector2.one, 1<<3)==null;
-            if (isPlaceable)
-            {
-                placerMask.GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 1f, 0.34f);
-            }
-            else
-            {
-                placerMask.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, 0.34f);
-            }
+            placerMask.color = isPlaceable ? new Color(0f, 0f, 1f, 0.34f) : new Color(1f, 0f, 0f, 0.34f);
 
             if (Input.GetButtonDown("Fire1")
                 && inventory.money >= placeables[currentIdx].cost

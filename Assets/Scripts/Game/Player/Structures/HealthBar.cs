@@ -7,6 +7,9 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     GameObject intermBar;
 
+    [SerializeField]
+    Interactable interactable;
+
     void OnInteract(GameObject player)
     {
         intermBar.SetActive(true);
@@ -20,5 +23,13 @@ public class HealthBar : MonoBehaviour
     void OnInteracting()
     {
         
+    }
+
+    void Update()
+    {
+        if (GameUI.isDaytime == !interactable.isEnabled)
+        {
+            interactable.isEnabled =GameUI.isDaytime;
+        }
     }
 }

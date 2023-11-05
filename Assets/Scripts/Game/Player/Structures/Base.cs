@@ -11,8 +11,10 @@ public class Base : MonoBehaviour
     int honey =0;
     int prevDay=-1;
 
-    public int honeyEachRound =5;
-    public int honeyProductionLvl =0;
+    public int honeyEachRound;
+
+    [System.NonSerialized]
+    public int honeyProductionLvl =-0;
 
 
     public GameObject buyMenuUI;
@@ -22,9 +24,6 @@ public class Base : MonoBehaviour
 
     [SerializeField]
     Health health;
-
-    [SerializeField]
-    Interactable healthbar;
 
     void OnDestroy()
     {
@@ -44,7 +43,6 @@ public class Base : MonoBehaviour
         if (GameUI.isDaytime == !interactable.isEnabled)
         {
             interactable.isEnabled =GameUI.isDaytime;
-            healthbar.isEnabled =GameUI.isDaytime;
         }
     }
 

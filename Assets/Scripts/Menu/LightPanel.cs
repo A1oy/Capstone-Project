@@ -30,7 +30,7 @@ public class LightPanel : MonoBehaviour
     
     [Header("Honey Settings")]
     [SerializeField]
-    Image m_sellHoneyButton;
+    Button m_sellHoneyButton;
 
     [SerializeField]
     TMP_Text m_sellHoneyText;
@@ -49,6 +49,9 @@ public class LightPanel : MonoBehaviour
     [SerializeField]
     Base m_base;
 
+    const int m_moneyMul=1;
+
+
     void OnEnable()
     {
         PlayerInventory.Weapon weapon =m_inventory.weapon;
@@ -61,12 +64,12 @@ public class LightPanel : MonoBehaviour
         m_money.text =Convert.ToString(m_inventory.money);
         
         m_productionSlot.lvl =m_base.honeyProductionLvl;
+        m_honeyJarSlider.value =m_inventory.honey;
 
-
-        m_honeyJarSlider.value =m_inventory.honey /100f;
         m_honeyPercent.text = $"{m_inventory.honey}%";
         m_sellHoneyText.text = "Sell for $0";
-        m_sellHoneyButton.color =new Color(0.5f, 0.5f, 0.5f, 1.0f);
+        ((Selectable)m_sellHoneyButton).interactable =false;
+
     }
 
     public void OnAmmo()
@@ -116,6 +119,57 @@ public class LightPanel : MonoBehaviour
             m_money.text =Convert.ToString(m_inventory.money);
             m_base.honeyProductionLvl++;
             m_base.honeyEachRound++;
+        }
+    }
+
+    public void OnSlider()
+    {
+        if (m_inventory.honey < m_honeyJarSlider.value)
+        {
+            m_honeyJarSlider.value =m_inventory.honey;
+        }
+        if (m_honeyJarSlider.value ==m_inventory.honey
+            && ((Selectable)m_sellHoneyButton).interactable)
+        {
+            ((Selectable)m_sellHoneyButton).interactable =false;
+            m_sellHoneyText.text = "Sell for $0";
+        }
+        else if (!((Selectable)m_sellHoneyButton).interactable)
+        {
+            ((Selectable)m_sellHoneyButton).interactable =true;
+        }
+        if (((Selectable)m_sellHoneyButton).interactable)
+        {
+            int diff =m_inventory.honey -(int)m_honeyJarSlider.value;
+            m_sellHoneyText.text = $"Sell for ${m_moneyMul * diff}";
+        }
+    }
+
+    public void OnSellHoney()
+    {
+        int diff =m_inventory.honey -(int)m_honeyJarSlider.value;
+        if (diff>0)
+        {
+            m_inventory.honey -=diff;
+            m_honeyJarSlider.value =(float)m_inventory.honey;
+            ((Selectable)m_sellHoneyButton).interactable =false;
+            m_sellHoneyText.text = "Sell for $0";
+            m_honeyPercent.text = $"{m_inventory.honey}%";
+
+            int moneyDiff =m_moneyMul *diff;
+            m_inventory.money +=moneyDiff;
+            m_money.text =Convert.ToString(m_inventory.money);
+        }
+    }
+
+    public void OnBuyItem(InventoryItem item)
+    {
+        Debug.Log("Buying");
+        if (m_inventory.money >= item.buyItem.cost)
+        {
+            m_inventory.money -= item.buyItem.cost;
+            m_money.text =Convert.ToString(m_inventory.money);
+            m_inventory.AddItem(item);
         }
     }
 }

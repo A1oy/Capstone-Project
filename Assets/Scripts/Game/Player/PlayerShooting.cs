@@ -10,41 +10,37 @@ public class PlayerShooting : MonoBehaviour
     public GameObject grenadePrefab =null!;
     public GameObject honeyPrefab =null!;
 
-    public float bulletForce = 5.0f;
-    public float grenadeForce = 0.5f;
-    public float honeyForce = 0.7f;
+    public float bulletForce;
+    public float honeyForce;
 
 
     [SerializeField]
     PlayerInventory inventory;
 
+    [SerializeField]
+    PlayerStatus status;
 
     void Update()
     {
         
 		if (MenuManager.singleton!.isMovement
-            && !GetComponent<Player>().isBuildMode)
+            && !status.isBuildMode)
 		{
             if (Input.GetButtonDown("Fire1"))
             {
                 Shoot(bulletPrefab, bulletForce);
             }
-            /*
+            
             else if (Input.GetButtonDown("Fire2"))
             {
-                if (inventory.grenades >0)
-                {
-                    Shoot(grenadePrefab, grenadeForce);
-                    inventory.grenades--;
-                }
+                inventory.UseItem(firePoint);
             }
-            */
             else if (Input.GetButtonDown("Fire3"))
             {
-                if (inventory.honey >0)
+                if (inventory.honey >=5)
                 {
                     Shoot(honeyPrefab, honeyForce);
-                    inventory.honey--;
+                    inventory.honey-=5;
                 }
             }
         }

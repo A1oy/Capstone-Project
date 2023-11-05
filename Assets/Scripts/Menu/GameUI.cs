@@ -17,8 +17,8 @@ public class GameUI : MonoBehaviour
     public static bool isDaytime=true;
     static public int day=1;
 
-    public GameObject player =null!;
-    public GameObject blackout =null!;
+    [SerializeField]
+    GameObject blackout;
 
     public TMP_Text dayText =null!;
     public TMP_Text timeText =null!;
@@ -27,6 +27,18 @@ public class GameUI : MonoBehaviour
     public float daylightInSeconds;
     public float nightInSeconds;
     public float daylightSmoothingInSeconds;
+
+    [SerializeField]
+    PlayerInventory m_inventory;
+
+    [SerializeField]
+    TMP_Text moneyAmount;
+
+    [SerializeField]
+    Slider honeySlider;
+
+    [SerializeField]
+    TMP_Text honeyAmount;
 
     void Start()
     {
@@ -88,8 +100,16 @@ public class GameUI : MonoBehaviour
         DoDaylightChange();
     }
 
+    void HandlePlayerInventoryUI()
+    {
+        honeySlider.value =m_inventory.honey;
+        honeyAmount.text =$"{m_inventory.honey}%";
+        moneyAmount.text =Convert.ToString(m_inventory.money);
+    }
+
     void Update()
     {
         HandleDaylightUI();
+        HandlePlayerInventoryUI();
     }
 }

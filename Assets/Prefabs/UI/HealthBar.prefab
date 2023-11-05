@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intermBar: {fileID: 5000806546023735811}
+  interactable: {fileID: 2163515337070324971}
 --- !u!114 &2163515337070324971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,7 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a7fc37d7a1cb77e4a3746b062666304, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnabled: 1
   isInteracting: 0
   touchRadius: 2
   text: 

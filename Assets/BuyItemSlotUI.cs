@@ -16,12 +16,12 @@ public class BuyItemSlotUI : MonoBehaviour
     TMP_Text m_cost;
 
     [SerializeField]
-    BuyItemSlot m_itemSlot;
+    InventoryItem m_itemSlot;
 
     void Start()
     {
-        m_name.text =m_itemSlot.Name;
-        m_description.text =m_itemSlot.description;
-        m_cost.text = "$" +Convert.ToString(m_itemSlot.cost);
+        m_name.text =m_itemSlot.buyItem.Name;
+        m_description.text =m_itemSlot.buyItem.description;
+        m_cost.text = "$" +Convert.ToString(m_itemSlot.buyItem.cost);
     }
 }
