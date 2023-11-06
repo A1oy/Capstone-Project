@@ -8,6 +8,9 @@ using System;
 public class LightPanel : MonoBehaviour
 {
     [SerializeField]
+    GameObject m_buyMenuManager;
+
+    [SerializeField]
     UpgradeSlotUI m_ammoSlot;
 
     [SerializeField]
@@ -45,6 +48,9 @@ public class LightPanel : MonoBehaviour
     [SerializeField]
     PlayerInventory m_inventory;
 
+    [SerializeField]
+    PlayerShooting m_shooting;
+
     [Header("Base")]
     [SerializeField]
     Base m_base;
@@ -54,7 +60,7 @@ public class LightPanel : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerInventory.Weapon weapon =m_inventory.weapon;
+        Weapon weapon =m_shooting.weapon;
 
         m_ammoSlot.lvl =weapon.m_ammoCapacityLvl;
         m_firerateSlot.lvl =weapon.m_fireSpeedLvl;
@@ -77,8 +83,7 @@ public class LightPanel : MonoBehaviour
         if (m_ammoSlot.Upgrade(m_inventory))
         {
             m_money.text =Convert.ToString(m_inventory.money);
-            m_inventory.weapon.m_ammoCapacityLvl++;
-            m_inventory.weapon.m_ammoCapacity++;
+            m_shooting.weapon.m_ammoCapacityLvl++;
         }
     }
 
@@ -87,8 +92,7 @@ public class LightPanel : MonoBehaviour
         if (m_firerateSlot.Upgrade(m_inventory))
         {
             m_money.text =Convert.ToString(m_inventory.money);
-            m_inventory.weapon.m_fireSpeedLvl++;
-            m_inventory.weapon.m_fireSpeed++;
+            m_shooting.weapon.m_fireSpeedLvl++;
         }
     }
 
@@ -97,8 +101,7 @@ public class LightPanel : MonoBehaviour
         if (m_reloadSlot.Upgrade(m_inventory))
         {
             m_money.text =Convert.ToString(m_inventory.money);
-            m_inventory.weapon.m_reloadSpeedLvl++;
-            m_inventory.weapon.m_reloadSpeed++;
+            m_shooting.weapon.m_reloadSpeedLvl++;
         }
     }
 
@@ -107,8 +110,7 @@ public class LightPanel : MonoBehaviour
         if (m_damageSlot.Upgrade(m_inventory))
         {
             m_money.text =Convert.ToString(m_inventory.money);
-            m_inventory.weapon.m_damageLvl++;
-            m_inventory.weapon.m_damage++;
+            m_shooting.weapon.m_damageLvl++;
         }
     }
     
@@ -118,7 +120,6 @@ public class LightPanel : MonoBehaviour
         {
             m_money.text =Convert.ToString(m_inventory.money);
             m_base.honeyProductionLvl++;
-            m_base.honeyEachRound++;
         }
     }
 
@@ -171,5 +172,15 @@ public class LightPanel : MonoBehaviour
             m_money.text =Convert.ToString(m_inventory.money);
             m_inventory.AddItem(item);
         }
+    }
+
+    public void Exit()
+    {
+        Weapon weapon =m_shooting.weapon;
+        m_shooting.weapon = new Weapon(weapon.m_fireSpeedLvl,
+            weapon.m_reloadSpeedLvl,
+            weapon.m_ammoCapacityLvl,
+            weapon.m_damageLvl);
+        m_buyMenuManager.SetActive(false);
     }
 }

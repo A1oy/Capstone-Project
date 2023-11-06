@@ -30,7 +30,6 @@ public class Bullet : MonoBehaviour
     {
         m_direction =direction;
         m_startPos =startPos;
-        Debug.Log(m_speed *m_direction);
         m_rb.AddForce(m_speed *m_direction, ForceMode2D.Impulse);
         m_isSet=true;
     }

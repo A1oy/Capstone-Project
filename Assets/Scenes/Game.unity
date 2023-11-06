@@ -4762,6 +4762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14dffdddc9a85f6428e34d533de6ac80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_buyMenuManager: {fileID: 575371366}
   m_ammoSlot: {fileID: 2048704360}
   m_firerateSlot: {fileID: 1133069248}
   m_reloadSlot: {fileID: 495578671}
@@ -4774,6 +4775,7 @@ MonoBehaviour:
   m_honeyPercent: {fileID: 905439696}
   m_honeyJarSlider: {fileID: 2107548252}
   m_inventory: {fileID: 1591134810}
+  m_shooting: {fileID: 1591134809}
   m_base: {fileID: 1530122311}
 --- !u!1 &1072625204
 GameObject:
@@ -5501,8 +5503,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 575371371}
-        m_TargetAssemblyTypeName: BuyMenuUI, Assembly-CSharp
+      - m_Target: {fileID: 1020786132}
+        m_TargetAssemblyTypeName: LightPanel, Assembly-CSharp
         m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
@@ -14096,11 +14098,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_bulletPrefab: {fileID: 6314713987900935165, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
   m_explodePrefab: {fileID: 43520982865979776, guid: 7a2e8afce80da7f45b7d6bb7c8b035fd, type: 3}
-  m_honeyPrefab: {fileID: 4476852072266371193, guid: 2a8dd125537340e418e78e3e55ee1efd, type: 3}
   bulletForce: 5
   firePoint: {fileID: 554613921}
-  m_honeyForce: 0.7
-  m_inventory: {fileID: 1591134810}
   status: {fileID: 1591134807}
 --- !u!114 &1591134810
 MonoBehaviour:
@@ -14114,6 +14113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 145b4043c142648079b7ee2e3c0c6024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint: {fileID: 554613921}
+  m_honeyForce: 0.7
+  m_honeyPrefab: {fileID: 4476852072266371193, guid: 2a8dd125537340e418e78e3e55ee1efd, type: 3}
+  status: {fileID: 1591134807}
 --- !u!1 &1605988260
 GameObject:
   m_ObjectHideFlags: 0

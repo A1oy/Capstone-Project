@@ -52,13 +52,14 @@ public class UpgradeSlotUI : MonoBehaviour
 
     public bool Upgrade(PlayerInventory inventory)
     {
-        if (inventory.money < m_upgradeSlot.moneyReq[m_currentLevel])
+        if (m_currentLevel<5
+            && inventory.money < m_upgradeSlot.moneyReq[m_currentLevel])
         {
             return false;
         }
         inventory.money -= m_upgradeSlot.moneyReq[m_currentLevel];
-        lvl++;
         m_cost.text ="$" +Convert.ToString(m_upgradeSlot.moneyReq[m_currentLevel]);
+        lvl++;
         return true;
     }
 }

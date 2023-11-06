@@ -20,9 +20,4 @@ public class BuyMenuUI : MonoBehaviour
         MenuManager.singleton!.isMovement =true;
         buyContainer.SetActive(false);
     }
-
-    public void Exit()
-    {
-        gameObject.SetActive(false);
-    }
 }

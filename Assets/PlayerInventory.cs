@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerInventory : MonoBehaviour
 {
     public class ItemSlot
@@ -10,30 +11,24 @@ public class PlayerInventory : MonoBehaviour
         public int quantity;
     }
 
-    public class Weapon
-    {
-        Sprite sprite;
+    [SerializeField]
+    Transform firePoint;
 
-        public int m_fireSpeed;
-        public int m_reloadSpeed;
-        public int m_ammoCapacity;
-        public int m_ammo;
-        public int m_damage;
-
-        public int m_fireSpeedLvl;
-        public int m_reloadSpeedLvl;
-        public int m_ammoCapacityLvl;
-        public int m_damageLvl;
-    };
-    
     [System.NonSerialized]
     public int money;
     
     [System.NonSerialized]
     public int honey;
 
-    [System.NonSerialized]
-    public Weapon weapon = new Weapon();
+    [SerializeField]
+    float m_honeyForce;
+
+    [SerializeField]
+    GameObject m_honeyPrefab;
+
+
+    [SerializeField]
+    PlayerStatus status;
 
     public List<ItemSlot> itemSlots =new List<ItemSlot>();
     int currentIdx =0;
@@ -97,5 +92,30 @@ public class PlayerInventory : MonoBehaviour
                 currentIdx = currentIdx%itemSlots.Count;
             }
         }
+
+        if (Input.GetButtonDown("Fire2")
+            && !status.isBuildMode)
+        {
+            UseItem(firePoint);
+        }
+        else if (Input.GetButtonDown("Fire3")
+            && !status.isBuildMode)
+        {
+            DeployHoney();
+        }
+    }
+
+    void DeployHoney()
+    {
+        if (honey >=5)
+        {
+            GameObject bullet = Instantiate(m_honeyPrefab, firePoint.position, firePoint.rotation);
+            Bullet bulletComponent =bullet.GetComponent<Bullet>();
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+
+            rb.AddForce(firePoint.up * m_honeyForce, ForceMode2D.Impulse);
+            honey -=5;
+        }
+        
     }
 }
