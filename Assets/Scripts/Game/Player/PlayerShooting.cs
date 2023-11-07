@@ -76,7 +76,7 @@ public class Weapon
             if (m_internalTick >=m_fireSpeed)
             {
                 m_internalTick=0f;
-                m_state =WeaponState.NORMAL;
+                m_state = m_ammo == 0 ? WeaponState.RELOAD : WeaponState.NORMAL;
             }
         }
     }
@@ -84,7 +84,8 @@ public class Weapon
     public bool CanShoot() { return WeaponState.NORMAL==m_state && m_ammo>0; }
     public void VShoot()
     {
-        m_state =(--m_ammo ==0) ? WeaponState.RELOAD : WeaponState.FIRING;
+        m_state =WeaponState.FIRING;
+        m_ammo--;
     }
     public int Damage { get { return m_damage; }}
 };
