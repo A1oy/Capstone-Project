@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-    float time=0.0f;
+    public float time=0.0f;
     float alpha=0.0f;
 
     bool isDaylightChanging=false;

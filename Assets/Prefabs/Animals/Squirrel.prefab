@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4932d379480998242ac87515c6e09ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isKilled: 0
   health: 1
+  healthBar: {fileID: 0}
 --- !u!114 &4935831960538269831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0013964176, y: 0.0045958757}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -162,7 +162,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 1.004242, y: 1.0050552}
   m_EdgeRadius: 0
 --- !u!195 &-575305959052192684
 NavMeshAgent:
@@ -174,7 +174,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.1
-  m_Speed: 2.25
+  m_Speed: 1.6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

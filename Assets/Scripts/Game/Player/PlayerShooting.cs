@@ -130,9 +130,10 @@ public class PlayerShooting : MonoBehaviour
         {
             weapon.VShoot();
             Vector2 firePoint2D =new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
-            RaycastHit2D raycast =Physics2D.Raycast(firePoint2D, new Vector2(firePoint.up.x, firePoint.up.y));
+            RaycastHit2D raycast =Physics2D.Raycast(firePoint2D, new Vector2(firePoint.up.x, firePoint.up.y), Mathf.Infinity);
             if (raycast)
             {
+                Debug.Log(raycast.collider.gameObject);
                 GameObject explosion =Instantiate(m_explodePrefab, new Vector3(raycast.point.x, raycast.point.y, 0f), Quaternion.identity);
                 Destroy(explosion, 1f);
                 
@@ -145,6 +146,7 @@ public class PlayerShooting : MonoBehaviour
                     enemy.DoAttack(weapon.Damage);
                 }
             }
+
         }
     }
 }

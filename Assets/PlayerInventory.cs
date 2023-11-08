@@ -26,7 +26,6 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     GameObject m_honeyPrefab;
 
-
     [SerializeField]
     PlayerStatus status;
 
@@ -110,10 +109,6 @@ public class PlayerInventory : MonoBehaviour
         if (honey >=5)
         {
             GameObject bullet = Instantiate(m_honeyPrefab, firePoint.position, firePoint.rotation);
-            Bullet bulletComponent =bullet.GetComponent<Bullet>();
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-            rb.AddForce(firePoint.up * m_honeyForce, ForceMode2D.Impulse);
             honey -=5;
         }
         
