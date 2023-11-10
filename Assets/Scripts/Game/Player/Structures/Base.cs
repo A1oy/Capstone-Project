@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class Base : MonoBehaviour
 {
     int honey =0;
-    int prevDay=-1;
+    int prevDay=1;
 
     public int honeyEachRound;
 

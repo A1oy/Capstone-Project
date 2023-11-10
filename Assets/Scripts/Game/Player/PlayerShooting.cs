@@ -11,7 +11,6 @@ public class Weapon
         FIRING,
         EMPTY
     };
-    Sprite sprite;
     WeaponState m_state;
 
     float m_internalTick;
@@ -34,8 +33,8 @@ public class Weapon
         m_ammoCapacityLvl =0;
         m_damageLvl =0;
 
-        m_fireSpeed =0.5f;
-        m_reloadSpeed =1f;
+        m_fireSpeed =0.3f;
+        m_reloadSpeed =0.75f;
         m_ammoCapacity =6;
         m_damage =1;
         m_ammo=m_ammoCapacity;
@@ -133,12 +132,11 @@ public class PlayerShooting : MonoBehaviour
             RaycastHit2D raycast =Physics2D.Raycast(firePoint2D, new Vector2(firePoint.up.x, firePoint.up.y), Mathf.Infinity);
             if (raycast)
             {
-                Debug.Log(raycast.collider.gameObject);
                 GameObject explosion =Instantiate(m_explodePrefab, new Vector3(raycast.point.x, raycast.point.y, 0f), Quaternion.identity);
                 Destroy(explosion, 1f);
                 
                 GameObject bullet = Instantiate(m_bulletPrefab, firePoint.position, firePoint.rotation);
-                bullet.GetComponent<Bullet>().Shoot(raycast.point -firePoint2D, firePoint2D);
+                bullet.GetComponent<Bullet>().Shoot(raycast.point -firePoint2D, firePoint2D, raycast.point);
 
                 Enemy enemy =raycast.collider.gameObject.GetComponent<Enemy>();
                 if (enemy)

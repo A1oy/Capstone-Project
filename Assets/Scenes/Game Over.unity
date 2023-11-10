@@ -630,7 +630,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1630238163}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
@@ -764,7 +764,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1630238163}
-        m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1630238159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4432d319b288ac4da6661eabf6de1c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 28acf848949b6954abac3799eafe3475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1802064070

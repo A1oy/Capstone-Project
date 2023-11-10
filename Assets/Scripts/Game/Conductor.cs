@@ -95,7 +95,6 @@ public class Conductor : MonoBehaviour
             float  x = Random.Range(bound.min.x+2f, bound.max.x-2f);
             float y = Random.Range(bound.min.y +2f, bound.max.y-2f);
             Instantiate(enemyPrefab, new Vector3(x, y, 0f), Quaternion.identity);
-            Debug.Log($"({x}, {y})");
         }
     }
 }
