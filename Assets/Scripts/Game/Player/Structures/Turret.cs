@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    IEnumerator shootRoutine;
     GameObject gameObjLock =null;
     Vector3 [] rayVertices;
     LineRenderer lr;
 
-    public GameObject projectile;
+    [SerializeField]
+    GameObject bulletPrefab;
+    
     public GameObject hitEffect;
     public Transform firePoint;
     public float detectRadius;
@@ -17,25 +18,46 @@ public class Turret : MonoBehaviour
     public float delay;
     public int damage =1;
 
+    float cooldownTick;
+
+    void Awake()
+    {
+        cooldownTick =delay;
+    }
+
     void Start()
     {
-        shootRoutine =Shoot();
-        StartCoroutine(shootRoutine);
         rayVertices = new Vector3[2];
         lr = gameObject.GetComponent<LineRenderer>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         UpdateTarget();
-        if (gameObjLock)
-        {
-            RotateToObject(gameObjLock);
-            UpdateRay(gameObjLock);
-        }
-        else
+        if (!gameObjLock)
         {
             DisableRay();
+        }
+        cooldownTick -= Time.deltaTime;
+
+        if(gameObjLock !=null
+            && cooldownTick <=0)
+        {
+            cooldownTick =delay;
+            Vector3 lookDir = gameObjLock.transform.position -firePoint.transform.position;
+
+            // very inefficient, might optimize it later with line-nonAABB intersection later ..
+
+            RaycastHit2D raycast =Physics2D.Raycast(firePoint.position, lookDir, detectRadius); 
+
+            Vector2 firePoint2D =new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.GetComponent<Bullet>().Shoot(raycast.point -firePoint2D, firePoint2D, raycast.point);
+            bullet.SetActive(true);
+
+            GameObject effect = Instantiate(hitEffect, new Vector3(raycast.point.x, raycast.point.y, 1.0f), Quaternion.identity);
+            Destroy(effect, 2f);
+            gameObjLock.GetComponent<Enemy>().DoAttack(damage);
         }
     }
 
@@ -93,45 +115,7 @@ public class Turret : MonoBehaviour
     {
         Vector2 lookDir = gameObject.transform.position -object0.transform.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg +90.0f;
-        gameObject.GetComponent<Rigidbody2D>().rotation =angle;
-    }
-
-    IEnumerator Shoot()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(delay);
-
-            if(gameObjLock !=null)
-            {
-                Vector3 lookDir = gameObjLock.transform.position -firePoint.transform.position;
-
-                // very inefficient, might optimize it later with line-nonAABB intersection later ..
-
-                RaycastHit2D raycast =Physics2D.Raycast(firePoint.position, lookDir, detectRadius); 
-                //Debug.Log(raycast.point);
-                GameObject effect = Instantiate(hitEffect, new Vector3(raycast.point.x, raycast.point.y, 1.0f), Quaternion.identity);
-                Destroy(effect, 2f);
-                gameObjLock.GetComponent<Enemy>().DoAttack(damage);
-            }
-        }
-    }
-
-    void DoShoot()
-    {
-        GameObject bullet = Instantiate(projectile, firePoint.position, firePoint.rotation);
-        Bullet bulletComponent =bullet.GetComponent<Bullet>();
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-
-        rb.AddForce(firePoint.up * force, ForceMode2D.Impulse);
-    }
-
-    void OnDestroy()
-    {
-        if (shootRoutine !=null)
-        {
-            StopCoroutine(shootRoutine);
-        }
+        transform.rotation =Quaternion.Euler(0, 0, angle);
     }
 
     void OnDrawGizmos()

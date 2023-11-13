@@ -43,6 +43,7 @@ public class Conductor : MonoBehaviour
 
     float spawnCoolDown;
 
+    [SerializeField]
     float spawnTime =0;
 
     void Update()
@@ -72,10 +73,19 @@ public class Conductor : MonoBehaviour
             {
                 float internalBias =(internalDiff-1.5f) /0.6f;
                 enumDiff =0;
+                numRabbit =Random.Range(1 +(int)(internalBias*2.6666f)+1, 6);
+                numSquirrel =Random.Range(1 +(int)(internalBias*0.6666f), 3);
                 spawnCoolDown =15.3f+ internalDiff-0.6f;
             }
             else
             {
+                float internalBias =internalDiff-2.1f;
+                if (internalBias >2f)
+                {
+                    internalBias =2f;
+                }
+                numRabbit =Random.Range(1 +(int)(internalBias*2.6666f)+1, 10);
+                numSquirrel =Random.Range(1 +(int)(internalBias*0.6666f), 5);
                 spawnCoolDown =11.3f- internalDiff-0.5f;
             }
 

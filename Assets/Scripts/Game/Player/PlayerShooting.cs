@@ -33,7 +33,7 @@ public class Weapon
         m_ammoCapacityLvl =0;
         m_damageLvl =0;
 
-        m_fireSpeed =0.3f;
+        m_fireSpeed =0.2f;
         m_reloadSpeed =0.75f;
         m_ammoCapacity =6;
         m_damage =1;
@@ -137,6 +137,7 @@ public class PlayerShooting : MonoBehaviour
                 
                 GameObject bullet = Instantiate(m_bulletPrefab, firePoint.position, firePoint.rotation);
                 bullet.GetComponent<Bullet>().Shoot(raycast.point -firePoint2D, firePoint2D, raycast.point);
+                bullet.SetActive(true);
 
                 Enemy enemy =raycast.collider.gameObject.GetComponent<Enemy>();
                 if (enemy)
