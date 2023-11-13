@@ -642,12 +642,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 214324070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1be608f23a615245a24b5209d9cedcf, type: 3}
+  m_Script: {fileID: 11500000, guid: 3087f9178dac9744593544d8b3accfdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 1591134805}
   inventory: {fileID: 1591134810}
-  eatingTime: 0
+  s: {fileID: 249888370}
+  eatingTime: 2
   honeyDeducted: 5
   healthHealed: 2
   progressBar: {fileID: 249888365}
@@ -1436,7 +1437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181142728756313812, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8084825602222002963, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_upgradeSlot
@@ -2138,7 +2139,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -63, y: -10}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2418,7 +2419,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -1.1479998, y: -4.9242}
   m_SizeDelta: {x: 83.0028, y: 0.1516}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5338,7 +5339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181142728756313812, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8084825602222002963, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_upgradeSlot
@@ -6071,7 +6072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181142728756313812, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8084825602222002963, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_upgradeSlot
@@ -13268,7 +13269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181142728756313812, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8084825602222002963, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_upgradeSlot
@@ -14839,7 +14840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6181142728756313812, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8084825602222002963, guid: 90d143fc160d23045bd618f96fd703cb, type: 3}
       propertyPath: m_upgradeSlot
@@ -28882,7 +28883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1896994816
 RectTransform:
   m_ObjectHideFlags: 0
