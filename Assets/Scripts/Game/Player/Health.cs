@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [System.NonSerialized]
     public bool isKilled =false;
     public int health;
     

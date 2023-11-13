@@ -9,6 +9,7 @@ TagManager:
   - Base
   - Turret
   - Bait
+  - NoSpawn
   layers:
   - Default
   - TransparentFX
