@@ -55,32 +55,37 @@ public class Conductor : MonoBehaviour
             honeyTunningCoeff * inventory.honey -
             biasTunningCoeff;
 
-        int numRabbit=0;
-        int numSquirrel =0;
-        int numFox =0;
-        int enumDiff =0;
+            int numRabbit=0;
+            int numSquirrel =0;
+            int numFox =0;
+            int enumDiff =0;
 
-        spawnTime -= Time.deltaTime;
+            spawnTime -= Time.deltaTime;
 
-        if (internalDiff <1.5f)
-        {
-            float internalBias =(internalDiff)/ 1.5f;
-            numRabbit =Random.Range(1 +(int)(internalBias*2.6666f), 5);
-            spawnCoolDown =20.3f+ internalDiff-0.6f;
-        }
-        else if (internalDiff <2.1f)
-        {
-            float internalBias =(internalDiff-1.5f) /0.6f;
-            enumDiff =0;
-        }
+            if (internalDiff <1.5f)
+            {
+                float internalBias =(internalDiff)/ 1.5f;
+                numRabbit =Random.Range(1 +(int)(internalBias*2.6666f), 5);
+                spawnCoolDown =20.3f- internalDiff-0.6f;
+            }
+            else if (internalDiff <2.1f)
+            {
+                float internalBias =(internalDiff-1.5f) /0.6f;
+                enumDiff =0;
+                spawnCoolDown =15.3f+ internalDiff-0.6f;
+            }
+            else
+            {
+                spawnCoolDown =11.3f- internalDiff-0.5f;
+            }
 
-        if (spawnTime<0)
-        {
-            SpawnEnemies(rabbitPrefab, numRabbit, enumDiff);
-            SpawnEnemies(squirrelPrefab, numSquirrel, enumDiff);
-            SpawnEnemies(foxPrefab, numFox, enumDiff);
-            spawnTime =spawnCoolDown;
-        }
+            if (spawnTime<0)
+            {
+                SpawnEnemies(rabbitPrefab, numRabbit, enumDiff);
+                SpawnEnemies(squirrelPrefab, numSquirrel, enumDiff);
+                SpawnEnemies(foxPrefab, numFox, enumDiff);
+                spawnTime =spawnCoolDown;
+            }
         }
     }
 
