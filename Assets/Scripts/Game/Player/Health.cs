@@ -14,9 +14,19 @@ public class Health : MonoBehaviour
     [SerializeField]
     HealthBar healthBar;
 
-    void Start()
+    void Awake()
     {
         maxHealth =health;
+    }
+
+    //Players heals up when honey is consumed
+    public void Heal(int healed) 
+    {
+        health += healed; 
+        if (health > maxHealth)
+        {
+            health = maxHealth; 
+        }
     }
 
     public bool DoDamage(int damage)
