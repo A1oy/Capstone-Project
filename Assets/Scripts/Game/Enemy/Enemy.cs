@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D? rigidBody;
     private Health? health;
 
-    private GameObject? attackerRef;
+    public GameObject? attackerRef;
     private NavMeshAgent agent =null!;
 
     public int damage;
