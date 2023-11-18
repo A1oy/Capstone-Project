@@ -10,8 +10,8 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rigidBody;
     Health health;
 
-    GameObject attackerRef =null;
     NavMeshAgent agent;
+    public GameObject? attackerRef;
 
     [SerializeField]
     int damage;
