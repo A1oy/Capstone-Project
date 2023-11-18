@@ -27,9 +27,12 @@ public class ConsumeHoney : MonoBehaviour
     int healthHealed = 2;
 
     [SerializeField]
-    public GameObject progressBar;
+    GameObject progressBar;
 
-    bool isEating = false;
+    [SerializeField]
+    AudioClip playerDrinkingClip;
+
+    bool isDrinking = false;
 
     float timePassedSincePressed = 0f;
 
@@ -40,7 +43,7 @@ public class ConsumeHoney : MonoBehaviour
         s.value = timePassedSincePressed / eatingTime;
         if (s.value >= 1f)
         {
-            isEating = false;
+            isDrinking = false;
             progressBar.SetActive(false);
             timePassedSincePressed = 0f;
 
@@ -48,6 +51,7 @@ public class ConsumeHoney : MonoBehaviour
             inventory.honey -= honeyDeducted;
 
             playerHealth.Heal(healthHealed);
+            AudioManager.instance.PlaySoundEffect(playerDrinkingClip);
         }
     }
 
@@ -55,22 +59,22 @@ public class ConsumeHoney : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
-            if (!isEating && EnoughHoney())
+            if (!isDrinking && EnoughHoney())
             {
                 progressBar.SetActive(true);
-                isEating = true;
+                isDrinking = true;
             }
         }
 
         if (Input.GetKeyUp(KeyCode.H))
         {
-            isEating = false;
+            isDrinking = false;
             progressBar.SetActive(false);
             s.value = 0f;
             timePassedSincePressed = 0f;
         }
 
-        if (isEating)
+        if (isDrinking)
         {
             timePassedSincePressed += Time.deltaTime;
             ExecuteProgressBar();

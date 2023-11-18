@@ -10,15 +10,15 @@ public class HealthWarning : MonoBehaviour
     public GameObject playerRef =null!;
     public float redThreshold =0.75f;
 
-    void Start()
+    void Awake()
     {
         healthComp =playerRef.GetComponent<Health>();
-        initialHealth =(float)healthComp.health;
+        initialHealth =(float)healthComp.GetHealth();
     }
 
     void FixedUpdate()
     {
-        float alpha = 1.0f - (healthComp.health/initialHealth);
+        float alpha = 1.0f - (healthComp.GetHealth()/initialHealth);
         if (alpha >redThreshold)
         {
             alpha =redThreshold;

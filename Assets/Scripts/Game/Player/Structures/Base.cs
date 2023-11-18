@@ -4,20 +4,21 @@ using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Health))]
-[RequireComponent(typeof(Interactable))]
 public class Base : MonoBehaviour
 {
     int honey =0;
-    int prevDay=1;
 
-    public int honeyEachRound;
+    [SerializeField]
+    int honeyEachRound;
 
     [System.NonSerialized]
     public int honeyProductionLvl =-0;
 
+    [SerializeField]
+    GameObject buyMenuUI;
 
-    public GameObject buyMenuUI;
+    [SerializeField]
+    GameUI gameUI;
 
     [SerializeField]
     Interactable interactable;
@@ -25,39 +26,34 @@ public class Base : MonoBehaviour
     [SerializeField]
     Health health;
 
-    void OnDestroy()
-    {
-        if (health.isKilled)
-        {
-            SceneManager.LoadScene("Game Over");
-        }
-    }
+    [SerializeField]
+    AudioClip honeyFillingClip;
 
-    void Update()
+    void OnDaylightChange(bool isDayTime)
     {
-        if (prevDay <GameUI.day)
+        if (isDayTime)
         {
             honey += honeyEachRound;
-            prevDay =GameUI.day;
-        }
-        if (GameUI.isDaytime == !interactable.isEnabled)
-        {
-            interactable.isEnabled =GameUI.isDaytime;
         }
     }
 
     void OnInteract(GameObject player)
     {
-        player.GetComponent<PlayerInventory>().honey += honey;
-        honey =0;
+        if (honey>0)
+        {
+            player.GetComponent<PlayerInventory>().honey += honey;
+            AudioManager.instance.PlaySoundEffect(honeyFillingClip);
+            honey =0;
+        }
     }
 
     void OnInteracting()
     {
         if (Input.GetKeyDown(KeyCode.F)
-            && GameUI.isDaytime)
+            && gameUI.isDaytime)
         {
             buyMenuUI.SetActive(true);
+            
         }
     }
 
@@ -67,5 +63,10 @@ public class Base : MonoBehaviour
         {
             buyMenuUI.SetActive(false);
         }
+    }
+    
+    void OnDead()
+    {
+        SceneManager.LoadScene("Game Over");
     }
 }

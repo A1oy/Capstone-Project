@@ -4,38 +4,40 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Vector2 m_direction;
+    Vector3 m_direction;
     Vector2 m_startPos;
     float m_endCoefficient;
-    bool m_isSet =false;
 
     [SerializeField]
     float m_speed;
 
-    void Update()
-    {
-        if (m_isSet)
-        {
-            float coeff = (new Vector2(transform.position.x, transform.position.y) -m_startPos)
-                    .magnitude/m_endCoefficient;
-            if (coeff>=1
-                || coeff!=coeff)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
+    [SerializeField]
+    AudioClip m_obstacleHitClip;
+
+    [SerializeField]
+    AudioClip m_enemyHitClip;
 
     void FixedUpdate()
     {
-        transform.position += new Vector3(m_direction.x, m_direction.y, 0f)  *m_speed*Time.deltaTime;
+        float coeff = (new Vector2(transform.position.x, transform.position.y) -m_startPos)
+                .magnitude/m_endCoefficient;
+        if (coeff>=1
+            || coeff!=coeff)
+        {
+            Destroy(gameObject);
+        }
+        transform.position += m_direction  *m_speed*Time.deltaTime;
     }
 
-    public void Shoot(Vector2 direction, Vector2 startPos, Vector2 endPos)
+    public void Init(Vector3 direction, Vector2 startPos, Vector2 endPos, bool isEnemy)
     {
         m_direction =direction.normalized;
+        m_direction.z = 0f;
+
         m_startPos =startPos;
         m_endCoefficient = (endPos -startPos).magnitude;
-        m_isSet=true;
+        gameObject.SetActive(true);
+
+        AudioManager.instance.PlaySoundEffect(isEnemy ? m_enemyHitClip : m_obstacleHitClip);
     }
 }

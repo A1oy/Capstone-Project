@@ -49,6 +49,11 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    void OnDaylightChange(bool isDayTime)
+    {
+        isEnabled =isDayTime;
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color =new Color(1.0f, 1.0f, 0.6f, 0.3f);

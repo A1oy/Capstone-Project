@@ -4,19 +4,26 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    GameObject gameObjLock =null;
-    Vector3 [] rayVertices;
+    GameObject gameObjLock=null;
+    Vector3 [] rayVertices =new Vector3[2];
+
+    [SerializeField]
     LineRenderer lr;
 
     [SerializeField]
-    GameObject bulletPrefab;
+    Weapon weapon;
     
-    public GameObject hitEffect;
-    public Transform firePoint;
-    public float detectRadius;
-    public float force;
-    public float delay;
-    public int damage =1;
+    [SerializeField]
+    Transform firePoint;
+
+    [SerializeField]
+    float detectRadius;
+
+    [SerializeField]
+    float delay;
+
+    [SerializeField]
+    int damage;
 
     float cooldownTick;
 
@@ -25,13 +32,7 @@ public class Turret : MonoBehaviour
         cooldownTick =delay;
     }
 
-    void Start()
-    {
-        rayVertices = new Vector3[2];
-        lr = gameObject.GetComponent<LineRenderer>();
-    }
-
-    void Update()
+    void FixedUpdate()
     {
         UpdateTarget();
         if (!gameObjLock)
@@ -44,20 +45,7 @@ public class Turret : MonoBehaviour
             && cooldownTick <=0)
         {
             cooldownTick =delay;
-            Vector3 lookDir = gameObjLock.transform.position -firePoint.transform.position;
-
-            // very inefficient, might optimize it later with line-nonAABB intersection later ..
-
-            RaycastHit2D raycast =Physics2D.Raycast(firePoint.position, lookDir, detectRadius); 
-
-            Vector2 firePoint2D =new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-            bullet.GetComponent<Bullet>().Shoot(raycast.point -firePoint2D, firePoint2D, raycast.point);
-            bullet.SetActive(true);
-
-            GameObject effect = Instantiate(hitEffect, new Vector3(raycast.point.x, raycast.point.y, 1.0f), Quaternion.identity);
-            Destroy(effect, 2f);
-            gameObjLock.GetComponent<Enemy>().DoAttack(damage);
+            weapon.Shoot(firePoint);
         }
     }
 
@@ -122,5 +110,10 @@ public class Turret : MonoBehaviour
     {
         Gizmos.color =new Color(1f, 0f, 0f, 0.3f);
         Gizmos.DrawSphere(transform.position, detectRadius);
+    }
+
+    void OnDead()
+    {
+        Destroy(gameObject);
     }
 }

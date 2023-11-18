@@ -5,20 +5,19 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 
-#nullable enable
 
 public class GameUI : MonoBehaviour
 {
+    float alpha=1f;
     public float time=0.0f;
-    float alpha=0.0f;
 
     bool isDaylightChanging=false;
 
-    public static bool isDaytime=true;
-    static public int day=1;
+    public bool isDaytime=true;
+    public int day=1;
 
     [SerializeField]
-    GameObject blackout;
+    UnityEngine.Rendering.Universal.Light2D globalLight;
 
     public TMP_Text dayText =null!;
     public TMP_Text timeText =null!;
@@ -40,7 +39,10 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     TMP_Text honeyAmount;
 
-    void Start()
+    [SerializeField]
+    AudioSource musicSource;
+
+    void Awake()
     {
         time =daylightInSeconds;
         dayText.text ="Day 1";
@@ -51,7 +53,7 @@ public class GameUI : MonoBehaviour
     {
         if (isDaylightChanging)
         {
-            if (isDaytime)
+            if (!isDaytime)
             {
                 alpha -= Time.deltaTime * daylightSmoothingInSeconds;
                 if (alpha <=0.0f)
@@ -69,8 +71,7 @@ public class GameUI : MonoBehaviour
                     isDaylightChanging =false;
                 }
             }
-            SpriteRenderer sr =blackout!.GetComponent<SpriteRenderer>();
-            sr.color = new Color(0.0f, 0.0f, 0.0f, alpha);
+            globalLight.color = new Color(alpha, alpha, alpha, 1f);
         }
     }
 
@@ -90,6 +91,7 @@ public class GameUI : MonoBehaviour
                 dayText.text = $"Day {day}";
             }
             isDaytime =!isDaytime;
+            gameObject.BroadcastMessage("OnDaylightChange", isDaytime, SendMessageOptions.DontRequireReceiver);
             isDaylightChanging =true;
         }
         int iTime =(int)time;
@@ -105,6 +107,11 @@ public class GameUI : MonoBehaviour
         honeySlider.value =m_inventory.honey;
         honeyAmount.text =$"{m_inventory.honey}%";
         moneyAmount.text =Convert.ToString(m_inventory.money);
+    }
+
+    void FixedUpdate()
+    {
+        musicSource.volume = AudioManager.instance.GetMusicVolume();
     }
 
     void Update()

@@ -3,23 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-#nullable enable
-
 [RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Health))]
 public class Enemy : MonoBehaviour
 {
-    private IEnumerator? damageRoutine=null;
+    Rigidbody2D rigidBody;
+    Health health;
 
-    private Rigidbody2D? rigidBody;
-    private Health? health;
+    GameObject attackerRef =null;
+    NavMeshAgent agent;
 
-    private GameObject? attackerRef;
-    private NavMeshAgent agent =null!;
+    [SerializeField]
+    int damage;
 
-    public int damage;
-    public float detectRadius =4.0f;
+    [SerializeField]
+    float detectRadius =4.0f;
+
+    [SerializeField]
+    float attackDelay;
+
+    [SerializeField]
+    AudioSource walkingSource;
+
+    float cooldown;
+
+    bool isAttacking =false;
 
     void Start()
     {
@@ -34,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     public void DoAttack(int damage)
     {
-        health!.DoDamage(damage);
+        health.DoDamage(damage);
     }
 
     float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
@@ -86,10 +94,20 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        walkingSource.volume =AudioManager.instance.GetSfxVolume();
         DetermineTarget();
         if (attackerRef)
         {
             agent.destination =attackerRef!.transform.position;
+        }
+        if (isAttacking)
+        {
+            cooldown -= Time.deltaTime;
+            if (cooldown<=0f)
+            {
+                cooldown =attackDelay;
+                DoAttack();
+            }
         }
     }
     
@@ -97,30 +115,23 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject ==attackerRef)
         {
-            damageRoutine =DoDamageRoutine(collision.gameObject);
-            StartCoroutine(damageRoutine);
-        }
-    }
-
-    IEnumerator DoDamageRoutine(GameObject target)
-    {
-        Health targetHealth =target.GetComponent<Health>();
-        while (true)
-        {
-            if (targetHealth.DoDamage(damage))
-            {
-                break;
-            }
-            yield return new WaitForSeconds(1);
+            cooldown =attackDelay;
+            isAttacking =true;
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (damageRoutine !=null)
-        {
-            StopCoroutine(damageRoutine);
-            damageRoutine =null;
-        }
+        isAttacking =false;
+    }
+
+    void DoAttack()
+    {
+        attackerRef.GetComponent<Health>().DoDamage(damage);
+    }
+
+    void OnDead()
+    {
+        Destroy(gameObject);
     }
 }

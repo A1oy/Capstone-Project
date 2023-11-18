@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Collections;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [System.NonSerialized]
-    public bool isKilled =false;
-    public int health;
+    int health;
     
+    [SerializeField]
     int maxHealth;
 
     [SerializeField]
@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
 
     void Awake()
     {
-        maxHealth =health;
+        health =maxHealth;
     }
 
     //Players heals up when honey is consumed
@@ -34,12 +34,13 @@ public class Health : MonoBehaviour
         health -=damage;
         if (health <=0)
         {
-            isKilled =true;
-            Destroy(gameObject);
+            SendMessage("OnDead");
             return true;
         }
         return false;
     }
+
+    public int GetHealth() { return health; }
 
     void Update()
     {

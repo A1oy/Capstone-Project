@@ -24,6 +24,9 @@ public class Conductor : MonoBehaviour
     List<BoxCollider2D> spawnLocations;
 
     [SerializeField]
+    GameUI gameUI;
+
+    [SerializeField]
     float dayTunningCoeff;
 
     [SerializeField]
@@ -46,12 +49,16 @@ public class Conductor : MonoBehaviour
     [SerializeField]
     float spawnTime =0;
 
+    bool isFirstTime=true;
+
+    bool isActive =false;
+
     void Update()
     {
-        if (!GameUI.isDaytime)
+        if (isActive)
         {
-            internalDiff =GameUI.day * dayTunningCoeff +
-            playerHealth.health * playerHPTunningCoeff +
+            internalDiff =gameUI.day * dayTunningCoeff +
+            playerHealth.GetHealth() * playerHPTunningCoeff +
             playerItemTunningCoeff * inventory.itemSlots.Count +
             honeyTunningCoeff * inventory.honey -
             biasTunningCoeff;
@@ -61,21 +68,18 @@ public class Conductor : MonoBehaviour
             int numFox =0;
             int enumDiff =0;
 
-            spawnTime -= Time.deltaTime;
-
             if (internalDiff <1.5f)
             {
                 float internalBias =(internalDiff)/ 1.5f;
                 numRabbit =Random.Range(1 +(int)(internalBias*2.6666f), 5);
-                spawnCoolDown =20.3f- internalDiff-0.6f;
+                
             }
             else if (internalDiff <2.1f)
             {
                 float internalBias =(internalDiff-1.5f) /0.6f;
                 enumDiff =0;
-                numRabbit =Random.Range(1 +(int)(internalBias*2.6666f)+1, 6);
-                numSquirrel =Random.Range(1 +(int)(internalBias*0.6666f), 3);
-                spawnCoolDown =15.3f+ internalDiff-0.6f;
+                numRabbit =Random.Range(2 +(int)(internalBias*0.9666f), 6);
+                numSquirrel =Random.Range(1 +(int)(internalBias*0.3666f), 3);
             }
             else
             {
@@ -84,20 +88,34 @@ public class Conductor : MonoBehaviour
                 {
                     internalBias =2f;
                 }
-                numRabbit =Random.Range(1 +(int)(internalBias*2.6666f)+1, 10);
-                numSquirrel =Random.Range(1 +(int)(internalBias*0.6666f), 5);
-                spawnCoolDown =11.3f- internalDiff-0.5f;
+                numRabbit =Random.Range(3 +(int)(internalBias*0.366f), 10);
+                numSquirrel =Random.Range(2 +(int)(internalBias*0.1666f), 5);
             }
-
+            spawnTime -= Time.deltaTime;
             if (spawnTime<0)
             {
                 SpawnEnemies(rabbitPrefab, numRabbit, enumDiff);
                 SpawnEnemies(squirrelPrefab, numSquirrel, enumDiff);
                 SpawnEnemies(foxPrefab, numFox, enumDiff);
-                spawnTime =spawnCoolDown;
+                CalculateCooldown();
             }
         }
     }
+
+    void CalculateCooldown()
+    {
+        spawnCoolDown =17.3f- internalDiff*0.6f-0.6f;
+        spawnTime =spawnCoolDown;
+    }
+
+    void OnDaylightChange(bool isDayTime)
+    {
+        isActive =!isDayTime;
+        if (isFirstTime)
+        {
+            CalculateCooldown();
+        }
+    }    
 
     void SpawnEnemies(GameObject enemyPrefab, int count, int enumDiff)
     {

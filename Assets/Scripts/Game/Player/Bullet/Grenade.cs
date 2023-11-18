@@ -15,6 +15,9 @@ public class Grenade : MonoBehaviour
     public int force;
     public GameObject hitEffect;
 
+    [SerializeField]
+    AudioClip explosionClip;
+
     void Start()
     {
         explosionDelayRoutine = ExplosionDelay();
@@ -29,6 +32,8 @@ public class Grenade : MonoBehaviour
         Vector2 position =new Vector2(transform.position.x, transform.position.y);
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
         effect.transform.localScale =new Vector2((float)explosionRadius*2, (float)explosionRadius*2);
+
+        AudioManager.instance.PlaySoundEffect(explosionClip);
         
         Destroy(effect, 1f);
         Collider2D[] collisions =Physics2D.OverlapCircleAll(position, explosionRadius);

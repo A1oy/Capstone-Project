@@ -21,7 +21,9 @@ public class MusicSFXControls : MonoBehaviour
 
     void Awake()
     {
-        AudioListener.volume = musicVolumeSlider.value / 100f;
+        musicVolumeSlider.value = AudioManager.instance.GetMusicVolume()*100f;
+        sfxVolumeSlider.value =AudioManager.instance.GetSfxVolume() *100f;
+
         musicVolumeMagnitude.text = Convert.ToString(musicVolumeSlider.value);
         sfxVolumeMagnitude.text = Convert.ToString(sfxVolumeSlider.value);
     }
@@ -29,17 +31,12 @@ public class MusicSFXControls : MonoBehaviour
     public void OnMusicVolumeChange()
     {
         musicVolumeMagnitude.text = Convert.ToString(musicVolumeSlider.value);
-        AudioListener.volume = musicVolumeSlider.value / 100f; 
+        AudioManager.instance.SetMusicVolume(musicVolumeSlider.value / 100f);
     }
 
     public void OnSFXVolumeChange()
     {
         sfxVolumeMagnitude.text = Convert.ToString(sfxVolumeSlider.value); 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        AudioManager.instance.SetSfxVolume(sfxVolumeSlider.value /100f);
     }
 }

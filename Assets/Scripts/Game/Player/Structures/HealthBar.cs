@@ -32,11 +32,8 @@ public class HealthBar : MonoBehaviour
         
     }
 
-    void Update()
+    void OnDaylightChange(bool isDayTime)
     {
-        if (GameUI.isDaytime == !interactable.isEnabled)
-        {
-            interactable.isEnabled =GameUI.isDaytime;
-        }
+        interactable.isEnabled = isDayTime;
     }
 }
