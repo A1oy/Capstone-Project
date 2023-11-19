@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: -1831951727063326582}
   - component: {fileID: -3475225960186583052}
   - component: {fileID: 6466629817009743673}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Turret
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
-  healthBar: {fileID: 308484524010204636}
 --- !u!114 &6466629817009743673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +297,7 @@ MonoBehaviour:
   - {x: -0.33020633, y: -0.3315, z: 0}
   m_ShapePathHash: 606017593
   m_Mesh: {fileID: 0}
-  m_InstanceId: 215574
+  m_InstanceId: 50108
   m_LocalBounds:
     m_Center: {x: -0.0063164234, y: 0.0010849535, z: 0}
     m_Extent: {x: 0.47170532, y: 0.4847479, z: 0}
@@ -441,6 +440,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1364151404755701759}
     m_Modifications:
+    - target: {fileID: 163447922076399798, guid: 6f11c0d3e5203e0449a19b251017d068, type: 3}
+      propertyPath: m_health
+      value: 
+      objectReference: {fileID: -3475225960186583052}
     - target: {fileID: 1266081242343484294, guid: 6f11c0d3e5203e0449a19b251017d068, type: 3}
       propertyPath: m_Name
       value: HealthBar
@@ -547,17 +550,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f11c0d3e5203e0449a19b251017d068, type: 3}
---- !u!114 &308484524010204636 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 163447922076399798, guid: 6f11c0d3e5203e0449a19b251017d068, type: 3}
-  m_PrefabInstance: {fileID: 433289008269153642}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be0bc196e2fdc5e40ac290ed3d00cdf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1698239828016889581 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1266081242343484295, guid: 6f11c0d3e5203e0449a19b251017d068, type: 3}

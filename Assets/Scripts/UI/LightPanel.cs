@@ -51,9 +51,9 @@ public class LightPanel : MonoBehaviour
     [SerializeField]
     PlayerShooting m_shooting;
 
-    [Header("Base")]
+    [Header("Base Honey Production")]
     [SerializeField]
-    Base m_base;
+    HoneyProduction m_production;
 
     const int m_moneyMul=1;
 
@@ -72,7 +72,7 @@ public class LightPanel : MonoBehaviour
 
         m_money.text =Convert.ToString(m_inventory.money);
         
-        m_productionSlot.lvl =m_base.honeyProductionLvl;
+        m_productionSlot.lvl =m_production.honeyProductionLvl;
         m_honeyJarSlider.value =m_inventory.honey;
 
         m_honeyPercent.text = $"{m_inventory.honey}%";
@@ -127,7 +127,7 @@ public class LightPanel : MonoBehaviour
         {
             AudioManager.instance.PlaySoundEffect(m_purchasingClip);
             m_money.text =Convert.ToString(m_inventory.money);
-            m_base.honeyProductionLvl++;
+            m_production.honeyProductionLvl++;
         }
     }
 

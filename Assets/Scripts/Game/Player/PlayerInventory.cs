@@ -93,12 +93,12 @@ public class PlayerInventory : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Fire2")
-            && !status.isBuildMode)
+            && !status.CanBuild())
         {
             UseItem(firePoint);
         }
         else if (Input.GetButtonDown("Fire3")
-            && !status.isBuildMode)
+            && !status.CanBuild())
         {
             DeployHoney();
         }

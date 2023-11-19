@@ -11,9 +11,6 @@ public class Health : MonoBehaviour
     [SerializeField]
     int maxHealth;
 
-    [SerializeField]
-    HealthBar healthBar;
-
     void Awake()
     {
         health =maxHealth;
@@ -40,14 +37,12 @@ public class Health : MonoBehaviour
         return false;
     }
 
-    public int GetHealth() { return health; }
-
-    void Update()
+    public int GetCurrentHealth()
     {
-        if (healthBar
-            &&maxHealth>0)
-        {
-            healthBar.value = (float)health/(float)maxHealth;
-        }
+        return health;
+    }
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 }

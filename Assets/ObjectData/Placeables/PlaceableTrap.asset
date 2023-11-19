@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33aa5d8a55d21434e915f58297dee706, type: 3}
-  m_Name: PlaceableTurret
+  m_Name: PlaceableTrap
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 06d3681ae73a3c5458c071de4ff1b1f5, type: 3}
-  objectPrefab: {fileID: 2751959643139573574, guid: afbd3742cfd25974696dcac3e6098d77, type: 3}
-  cost: 15
+  sprite: {fileID: 21300000, guid: c930b24957f0b054687a172d9413d57a, type: 3}
+  objectPrefab: {fileID: 8935667864792298884, guid: 4ce4afdae0b796a42aed430f2c3a705a, type: 3}
+  cost: 10

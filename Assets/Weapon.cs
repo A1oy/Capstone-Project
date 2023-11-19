@@ -98,7 +98,7 @@ public class Weapon : MonoBehaviour
         {
             VShoot();
             Vector2 firePoint2D =new Vector2(firePoint.transform.position.x, firePoint.transform.position.y);
-            RaycastHit2D raycast =Physics2D.Raycast(firePoint2D, new Vector2(firePoint.up.x, firePoint.up.y), Mathf.Infinity);
+            RaycastHit2D raycast =Physics2D.Raycast(firePoint2D, new Vector2(firePoint.up.x, firePoint.up.y), Mathf.Infinity, (1<<3)|(1<<9));
             if (raycast)
             {
                 GameObject explosion =Instantiate(m_hitEffectPrefab, new Vector3(raycast.point.x, raycast.point.y, 0f), Quaternion.identity);

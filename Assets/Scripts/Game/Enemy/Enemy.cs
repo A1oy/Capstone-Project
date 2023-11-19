@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
 
         GameObject baseRef =GameObject.FindWithTag("Base");
         GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] turretsRef  =GameObject.FindGameObjectsWithTag("Turret");
+        GameObject[] turretsRef  =GameObject.FindGameObjectsWithTag("Building");
 
         if (baseRef)
         {

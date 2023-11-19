@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Placement : MonoBehaviour
 {
@@ -18,16 +19,20 @@ public class Placement : MonoBehaviour
 
     [SerializeField]
     List <PlaceableObject> m_placeables;
-    
+
     int m_currentIdx =0;
     int m_curScroll =0;
-    const int SCROLL_DELTA =30;
 
     [SerializeField]
     PlayerInventory m_inventory;
 
     [SerializeField]
     PlayerStatus m_status;
+
+    [SerializeField]
+    Transform m_parent;
+
+    const int SCROLL_DELTA =5;
 
     void Awake()
     {
@@ -38,16 +43,13 @@ public class Placement : MonoBehaviour
     {
         if (m_placeables.Count >1)
         {
-            m_curScroll += (int) (0.1f *Input.mouseScrollDelta.y);
-            if (m_curScroll <0)
+            m_curScroll += (int) Input.mouseScrollDelta.y;
+            m_curScroll = m_curScroll % (SCROLL_DELTA *m_placeables.Count);
+            if (m_curScroll<0)
             {
-                m_curScroll += SCROLL_DELTA *m_placeables.Count;
+                m_curScroll =-m_curScroll;
             }
-            m_currentIdx =m_curScroll/SCROLL_DELTA;
-            if (m_currentIdx >= m_placeables.Count)
-            {
-                m_currentIdx = m_currentIdx %m_placeables.Count;
-            }
+            m_currentIdx =(m_curScroll/SCROLL_DELTA);
         }
         m_placerSr.sprite =m_placeables[m_currentIdx].sprite;
     }
@@ -55,7 +57,7 @@ public class Placement : MonoBehaviour
     void Update()
     {
         if (MenuManager.singleton!.isMovement
-            && m_status.isBuildMode
+            && m_status.CanBuild()
             && placer.activeSelf)
         {   
             Vector3 worldTilePlacement =m_placementPoint.position;
@@ -66,8 +68,14 @@ public class Placement : MonoBehaviour
             placer.transform.position =worldTilePlacement;
 
             HandleScroll();
-
-            bool isPlaceable =Physics2D.OverlapArea(new Vector2(worldTilePlacement.x, worldTilePlacement.y), Vector2.one, 1<<3)==null;
+            
+            Collider2D collider =Physics2D.OverlapArea(new Vector2(worldTilePlacement.x, worldTilePlacement.y),
+                new Vector2(worldTilePlacement.x +1f, worldTilePlacement.y-1f),
+                1<<3);
+            Debug.Log(collider?.gameObject ?? null);
+            bool isPlaceable =collider==null;
+            
+            
             m_placerMask.color = isPlaceable ? new Color(0f, 0f, 1f, 0.34f) : new Color(1f, 0f, 0f, 0.34f);
 
             if (Input.GetButtonDown("Fire1")
@@ -75,7 +83,7 @@ public class Placement : MonoBehaviour
                 && isPlaceable)
             {
                  m_inventory.money -= m_placeables[m_currentIdx].cost;
-                Instantiate(m_placeables[m_currentIdx].objectPrefab, placer.transform.position, Quaternion.identity);
+                Instantiate(m_placeables[m_currentIdx].objectPrefab, placer.transform.position, Quaternion.identity, m_parent);
             }
         }
     }

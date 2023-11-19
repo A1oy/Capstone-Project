@@ -13,7 +13,7 @@ public class Interactable : MonoBehaviour
     public float touchRadius =2.0f;
     public string text;
 
-    void Update()
+    void FixedUpdate()
     {
         Collider2D collision =Physics2D.OverlapCircle(gameObject.transform.position, touchRadius, 1<<7);
         if (collision)
@@ -22,7 +22,7 @@ public class Interactable : MonoBehaviour
                 && isEnabled)
             {
                 isInteracting =true;
-                gameObject.SendMessage("OnInteract", collision.gameObject);
+                gameObject.SendMessage("OnInteract", collision.gameObject, SendMessageOptions.DontRequireReceiver);
                 InteractController.singleton!.text =text;
             }
         }
@@ -32,20 +32,20 @@ public class Interactable : MonoBehaviour
             {
                 isInteracting =false;
                 InteractController.singleton!.text =null;
-                gameObject.SendMessage("OnLeaveInteract");
+                gameObject.SendMessage("OnLeaveInteract", SendMessageOptions.DontRequireReceiver);
             }
         }
         if (!isEnabled
             && isInteracting)
         {
-            gameObject.SendMessage("OnLeaveInteract");
+            gameObject.SendMessage("OnLeaveInteract", SendMessageOptions.DontRequireReceiver);
         }
 
         if (Input.anyKeyDown
             && isEnabled
             && isInteracting)
         {
-            gameObject.SendMessage("OnInteracting");
+            gameObject.SendMessage("OnInteracting", SendMessageOptions.DontRequireReceiver);
         }
     }
 

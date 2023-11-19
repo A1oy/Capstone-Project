@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthWarning : MonoBehaviour
 {
-    Health healthComp =null!;
+    Health m_health =null!;
     float initialHealth;
 
     public GameObject playerRef =null!;
@@ -12,13 +12,13 @@ public class HealthWarning : MonoBehaviour
 
     void Awake()
     {
-        healthComp =playerRef.GetComponent<Health>();
-        initialHealth =(float)healthComp.GetHealth();
+        m_health =playerRef.GetComponent<Health>();
+        initialHealth =(float)m_health.GetCurrentHealth();
     }
 
     void FixedUpdate()
     {
-        float alpha = 1.0f - (healthComp.GetHealth()/initialHealth);
+        float alpha = 1.0f - (m_health.GetCurrentHealth()/initialHealth);
         if (alpha >redThreshold)
         {
             alpha =redThreshold;

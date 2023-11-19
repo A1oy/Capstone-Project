@@ -20,7 +20,7 @@ public class PlayerShooting : MonoBehaviour
     {
         
 		if (MenuManager.singleton!.isMovement
-            && !status.isBuildMode)
+            && !status.CanBuild())
 		{
             if (Input.GetButtonDown("Fire1"))
             {

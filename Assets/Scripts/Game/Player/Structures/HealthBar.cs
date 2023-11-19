@@ -14,8 +14,8 @@ public class HealthBar : MonoBehaviour
     [SerializeField]
     Interactable interactable;
 
-    public float value { set { m_slider.value =value;}}
-
+    [SerializeField]
+    Health m_health;
 
     void OnInteract(GameObject player)
     {
@@ -26,10 +26,10 @@ public class HealthBar : MonoBehaviour
     {
         m_intermBar.SetActive(false);
     }
-    
-    void OnInteracting()
+
+     void FixedUpdate()
     {
-        
+        m_slider.value = (float)m_health.GetCurrentHealth()/m_health.GetMaxHealth();
     }
 
     void OnDaylightChange(bool isDayTime)
