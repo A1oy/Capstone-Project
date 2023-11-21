@@ -11,10 +11,10 @@ public class HoneyProduction : MonoBehaviour
 
     [SerializeField]
     int honeyEachRound;
-    
-    [SerializeField]
-    AudioClip honeyFillingClip;
 
+    [SerializeField]
+    AudioSource m_honeyDrainingSource;
+    
     void OnDaylightChange(bool isDayTime)
     {
         if (isDayTime)
@@ -27,8 +27,8 @@ public class HoneyProduction : MonoBehaviour
     {
         if (honey>0)
         {
+            m_honeyDrainingSource.Play();
             player.GetComponent<PlayerInventory>().honey += honey;
-            AudioManager.instance.PlaySoundEffect(honeyFillingClip);
             honey =0;
         }
     }

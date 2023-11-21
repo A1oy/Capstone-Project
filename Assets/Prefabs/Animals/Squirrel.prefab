@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 4005127197643398657}
   - component: {fileID: 3499049689089251719}
   - component: {fileID: 4935831960538269831}
+  - component: {fileID: 6152272030309468951}
   - component: {fileID: 240229882709134113}
   - component: {fileID: -575305959052192684}
+  - component: {fileID: 3071788150450936247}
   - component: {fileID: 4898262046181749255}
   - component: {fileID: 8569631391934021725}
   m_Layer: 9
@@ -137,10 +139,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d96c6156af26e4a9ad025e73afa531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackerRef: {fileID: 0}
+  m_scoreGiven: 2
+--- !u!114 &6152272030309468951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3775392459466963349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ceb9652886e964ea12867159e8a5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   damage: 1
   detectRadius: 4
-  attackDelay: 1
+  attackDelay: 2
   walkingSource: {fileID: 4898262046181749255}
 --- !u!61 &240229882709134113
 BoxCollider2D:
@@ -190,6 +204,21 @@ NavMeshAgent:
   m_BaseOffset: 0.08
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3071788150450936247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3775392459466963349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a58a8744aac1e44a5fa96c0ee32f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sfxSources:
+  - {fileID: 4898262046181749255}
+  m_musicSources: []
 --- !u!82 &4898262046181749255
 AudioSource:
   m_ObjectHideFlags: 0

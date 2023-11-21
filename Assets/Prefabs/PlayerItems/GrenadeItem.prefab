@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c7c537cc685a344388293bda0b33724, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buyItem: {fileID: 11400000, guid: 1d10d5c9f777fd646bb9aaca98b78255, type: 2}
+  buyItem: {fileID: 11400000, guid: 2bb9aa053f5ac33418c42b31977413df, type: 2}
   m_grenadePrefab: {fileID: 2540137865167992298, guid: aa2a38dafc86a4940b23f4fdfb903672, type: 3}
   grenadeForce: 0.5

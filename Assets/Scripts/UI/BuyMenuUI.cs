@@ -10,22 +10,22 @@ public class BuyMenuUI : MonoBehaviour
     GameObject buyContainer;
 
     [SerializeField]
-    AudioClip openingClip;
+    AudioSource m_openingSource;
 
     [SerializeField]
-    AudioClip closingClip;
+    AudioSource m_closingSource;
 
     void OnEnable()
     {
+        m_openingSource.Play();
         MenuManager.singleton!.isMovement =false;
         buyContainer.SetActive(true);
-        AudioManager.instance.PlaySoundEffect(openingClip);
     }
     
     void OnDisable()
     {
+        m_closingSource.Play();
         MenuManager.singleton!.isMovement =true;
         buyContainer.SetActive(false);
-        AudioManager.instance.PlaySoundEffect(closingClip);
     }
 }

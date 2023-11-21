@@ -5,37 +5,48 @@ using System;
 
 public class Grenade : MonoBehaviour
 {
-    private IEnumerator explosionDelayRoutine;
     private float damageRange;
 
-    public int secondsDeplay;
-    public int explosionRadius;
-    public int maxDamage;
-    public int minDamage;
-    public int force;
-    public GameObject hitEffect;
+    [SerializeField]
+    float secondsDelay;
+    
+    [SerializeField]
+    int explosionRadius;
+    
+    [SerializeField]
+    int maxDamage;
+    
+    [SerializeField]
+    int minDamage;
 
     [SerializeField]
-    AudioClip explosionClip;
+    int force;
 
-    void Start()
+    [SerializeField]
+    GameObject hitEffect;
+
+    void Awake()
     {
-        explosionDelayRoutine = ExplosionDelay();
         damageRange = (float)minDamage - (float)maxDamage;
-        StartCoroutine(explosionDelayRoutine);
     }
 
-    IEnumerator ExplosionDelay()
+    void FixedUpdate()
     {
-        yield return new WaitForSeconds(secondsDeplay);
+        secondsDelay -=Time.deltaTime;
+        if (secondsDelay <=0f)
+        {
+            Explode();
+        }
+    }
+
+    void Explode()
+    {
         Destroy(gameObject);
         Vector2 position =new Vector2(transform.position.x, transform.position.y);
         GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        effect.transform.localScale =new Vector2((float)explosionRadius*2, (float)explosionRadius*2);
-
-        AudioManager.instance.PlaySoundEffect(explosionClip);
         
-        Destroy(effect, 1f);
+        effect.transform.localScale =new Vector2((float)explosionRadius*2, (float)explosionRadius*2);
+        
         Collider2D[] collisions =Physics2D.OverlapCircleAll(position, explosionRadius);
         foreach (Collider2D collision in collisions)
         {
@@ -51,7 +62,6 @@ public class Grenade : MonoBehaviour
                 int iDamage =(int)fDamage +1;
 
                 enemy.DoAttack(iDamage);
-                Debug.Log("Did " +  Convert.ToString(iDamage) + " Damage.");
                 float forceMagnitude = force;
 
                 Rigidbody2D rigidBody = gameObj.GetComponent<Rigidbody2D>();

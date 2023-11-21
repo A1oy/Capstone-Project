@@ -27,7 +27,15 @@ public class PlayerInventory : MonoBehaviour
     GameObject m_honeyPrefab;
 
     [SerializeField]
-    PlayerStatus status;
+    PlayerStatus m_status;
+
+    [SerializeField]
+    ItemContainerUI m_itemContainer;
+
+    [SerializeField]
+    ItemContainerUI m_itemContainer2;
+
+    int m_score;
 
     public List<ItemSlot> itemSlots =new List<ItemSlot>();
     int currentIdx =0;
@@ -50,6 +58,8 @@ public class PlayerInventory : MonoBehaviour
                     currentIdx =0;
                 }
             }
+            m_itemContainer.UpdateUI(this);
+            m_itemContainer2.UpdateUI(this);
         }
     }
 
@@ -73,6 +83,8 @@ public class PlayerInventory : MonoBehaviour
             newItem.item =item;
             itemSlots.Add(newItem);
         }
+        m_itemContainer.UpdateUI(this);
+        m_itemContainer2.UpdateUI(this);
     }
 
     void Update()
@@ -93,12 +105,12 @@ public class PlayerInventory : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Fire2")
-            && !status.CanBuild())
+            && !m_status.CanBuild())
         {
             UseItem(firePoint);
         }
         else if (Input.GetButtonDown("Fire3")
-            && !status.CanBuild())
+            && !m_status.CanBuild())
         {
             DeployHoney();
         }
@@ -112,5 +124,15 @@ public class PlayerInventory : MonoBehaviour
             honey -=5;
         }
         
+    }
+
+    public void AddScore(int scoreAdded)
+    {
+        m_score +=scoreAdded;
+    }
+
+    public int GetScore()
+    {
+        return m_score;
     }
 }

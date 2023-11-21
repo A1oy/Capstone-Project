@@ -99,13 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 999f541f429e08945b4124088ea9f58c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsDeplay: 1
+  secondsDelay: 2
   explosionRadius: 4
-  maxDamage: 1
-  minDamage: 0
+  maxDamage: 2
+  minDamage: 1
   force: 10
   hitEffect: {fileID: 43520982865979776, guid: 7a2e8afce80da7f45b7d6bb7c8b035fd, type: 3}
-  explosionClip: {fileID: 8300000, guid: 94e06240c1563f549aa4e386a351fefe, type: 3}
+  m_explodeSource: {fileID: 0}
 --- !u!61 &-2268292268110720440
 BoxCollider2D:
   m_ObjectHideFlags: 0
