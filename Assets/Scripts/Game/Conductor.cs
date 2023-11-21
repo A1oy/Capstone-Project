@@ -57,7 +57,7 @@ public class Conductor : MonoBehaviour
     {
         if (isActive)
         {
-            internalDiff =gameUI.day * dayTunningCoeff +
+            internalDiff =gameUI.GetDay() * dayTunningCoeff +
             playerHealth.GetCurrentHealth() * playerHPTunningCoeff +
             playerItemTunningCoeff * inventory.itemSlots.Count +
             honeyTunningCoeff * inventory.honey -

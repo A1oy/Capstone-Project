@@ -11,11 +11,13 @@ GameObject:
   - component: {fileID: 8688203729209026520}
   - component: {fileID: -8712212813610836163}
   - component: {fileID: 1235720188764108218}
+  - component: {fileID: -9091826713302542655}
   - component: {fileID: 1633012228791222268}
   - component: {fileID: 7095025587521942288}
   - component: {fileID: -7038178604588162965}
   - component: {fileID: -553118133812762622}
   - component: {fileID: -5201214466480199786}
+  - component: {fileID: -3372629015977812078}
   - component: {fileID: 7171615442071013086}
   - component: {fileID: 1083180422523515550}
   m_Layer: 9
@@ -65,10 +67,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d96c6156af26e4a9ad025e73afa531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackerRef: {fileID: 0}
-  damage: 2
-  detectRadius: 2
-  attackDelay: 1
+  m_scoreGiven: 3
+--- !u!114 &-9091826713302542655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778099470594254656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97ceb9652886e964ea12867159e8a5b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  detectRadius: 4
+  attackDelay: 2
   walkingSource: {fileID: 7171615442071013086}
 --- !u!114 &1633012228791222268
 MonoBehaviour:
@@ -203,6 +217,21 @@ NavMeshAgent:
   m_BaseOffset: 0.16
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-3372629015977812078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778099470594254656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a58a8744aac1e44a5fa96c0ee32f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sfxSources:
+  - {fileID: 7171615442071013086}
+  m_musicSources: []
 --- !u!82 &7171615442071013086
 AudioSource:
   m_ObjectHideFlags: 0

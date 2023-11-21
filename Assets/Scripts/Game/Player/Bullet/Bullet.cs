@@ -11,12 +11,6 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     float m_speed;
 
-    [SerializeField]
-    AudioClip m_obstacleHitClip;
-
-    [SerializeField]
-    AudioClip m_enemyHitClip;
-
     void FixedUpdate()
     {
         float coeff = (new Vector2(transform.position.x, transform.position.y) -m_startPos)
@@ -38,6 +32,5 @@ public class Bullet : MonoBehaviour
         m_endCoefficient = (endPos -startPos).magnitude;
         gameObject.SetActive(true);
 
-        AudioManager.instance.PlaySoundEffect(isEnemy ? m_enemyHitClip : m_obstacleHitClip);
     }
 }

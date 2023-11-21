@@ -170,7 +170,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 47.006, y: 4.7181}
+  m_AnchoredPosition: {x: 52.569, y: -6.6}
   m_SizeDelta: {x: -127.0093, y: -114.4331}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2597325814630591731
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 5433558797093060210}
   - component: {fileID: 3598387198239750432}
   m_Layer: 5
-  m_Name: BuyItemSlot
+  m_Name: BuyItemSlotUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
+  m_Color: {r: 0.6037736, g: 0.58896405, b: 0.58896405, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -443,6 +443,7 @@ MonoBehaviour:
   m_name: {fileID: 1482401137433945312}
   m_description: {fileID: 5218432107749505503}
   m_cost: {fileID: 6089944560013310651}
+  m_item: {fileID: 8395498379669129464}
   m_itemSlot: {fileID: 0}
 --- !u!114 &3598387198239750432
 MonoBehaviour:

@@ -55,11 +55,10 @@ public class LightPanel : MonoBehaviour
     [SerializeField]
     HoneyProduction m_production;
 
-    const int m_moneyMul=1;
-
     [SerializeField]
-    AudioClip m_purchasingClip;
+    AudioSource m_purchasingSource;
 
+    const int m_moneyMul=1;
 
     void OnEnable()
     {
@@ -81,12 +80,17 @@ public class LightPanel : MonoBehaviour
 
     }
 
+    void Purchase()
+    {
+        m_money.text =Convert.ToString(m_inventory.money);
+        m_purchasingSource.Play();
+    }
+
     public void OnAmmo()
     {
         if (m_ammoSlot.Upgrade(m_inventory))
         {
-            AudioManager.instance.PlaySoundEffect(m_purchasingClip);
-            m_money.text =Convert.ToString(m_inventory.money);
+            Purchase();
             m_shooting.weapon.m_ammoCapacityLvl++;
         }
     }
@@ -95,8 +99,7 @@ public class LightPanel : MonoBehaviour
     {
         if (m_firerateSlot.Upgrade(m_inventory))
         {
-            AudioManager.instance.PlaySoundEffect(m_purchasingClip);
-            m_money.text =Convert.ToString(m_inventory.money);
+            Purchase();
             m_shooting.weapon.m_fireSpeedLvl++;
         }
     }
@@ -105,8 +108,7 @@ public class LightPanel : MonoBehaviour
     {
         if (m_reloadSlot.Upgrade(m_inventory))
         {
-            AudioManager.instance.PlaySoundEffect(m_purchasingClip);
-            m_money.text =Convert.ToString(m_inventory.money);
+            Purchase();
             m_shooting.weapon.m_reloadSpeedLvl++;
         }
     }
@@ -115,8 +117,7 @@ public class LightPanel : MonoBehaviour
     {
         if (m_damageSlot.Upgrade(m_inventory))
         {
-            AudioManager.instance.PlaySoundEffect(m_purchasingClip);
-            m_money.text =Convert.ToString(m_inventory.money);
+            Purchase();
             m_shooting.weapon.m_damageLvl++;
         }
     }
@@ -125,8 +126,7 @@ public class LightPanel : MonoBehaviour
     {
         if (m_productionSlot.Upgrade(m_inventory))
         {
-            AudioManager.instance.PlaySoundEffect(m_purchasingClip);
-            m_money.text =Convert.ToString(m_inventory.money);
+            Purchase();
             m_production.honeyProductionLvl++;
         }
     }
@@ -159,7 +159,6 @@ public class LightPanel : MonoBehaviour
         int diff =m_inventory.honey -(int)m_honeyJarSlider.value;
         if (diff>0)
         {
-            AudioManager.instance.PlaySoundEffect(m_purchasingClip);
             m_inventory.honey -=diff;
             m_honeyJarSlider.value =(float)m_inventory.honey;
             ((Selectable)m_sellHoneyButton).interactable =false;
@@ -168,7 +167,7 @@ public class LightPanel : MonoBehaviour
 
             int moneyDiff =m_moneyMul *diff;
             m_inventory.money +=moneyDiff;
-            m_money.text =Convert.ToString(m_inventory.money);
+            Purchase();
         }
     }
 
@@ -176,9 +175,8 @@ public class LightPanel : MonoBehaviour
     {
         if (m_inventory.money >= item.buyItem.cost)
         {
-            AudioManager.instance.PlaySoundEffect(m_purchasingClip);
             m_inventory.money -= item.buyItem.cost;
-            m_money.text =Convert.ToString(m_inventory.money);
+            Purchase();
             m_inventory.AddItem(item);
         }
     }

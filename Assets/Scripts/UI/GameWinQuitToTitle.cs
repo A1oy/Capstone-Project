@@ -1,21 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameWinQuitToTitle : MonoBehaviour
 {
 
-    //When the scene is loaded 
-    private void Awake()
-    {
-        //play the soundtrack
+    [SerializeField]
+    TMP_Text m_score;
 
+    void Awake()
+    {
+        m_score.text = Convert.ToString(NetworkManager.GetLocalPlayer().GetComponent<PlayerInventory>().GetScore());
     }
 
     // Update is called once per frame
     public void OnQuitToTitleButtonClicked()
     {
-        SceneManager.LoadSceneAsync("Main Menu"); 
+        SceneManager.LoadScene("Main Menu"); 
     }
 }

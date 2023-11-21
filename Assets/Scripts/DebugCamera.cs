@@ -41,7 +41,7 @@ public class DebugCamera : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Slash))
         {
-            gameManager.time =1f;
+            gameManager.DebugFastForwardTime();
         }
 #endif
     }

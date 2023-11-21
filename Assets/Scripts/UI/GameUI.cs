@@ -9,43 +9,34 @@ using UnityEngine.UI;
 public class GameUI : MonoBehaviour
 {
     float alpha=1f;
-    public float time=0.0f;
+    
+    [SerializeField]
+    float time=0.0f;
 
     bool isDaylightChanging=false;
 
-    public bool isDaytime=true;
-    public int day=1;
+    bool isDaytime=true;
+    
+    [SerializeField]
+    int day=1;
 
     [SerializeField]
     UnityEngine.Rendering.Universal.Light2D globalLight;
 
-    public TMP_Text dayText =null!;
-    public TMP_Text timeText =null!;
-    public TMP_Text interactableText =null!;
-
-    public float daylightInSeconds;
-    public float nightInSeconds;
-    public float daylightSmoothingInSeconds;
+    public TMP_Text interactableText;
 
     [SerializeField]
-    PlayerInventory m_inventory;
-
+    float daylightInSeconds;
+    
     [SerializeField]
-    TMP_Text moneyAmount;
-
+    float nightInSeconds;
+    
     [SerializeField]
-    Slider honeySlider;
-
-    [SerializeField]
-    TMP_Text honeyAmount;
-
-    [SerializeField]
-    AudioSource musicSource;
+    float daylightSmoothingInSeconds;
 
     void Awake()
     {
         time =daylightInSeconds;
-        dayText.text ="Day 1";
         daylightSmoothingInSeconds = 1.0f/daylightSmoothingInSeconds;
     }
 
@@ -88,35 +79,41 @@ public class GameUI : MonoBehaviour
             {
                 time =daylightInSeconds;
                 day++;
-                dayText.text = $"Day {day}";
             }
             isDaytime =!isDaytime;
             gameObject.BroadcastMessage("OnDaylightChange", isDaytime, SendMessageOptions.DontRequireReceiver);
             isDaylightChanging =true;
         }
-        int iTime =(int)time;
-        int mins =iTime /60;
-        int secs = iTime - (mins *60);
-        string pad =secs<10? "0":"";
-        timeText.text = $"{mins}:{pad}{secs}";
         DoDaylightChange();
-    }
-
-    void HandlePlayerInventoryUI()
-    {
-        honeySlider.value =m_inventory.honey;
-        honeyAmount.text =$"{m_inventory.honey}%";
-        moneyAmount.text =Convert.ToString(m_inventory.money);
     }
 
     void FixedUpdate()
     {
-        musicSource.volume = AudioManager.instance.GetMusicVolume();
+        HandleDaylightUI();
     }
 
-    void Update()
+    public int GetDay()
     {
-        HandleDaylightUI();
-        HandlePlayerInventoryUI();
+       return day; 
     }
+    
+    public bool IsDayTime()
+    {
+        return isDaytime;
+    }
+
+    public string GetTimeString()
+    {
+        int iTime =(int)time;
+        int mins =iTime /60;
+        int secs = iTime - (mins *60);
+        string pad =secs<10? "0":"";
+        return  $"{mins}:{pad}{secs}";
+    }
+#if UNITY_EDITOR
+    public void DebugFastForwardTime()
+    {
+        time=1f;
+    }
+#endif
 }

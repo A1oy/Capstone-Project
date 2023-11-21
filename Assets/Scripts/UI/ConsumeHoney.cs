@@ -30,7 +30,7 @@ public class ConsumeHoney : MonoBehaviour
     GameObject progressBar;
 
     [SerializeField]
-    AudioClip playerDrinkingClip;
+    AudioSource m_glupingSource;
 
     bool isDrinking = false;
 
@@ -49,9 +49,8 @@ public class ConsumeHoney : MonoBehaviour
 
 
             inventory.honey -= honeyDeducted;
-
+            m_glupingSource.Play();
             playerHealth.Heal(healthHealed);
-            AudioManager.instance.PlaySoundEffect(playerDrinkingClip);
         }
     }
 

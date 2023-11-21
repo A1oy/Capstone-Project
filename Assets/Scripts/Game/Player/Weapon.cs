@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
         FIRING,
         EMPTY
     };
-    WeaponState m_state;
+    WeaponState m_state =WeaponState.NORMAL;
 
     float m_internalTick;
 
@@ -43,16 +43,19 @@ public class Weapon : MonoBehaviour
 
 
     [SerializeField]
-    GameObject m_hitEffectPrefab;
+    GameObject m_animalHitPrefab;
+
+    [SerializeField]
+    GameObject m_obstacleHitPrefab;
 
     [SerializeField]
     GameObject m_bulletPrefab;
 
     [SerializeField]
-    AudioClip m_gunFiringClip;
+    AudioSource m_gunReloadingSource;
 
     [SerializeField]
-    AudioClip m_gunReloadClip;
+    AudioSource m_gunFiringSource;
 
     void Start()
     {
@@ -70,7 +73,7 @@ public class Weapon : MonoBehaviour
                 m_internalTick=0f;
                 m_state =WeaponState.NORMAL;
                 m_ammo =m_ammoCapacity;
-                AudioManager.instance.PlaySoundEffect(m_gunReloadClip);
+                m_gunReloadingSource.Play();
             }
         }
         else if (m_state ==WeaponState.FIRING)
@@ -101,16 +104,24 @@ public class Weapon : MonoBehaviour
             RaycastHit2D raycast =Physics2D.Raycast(firePoint2D, new Vector2(firePoint.up.x, firePoint.up.y), Mathf.Infinity, (1<<3)|(1<<9));
             if (raycast)
             {
-                GameObject explosion =Instantiate(m_hitEffectPrefab, new Vector3(raycast.point.x, raycast.point.y, 0f), Quaternion.identity);
-
-                AudioManager.instance.PlaySoundEffect(m_gunFiringClip);
-                Destroy(explosion, 1f);
                 
                 GameObject bullet = Instantiate(m_bulletPrefab, firePoint.position, firePoint.rotation);
                 Enemy enemy =raycast.collider.gameObject.GetComponent<Enemy>();
+                m_gunFiringSource.Play();
+
                 if (enemy)
                 {
+                    Instantiate(m_animalHitPrefab,
+                        new Vector3(raycast.point.x, raycast.point.y, 0f),
+                        Quaternion.identity);
+
                     enemy.DoAttack(m_damage);
+                }
+                else
+                {
+                    Instantiate(m_obstacleHitPrefab,
+                        new Vector3(raycast.point.x, raycast.point.y, 0f),
+                        Quaternion.identity);
                 }
 
                 bullet.GetComponent<Bullet>().Init(raycast.point -firePoint2D, firePoint2D, raycast.point, enemy);
