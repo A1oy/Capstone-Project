@@ -30,7 +30,7 @@ public class DebugCamera : MonoBehaviour
             if (lookAway)
             {
                 debugVmCam.Follow =null;
-                perfectCamera.assetsPPU =8;
+                perfectCamera.assetsPPU =6;
             }
             else
             {

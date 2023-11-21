@@ -1,29 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthWarning : MonoBehaviour
 {
-    Health m_health =null!;
-    float initialHealth;
+    Health m_health;
 
-    public GameObject playerRef =null!;
-    public float redThreshold =0.75f;
+    [SerializeField]
+    GameObject playerRef;
+    
+    [SerializeField]
+    float redThreshold;
+
+    [SerializeField]
+    Image image;
 
     void Awake()
     {
         m_health =playerRef.GetComponent<Health>();
-        initialHealth =(float)m_health.GetCurrentHealth();
     }
 
     void FixedUpdate()
     {
-        float alpha = 1.0f - (m_health.GetCurrentHealth()/initialHealth);
+        float alpha = 1f - ((float)m_health.GetCurrentHealth()/m_health.GetMaxHealth());
         if (alpha >redThreshold)
         {
             alpha =redThreshold;
         }
         SpriteRenderer sr =GetComponent<SpriteRenderer>();
-        sr.color = new Color(1.0f, 0.0f, 0.0f, alpha);
+        image.color = new Color(1f, 0f, 0f, alpha);
     }
 }

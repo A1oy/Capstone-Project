@@ -11,7 +11,11 @@ public class Interactable : MonoBehaviour
     public bool isInteracting =false;
 
     public float touchRadius =2.0f;
+
     public string text;
+
+    [SerializeField]
+    bool m_setText;
 
     void FixedUpdate()
     {
@@ -23,7 +27,10 @@ public class Interactable : MonoBehaviour
             {
                 isInteracting =true;
                 gameObject.SendMessage("OnInteract", collision.gameObject, SendMessageOptions.DontRequireReceiver);
-                InteractController.singleton!.text =text;
+                if (m_setText)
+                {
+                    InteractController.singleton!.text =text;
+                }
             }
         }
         else
@@ -31,7 +38,10 @@ public class Interactable : MonoBehaviour
             if (isInteracting)
             {
                 isInteracting =false;
-                InteractController.singleton!.text =null;
+                if (m_setText)
+                {
+                    InteractController.singleton!.text =null;
+                }
                 gameObject.SendMessage("OnLeaveInteract", SendMessageOptions.DontRequireReceiver);
             }
         }
