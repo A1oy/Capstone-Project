@@ -28,7 +28,7 @@ public class HoneyProduction : MonoBehaviour
         if (honey>0)
         {
             m_honeyDrainingSource.Play();
-            player.GetComponent<PlayerInventory>().honey += honey;
+            player.GetComponent<PlayerInventory>().AddHoney(honey); 
             honey =0;
         }
     }

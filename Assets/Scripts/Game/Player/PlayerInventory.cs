@@ -14,11 +14,9 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     Transform firePoint;
 
-    [System.NonSerialized]
-    public int money;
+    int m_money;
     
-    [System.NonSerialized]
-    public int honey;
+    int m_honey;
 
     [SerializeField]
     float m_honeyForce;
@@ -118,12 +116,42 @@ public class PlayerInventory : MonoBehaviour
 
     void DeployHoney()
     {
-        if (honey >=5)
+        if (m_honey >=5)
         {
             GameObject bullet = Instantiate(m_honeyPrefab, firePoint.position, firePoint.rotation);
-            honey -=5;
+            m_honey -=5;
         }
         
+    }
+
+    public int GetMoney()
+    {
+        return m_money; 
+    }
+
+    public void AddMoney(int money)
+    {
+        if (m_money + money >= 0)
+        {
+            m_money += money; 
+        }
+    }
+    
+    public void AddHoney(int honey)
+    {
+        if (m_honey + honey <= 100)
+        {
+            m_honey += honey; 
+        }
+        else
+        {
+            m_honey = 100; 
+        }
+    }
+
+    public int GetHoney()
+    {
+        return m_honey; 
     }
 
     public void AddScore(int scoreAdded)

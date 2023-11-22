@@ -60,7 +60,7 @@ public class Conductor : MonoBehaviour
             internalDiff =gameUI.GetDay() * dayTunningCoeff +
             playerHealth.GetCurrentHealth() * playerHPTunningCoeff +
             playerItemTunningCoeff * inventory.itemSlots.Count +
-            honeyTunningCoeff * inventory.honey -
+            honeyTunningCoeff * inventory.GetHoney() -
             biasTunningCoeff;
 
             int numRabbit=0;
