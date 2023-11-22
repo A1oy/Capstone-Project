@@ -38,9 +38,9 @@ public class PlayerUI : MonoBehaviour
 
     void HandlePlayerUI()
     {
-        honeySlider.value =m_inventory.honey;
-        honeyAmount.text =$"{m_inventory.honey}%";
-        moneyAmount.text =Convert.ToString(m_inventory.money);
+        honeySlider.value =m_inventory.GetHoney();
+        honeyAmount.text =$"{m_inventory.GetHoney()}%";
+        moneyAmount.text =Convert.ToString(m_inventory.GetMoney());
         playerScore.text =m_inventory.GetScore().ToString("D8");
     }
 

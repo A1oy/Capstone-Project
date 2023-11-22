@@ -82,10 +82,10 @@ public class Placement : MonoBehaviour
             m_placerMask.color = isPlaceable ? new Color(0f, 0f, 1f, 0.34f) : new Color(1f, 0f, 0f, 0.34f);
 
             if (Input.GetButtonDown("Fire1")
-                && m_inventory.money >= m_placeables[m_currentIdx].cost
+                && m_inventory.GetMoney() >= m_placeables[m_currentIdx].cost
                 && isPlaceable)
             {
-                 m_inventory.money -= m_placeables[m_currentIdx].cost;
+                 m_inventory.AddMoney(-m_placeables[m_currentIdx].cost);
                 Instantiate(m_placeables[m_currentIdx].objectPrefab, placer.transform.position, Quaternion.identity, m_parent);
             }
         }

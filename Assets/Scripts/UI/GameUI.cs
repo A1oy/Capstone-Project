@@ -112,7 +112,7 @@ public class GameUI : MonoBehaviour
     {
        return day; 
     }
-    
+
     public bool IsDayTime()
     {
         return isDaytime;

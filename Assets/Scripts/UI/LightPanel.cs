@@ -69,12 +69,12 @@ public class LightPanel : MonoBehaviour
         m_reloadSlot.lvl =weapon.m_reloadSpeedLvl;
         m_damageSlot.lvl =weapon.m_damageLvl;
 
-        m_money.text =Convert.ToString(m_inventory.money);
+        m_money.text =Convert.ToString(m_inventory.GetMoney());
         
         m_productionSlot.lvl =m_production.honeyProductionLvl;
-        m_honeyJarSlider.value =m_inventory.honey;
+        m_honeyJarSlider.value =m_inventory.GetHoney();
 
-        m_honeyPercent.text = $"{m_inventory.honey}%";
+        m_honeyPercent.text = $"{m_inventory.GetHoney()}%";
         m_sellHoneyText.text = "Sell for $0";
         ((Selectable)m_sellHoneyButton).interactable =false;
 
@@ -82,7 +82,7 @@ public class LightPanel : MonoBehaviour
 
     void Purchase()
     {
-        m_money.text =Convert.ToString(m_inventory.money);
+        m_money.text =Convert.ToString(m_inventory.GetMoney());
         m_purchasingSource.Play();
     }
 
@@ -133,11 +133,11 @@ public class LightPanel : MonoBehaviour
 
     public void OnSlider()
     {
-        if (m_inventory.honey < m_honeyJarSlider.value)
+        if (m_inventory.GetHoney() < m_honeyJarSlider.value)
         {
-            m_honeyJarSlider.value =m_inventory.honey;
+            m_honeyJarSlider.value =m_inventory.GetHoney();
         }
-        if (m_honeyJarSlider.value ==m_inventory.honey
+        if (m_honeyJarSlider.value == m_inventory.GetHoney()
             && ((Selectable)m_sellHoneyButton).interactable)
         {
             ((Selectable)m_sellHoneyButton).interactable =false;
@@ -149,33 +149,33 @@ public class LightPanel : MonoBehaviour
         }
         if (((Selectable)m_sellHoneyButton).interactable)
         {
-            int diff =m_inventory.honey -(int)m_honeyJarSlider.value;
+            int diff =m_inventory.GetHoney() -(int)m_honeyJarSlider.value;
             m_sellHoneyText.text = $"Sell for ${m_moneyMul * diff}";
         }
     }
 
     public void OnSellHoney()
     {
-        int diff =m_inventory.honey -(int)m_honeyJarSlider.value;
+        int diff =m_inventory.GetHoney() -(int)m_honeyJarSlider.value;
         if (diff>0)
         {
-            m_inventory.honey -=diff;
-            m_honeyJarSlider.value =(float)m_inventory.honey;
+            m_inventory.AddHoney(-diff);
+            m_honeyJarSlider.value =(float)m_inventory.GetHoney();
             ((Selectable)m_sellHoneyButton).interactable =false;
             m_sellHoneyText.text = "Sell for $0";
-            m_honeyPercent.text = $"{m_inventory.honey}%";
+            m_honeyPercent.text = $"{m_inventory.GetHoney()}%";
 
             int moneyDiff =m_moneyMul *diff;
-            m_inventory.money +=moneyDiff;
+            m_inventory.AddMoney(moneyDiff);
             Purchase();
         }
     }
 
     public void OnBuyItem(InventoryItem item)
     {
-        if (m_inventory.money >= item.buyItem.cost)
+        if (m_inventory.GetMoney() >= item.buyItem.cost)
         {
-            m_inventory.money -= item.buyItem.cost;
+            m_inventory.AddMoney(-item.buyItem.cost);
             Purchase();
             m_inventory.AddItem(item);
         }

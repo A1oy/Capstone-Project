@@ -41,6 +41,7 @@ public class Health : MonoBehaviour
     {
         return health;
     }
+
     public int GetMaxHealth()
     {
         return maxHealth;

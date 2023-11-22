@@ -36,7 +36,7 @@ public class ConsumeHoney : MonoBehaviour
 
     float timePassedSincePressed = 0f;
 
-    bool EnoughHoney() => inventory.honey >= honeyDeducted;
+    bool EnoughHoney() => inventory.GetHoney() >= honeyDeducted;
 
     void ExecuteProgressBar()
     {
@@ -47,10 +47,13 @@ public class ConsumeHoney : MonoBehaviour
             progressBar.SetActive(false);
             timePassedSincePressed = 0f;
 
-
-            inventory.honey -= honeyDeducted;
-            m_glupingSource.Play();
-            playerHealth.Heal(healthHealed);
+            //Check for the current player health first before deducting! 
+            if (playerHealth.GetCurrentHealth() + healthHealed < playerHealth.GetMaxHealth())
+            {
+                inventory.AddHoney(-honeyDeducted);
+                m_glupingSource.Play();
+                playerHealth.Heal(healthHealed);
+            } 
         }
     }
 
