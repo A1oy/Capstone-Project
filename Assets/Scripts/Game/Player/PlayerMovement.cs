@@ -12,19 +12,32 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     AudioSource walkingSource;
-    
-    // Update every frame
-    void FixedUpdate()
-    {
-        walkingSource.volume =AudioManager.instance.GetSfxVolume();
 
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
+
+    [SerializeField]
+    Sprite[] playerSprites;
+
+    [SerializeField]
+    Transform rotateView;
+
+    void Awake()
+    {
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        UpdatePlayerSprite(angle);
+    }
+
+    void UpdateMovementAudio()
+    {
         if (MenuManager.singleton!.isMovement)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            if (movement.x!=0
-                || movement.y!=0)
+            if (movement.x!=0 || movement.y!=0)
             {
                 if (!walkingSource.isPlaying)
                 {
@@ -48,12 +61,33 @@ public class PlayerMovement : MonoBehaviour
             movement.x =0;
             movement.y =0;
         }
+    }
+
+    void UpdatePlayerSprite(float angleLookAt)
+    {
+        angleLookAt-=45f;
+        if (angleLookAt<0f)
+        {
+            angleLookAt+=360;
+        }
+        angleLookAt *=1f/90f;
+        Debug.Log((int)angleLookAt);
+        spriteRenderer.sprite =playerSprites[(int)angleLookAt];
+    }
+    
+    // Update every frame
+    void Update()
+    {
+        UpdateMovementAudio();
+        
         rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
         rb.velocity = movement * speed;
         Vector2 lookDir = mousePos - rb.position;
 
         //Finding angle using atan2 function
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        rotateView.rotation = Quaternion.Euler(0f, 0f, angle);;
+
+        UpdatePlayerSprite(angle);
     }
 }

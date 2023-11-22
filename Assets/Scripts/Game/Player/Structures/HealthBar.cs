@@ -12,13 +12,11 @@ public class HealthBar : MonoBehaviour
     Slider m_slider;
 
     [SerializeField]
-    Interactable interactable;
-
-    [SerializeField]
     Health m_health;
 
     void OnInteract(GameObject player)
     {
+        Debug.Log("LOL");
         m_intermBar.SetActive(true);
     }
     
@@ -30,10 +28,5 @@ public class HealthBar : MonoBehaviour
      void FixedUpdate()
     {
         m_slider.value = (float)m_health.GetCurrentHealth()/m_health.GetMaxHealth();
-    }
-
-    void OnDaylightChange(bool isDayTime)
-    {
-        interactable.isEnabled = isDayTime;
     }
 }

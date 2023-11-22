@@ -30,7 +30,17 @@ public class GameUI : MonoBehaviour
     
     [SerializeField]
     float nightInSeconds;
-    
+
+
+    [SerializeField]
+    float daylightDecrease;
+
+    [SerializeField]
+    float nighttimeIncrease;
+
+    [SerializeField]
+    int nWavesEachIncrease;
+
     [SerializeField]
     float daylightSmoothingInSeconds;
 
@@ -77,10 +87,16 @@ public class GameUI : MonoBehaviour
             }
             else
             {
-                time =daylightInSeconds;
                 day++;
+                if (day!=20 && day%nWavesEachIncrease ==0)
+                {
+                    daylightInSeconds -= daylightDecrease;
+                    nightInSeconds += nighttimeIncrease;
+                }
+                time =daylightInSeconds;
             }
             isDaytime =!isDaytime;
+
             gameObject.BroadcastMessage("OnDaylightChange", isDaytime, SendMessageOptions.DontRequireReceiver);
             isDaylightChanging =true;
         }

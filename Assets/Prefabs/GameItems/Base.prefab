@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4932d379480998242ac87515c6e09ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   maxHealth: 10
 --- !u!114 &2411290180424328297
 MonoBehaviour:
@@ -250,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchRadius: 2
   text: Press "F" to enter base
+  m_setText: 0
 --- !u!61 &2411290180424328290
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -327,7 +329,7 @@ MonoBehaviour:
   - {x: -0.041599274, y: -0.069420315, z: 0}
   m_ShapePathHash: 1771709197
   m_Mesh: {fileID: 0}
-  m_InstanceId: 65864
+  m_InstanceId: 67140
   m_LocalBounds:
     m_Center: {x: -0.002045028, y: -0.0011785477, z: 0}
     m_Extent: {x: 0.06609624, y: 0.06824177, z: 0}

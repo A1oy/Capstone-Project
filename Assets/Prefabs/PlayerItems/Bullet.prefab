@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6314713987900935161}
-  - component: {fileID: 6314713987900935166}
   - component: {fileID: -8071766504631977991}
+  - component: {fileID: 6865542974337696834}
   m_Layer: 6
   m_Name: Bullet
   m_TagString: Bullet
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6314713987900935165}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.06, y: 0.78, z: 0.07092595}
+  m_LocalPosition: {x: 0, y: 0, z: 0.07092595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34,7 +34,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!212 &6314713987900935166
+--- !u!114 &-8071766504631977991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314713987900935165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c88d64d50a9fd4bb56bf5bd83f4c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 40
+--- !u!212 &6865542974337696834
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,7 +87,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f2a4a3fd949205f42aa80fb3e3fdf924, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -86,21 +99,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8071766504631977991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6314713987900935165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63c88d64d50a9fd4bb56bf5bd83f4c13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_speed: 40
-  m_obstacleHitClip: {fileID: 8300000, guid: 43f1824f16e28a448a62d0d9ccc962dd, type: 3}
-  m_enemyHitClip: {fileID: 8300000, guid: 07e79ab76d3ae314086ddfa43821d86e, type: 3}
 --- !u!1 &8437446279641297811
 GameObject:
   m_ObjectHideFlags: 0

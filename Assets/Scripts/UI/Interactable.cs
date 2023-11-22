@@ -7,56 +7,54 @@ public class Interactable : MonoBehaviour
     [System.NonSerialized]
     public bool isEnabled =true;
 
-    [System.NonSerialized]
-    public bool isInteracting =false;
-
     public float touchRadius =2.0f;
 
-    public string text;
+    [SerializeField]
+    string text;
 
     [SerializeField]
     bool m_setText;
 
+    bool m_isInteracting=false;
+
     void FixedUpdate()
     {
         Collider2D collision =Physics2D.OverlapCircle(gameObject.transform.position, touchRadius, 1<<7);
-        if (collision)
+
+        bool newState =IsInteracting(collision);
+
+        if (m_isInteracting!=newState)
         {
-            if (!isInteracting
-                && isEnabled)
+            m_isInteracting =newState;
+            if (m_isInteracting)
             {
-                isInteracting =true;
                 gameObject.SendMessage("OnInteract", collision.gameObject, SendMessageOptions.DontRequireReceiver);
                 if (m_setText)
                 {
                     InteractController.singleton!.text =text;
                 }
             }
-        }
-        else
-        {
-            if (isInteracting)
+            else
             {
-                isInteracting =false;
+                gameObject.SendMessage("OnLeaveInteract", SendMessageOptions.DontRequireReceiver);
                 if (m_setText)
                 {
                     InteractController.singleton!.text =null;
                 }
-                gameObject.SendMessage("OnLeaveInteract", SendMessageOptions.DontRequireReceiver);
             }
         }
-        if (!isEnabled
-            && isInteracting)
+        else
         {
-            gameObject.SendMessage("OnLeaveInteract", SendMessageOptions.DontRequireReceiver);
+            if (m_isInteracting)
+            {
+                gameObject.SendMessage("OnInteracting", SendMessageOptions.DontRequireReceiver);
+            }
         }
+    }
 
-        if (Input.anyKeyDown
-            && isEnabled
-            && isInteracting)
-        {
-            gameObject.SendMessage("OnInteracting", SendMessageOptions.DontRequireReceiver);
-        }
+    bool IsInteracting(Collider2D collision)
+    {
+        return collision!=null && isEnabled;
     }
 
     void OnDaylightChange(bool isDayTime)

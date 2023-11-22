@@ -17,6 +17,9 @@ public class Turret : MonoBehaviour
     Transform firePoint;
 
     [SerializeField]
+    Transform rotateView;
+
+    [SerializeField]
     float detectRadius;
 
     [SerializeField]
@@ -39,43 +42,43 @@ public class Turret : MonoBehaviour
         {
             DisableRay();
         }
-        cooldownTick -= Time.deltaTime;
+        if (cooldownTick>=0f)
+        {
+            cooldownTick -= Time.deltaTime;
+        }
 
         if(gameObjLock !=null
-            && cooldownTick <=0)
+            && cooldownTick <=0f)
         {
             cooldownTick =delay;
+            Debug.Log("Shooting...");
             weapon.Shoot(firePoint);
         }
     }
 
     void UpdateTarget()
     {
+        const int layerMask =1<<9;
         Vector2 position =new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-        Collider2D[] collisions =Physics2D.OverlapCircleAll(position, detectRadius);
-        const int layerMask =1<<3;
+        Collider2D[] collisions =Physics2D.OverlapCircleAll(position, detectRadius, layerMask);
         float distance =Mathf.Infinity;
         GameObject objIntersect =null;
 
         foreach (Collider2D collision in collisions)
         {
             GameObject gameObj =collision.gameObject;
-            if (gameObj.CompareTag("Enemy"))
+            Vector2 gameObjPos =new Vector2(gameObj.transform.position.x, gameObj.transform.position.y);
+            Vector2 vectorDiff = gameObjPos -position;
+            RaycastHit2D raycast =Physics2D.Linecast(position, vectorDiff, 1<<3);
+            if (raycast)
             {
-                Vector2 gameObjPos =new Vector2(gameObj.transform.position.x, gameObj.transform.position.y);
-                Vector2 vectorDiff = gameObjPos -position;
-                RaycastHit2D raycast =Physics2D.Linecast(position, vectorDiff, layerMask);
-                if (raycast.collider
-                    && raycast.collider !=gameObject)
-                {
-                    continue;
-                }
-                if (vectorDiff.magnitude < distance)
-                {
-                    objIntersect =gameObj;
-                    distance =vectorDiff.magnitude;
-                }
-            } 
+                continue;
+            }
+            else if (vectorDiff.magnitude < distance)
+            {
+                objIntersect =gameObj;
+                distance =vectorDiff.magnitude;
+            }
         }
         if (objIntersect !=null)
         {
@@ -103,7 +106,7 @@ public class Turret : MonoBehaviour
     {
         Vector2 lookDir = gameObject.transform.position -object0.transform.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg +90.0f;
-        transform.rotation =Quaternion.Euler(0, 0, angle);
+        rotateView.rotation =Quaternion.Euler(0, 0, angle);
     }
 
     void OnDrawGizmos()
@@ -114,6 +117,6 @@ public class Turret : MonoBehaviour
 
     void OnDead()
     {
-        Destroy(gameObject);
+        Destroy(this);
     }
 }
