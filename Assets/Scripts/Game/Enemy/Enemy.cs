@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
         m_health.DoDamage(damage);
     }
 
-
     void OnDead()
     {
         Destroy(gameObject);

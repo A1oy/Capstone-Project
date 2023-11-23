@@ -51,7 +51,6 @@ public class Turret : MonoBehaviour
             && cooldownTick <=0f)
         {
             cooldownTick =delay;
-            Debug.Log("Shooting...");
             weapon.Shoot(firePoint);
         }
     }
@@ -69,9 +68,10 @@ public class Turret : MonoBehaviour
             GameObject gameObj =collision.gameObject;
             Vector2 gameObjPos =new Vector2(gameObj.transform.position.x, gameObj.transform.position.y);
             Vector2 vectorDiff = gameObjPos -position;
-            RaycastHit2D raycast =Physics2D.Linecast(position, vectorDiff, 1<<3);
+            RaycastHit2D raycast =Physics2D.Linecast(position + vectorDiff.normalized *0.6f, gameObjPos, 1<<3);
             if (raycast)
             {
+                Debug.Log(raycast.collider.gameObject);
                 continue;
             }
             else if (vectorDiff.magnitude < distance)

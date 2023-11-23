@@ -184,6 +184,7 @@ public class LightPanel : MonoBehaviour
     public void Exit()
     {
         m_shooting.weapon.Upgrade();
+        m_production.Upgrade();
         m_buyMenuManager.SetActive(false);
     }
 }

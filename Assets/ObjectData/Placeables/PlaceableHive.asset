@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: d1c4fb6c207db1c4db6d6ac326900f1b, type: 3}
   objectPrefab: {fileID: 601549028536971070, guid: 5dee96a5df4158d4687aa58597a8e621, type: 3}
-  cost: 5
+  cost: 15

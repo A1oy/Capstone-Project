@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d9c18a012f58c4caa24f73d45ad8a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fireSpeed: 0.2
-  m_reloadSpeed: 0.7
+  m_fireSpeed: 0.45
+  m_reloadSpeed: 0.74
   m_ammoCapacity: 6
   m_damage: 1
   m_animalHitPrefab: {fileID: 2177406306703837358, guid: 94bbb96c780a0e54ebdfdb9b199d3279, type: 3}
@@ -56,8 +56,6 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 6314713987900935165, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
   m_gunReloadingSource: {fileID: 8396963685213686824}
   m_gunFiringSource: {fileID: 4991193185714926709}
-  m_animalHitClip: {fileID: 8300000, guid: 07e79ab76d3ae314086ddfa43821d86e, type: 3}
-  m_obstacleHitClip: {fileID: 8300000, guid: 43f1824f16e28a448a62d0d9ccc962dd, type: 3}
 --- !u!114 &8768601188219903081
 MonoBehaviour:
   m_ObjectHideFlags: 0

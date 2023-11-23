@@ -16,7 +16,6 @@ public class HealthBar : MonoBehaviour
 
     void OnInteract(GameObject player)
     {
-        Debug.Log("LOL");
         m_intermBar.SetActive(true);
     }
     

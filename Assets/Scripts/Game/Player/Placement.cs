@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using System;
 
 public class Placement : MonoBehaviour
@@ -18,10 +19,10 @@ public class Placement : MonoBehaviour
     SpriteRenderer m_placerMask;
 
     [SerializeField]
-    List <PlaceableObject> m_placeables;
+    TMP_Text m_placerText;
 
-    int m_currentIdx =0;
-    int m_curScroll =0;
+    [SerializeField]
+    List <PlaceableObject> m_placeables;
 
     [SerializeField]
     PlayerInventory m_inventory;
@@ -32,7 +33,10 @@ public class Placement : MonoBehaviour
     [SerializeField]
     Transform m_parent;
 
-    const int SCROLL_DELTA =5;
+    int m_currentIdx =0;
+    int m_curScroll =0;
+
+    const int SCROLL_DELTA =2;
 
     void Awake()
     {
@@ -69,9 +73,7 @@ public class Placement : MonoBehaviour
         if (MenuManager.singleton!.isMovement
             && m_status.CanBuild()
             && placer.activeSelf)
-        {
-
-                        
+        {                        
             HandleScroll();
             UpdatePlacement();
 
@@ -80,6 +82,7 @@ public class Placement : MonoBehaviour
                 1<<3);
             bool isPlaceable =collider==null;
             m_placerMask.color = isPlaceable ? new Color(0f, 0f, 1f, 0.34f) : new Color(1f, 0f, 0f, 0.34f);
+            m_placerText.text =Convert.ToString(m_placeables[m_currentIdx].cost);
 
             if (Input.GetButtonDown("Fire1")
                 && m_inventory.GetMoney() >= m_placeables[m_currentIdx].cost

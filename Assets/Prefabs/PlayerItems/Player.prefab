@@ -289,6 +289,8 @@ MonoBehaviour:
   health: {fileID: 4171763242807627267}
   placement: {fileID: 4171763242807627278}
   gameUI: {fileID: 0}
+  aimCursor: {fileID: 2800000, guid: 57164753d2972bc46b00823b7146e26c, type: 3}
+  buildCursor: {fileID: 2800000, guid: 9b35d7e12a5f2a9439bf36fe23af619a, type: 3}
 --- !u!114 &4171763242807627276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +309,7 @@ MonoBehaviour:
   m_status: {fileID: 0}
   m_itemContainer: {fileID: 0}
   m_itemContainer2: {fileID: 0}
+  honeyBaitAmount: 15
 --- !u!114 &4171763242807627278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +326,7 @@ MonoBehaviour:
   placer: {fileID: 0}
   m_placerSr: {fileID: 0}
   m_placerMask: {fileID: 0}
+  m_placerText: {fileID: 0}
   m_placeables:
   - {fileID: 11400000, guid: 743c7ef3c35aec0499424b6cdc78b1a5, type: 2}
   - {fileID: 11400000, guid: 0a203b6f4aff0214f90cbb571cd0ebd9, type: 2}
@@ -398,7 +402,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1338027987, guid: 2c8cfee213babaf48be7ae372c50c857, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -444,7 +448,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0016174316, y: -0.04510498}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -455,7 +459,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.3081665, y: 0.25341797}
   m_EdgeRadius: 0
 --- !u!114 &9026653371161211832
 MonoBehaviour:

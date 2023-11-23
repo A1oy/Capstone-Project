@@ -33,12 +33,15 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField]
     ItemContainerUI m_itemContainer2;
 
+    [SerializeField]
+    int honeyBaitAmount;
+
     int m_score;
 
     public List<ItemSlot> itemSlots =new List<ItemSlot>();
     int currentIdx =0;
     int m_curScroll =0;
-    const int m_scrollPerItems =30;
+    const int m_scrollPerItems =5;
 
     public void UseItem(Transform firePoint)
     {
@@ -116,10 +119,10 @@ public class PlayerInventory : MonoBehaviour
 
     void DeployHoney()
     {
-        if (m_honey >=5)
+        if (m_honey >=honeyBaitAmount)
         {
             GameObject bullet = Instantiate(m_honeyPrefab, firePoint.position, firePoint.rotation);
-            m_honey -=5;
+            m_honey -=honeyBaitAmount;
         }
         
     }

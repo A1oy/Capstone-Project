@@ -7,12 +7,14 @@ using TMPro;
 
 public class GameWinQuitToTitle : MonoBehaviour
 {
-    TMP_Text m_score; //dont serialize
+    [SerializeField]
+    TMP_Text m_score;
 
     void Awake()
     {
-        m_score.text = Convert.ToString(NetworkManager.GetLocalPlayer().GetComponent<PlayerInventory>().GetScore());
-        Destroy(NetworkManager.GetLocalPlayer()); 
+        int score =NetworkManager.GetLocalPlayer().GetComponent<PlayerInventory>().GetScore();
+        Destroy(NetworkManager.GetLocalPlayer());
+        m_score.text = Convert.ToString(score);
     }
 
     // Update is called once per frame

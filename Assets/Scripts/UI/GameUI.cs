@@ -46,7 +46,6 @@ public class GameUI : MonoBehaviour
 
     void Awake()
     {
-        time =daylightInSeconds;
         daylightSmoothingInSeconds = 1.0f/daylightSmoothingInSeconds;
     }
 

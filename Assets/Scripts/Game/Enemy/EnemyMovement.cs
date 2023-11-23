@@ -22,7 +22,7 @@ public class EnemyMovement : MonoBehaviour
     float attackDelay;
 
     [SerializeField]
-    AudioSource walkingSource;
+    AudioSource hitSource;
 
     float cooldown;
 
@@ -46,7 +46,8 @@ public class EnemyMovement : MonoBehaviour
         foreach (GameObject gameObj in gameObjs)
         {
             vectorDiff =currentPos-gameObj.transform.position;
-            if (vectorDiff.magnitude < bestDist)
+            if (vectorDiff.magnitude < bestDist
+                && !gameObj.GetComponent<Health>().IsDead())
             {
                 bestDist =vectorDiff.magnitude;
                 gameObjTarget =gameObj;
@@ -68,14 +69,14 @@ public class EnemyMovement : MonoBehaviour
 
         GameObject baseRef =GameObject.FindWithTag("Base");
         GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] turretsRef  =GameObject.FindGameObjectsWithTag("Building");
+        GameObject[] buildingRef  =GameObject.FindGameObjectsWithTag("Building");
 
         if (baseRef)
         {
             GameObject gameObjTarget =baseRef;
             float dist =(currentPos -baseRef.transform.position).magnitude;
             dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
-            dist = DetermineClosest(currentPos, dist, turretsRef, ref gameObjTarget);
+            dist = DetermineClosest(currentPos, dist, buildingRef, ref gameObjTarget);
             
             attackerRef =gameObjTarget;
         }
@@ -89,7 +90,6 @@ public class EnemyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        walkingSource.volume =AudioManager.instance.GetSfxVolume();
         DetermineTarget();
         if (attackerRef)
         {
@@ -105,23 +105,44 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-    
-    void OnCollisionEnter2D(Collision2D collision)
+
+    void OnTouchEnter(Collider2D collider)
     {
-        if (collision.gameObject ==attackerRef)
+        if (collider.gameObject ==attackerRef)
         {
             cooldown =attackDelay;
             isAttacking =true;
         }
     }
 
+    void OnTouchExit(Collider2D collider)
+    {
+        isAttacking=false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        OnTouchEnter(collider);
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        OnTouchExit(collider);
+    }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        OnTouchEnter(collision.collider);
+    }
+
     void OnCollisionExit2D(Collision2D collision)
     {
-        isAttacking =false;
+        OnTouchExit(collision.collider);
     }
 
     void DoAttack()
     {
         attackerRef.GetComponent<Health>().DoDamage(damage);
+        hitSource.Play();
     }
 }

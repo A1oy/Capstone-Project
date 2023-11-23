@@ -23,6 +23,11 @@ public class HoneyProduction : MonoBehaviour
         }
     }
 
+    public void Upgrade()
+    {
+        honeyEachRound =20+5*honeyProductionLvl;
+    }
+
     void OnInteract(GameObject player)
     {
         if (honey>0)

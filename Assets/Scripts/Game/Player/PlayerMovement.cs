@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
             angleLookAt+=360;
         }
         angleLookAt *=1f/90f;
-        Debug.Log((int)angleLookAt);
         spriteRenderer.sprite =playerSprites[(int)angleLookAt];
     }
     

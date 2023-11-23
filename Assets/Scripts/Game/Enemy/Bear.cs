@@ -10,18 +10,28 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Health))]
 public class Bear : MonoBehaviour
 {
-    private IEnumerator? damageRoutine = null;
-
     private Rigidbody2D? rigidBody;
     private Health? health;
 
     public GameObject? attackerRef;
     private NavMeshAgent agent = null!;
 
-    public int damage;
+    [SerializeField]
+    int damage;
+
     private float honeyRange = 7.0f;
 
-    void Start()
+    [SerializeField]
+    AudioSource hitSource;
+
+    [SerializeField]
+    float attackDelay;
+    
+    float cooldown;
+
+    bool isAttacking =false;
+
+    void Awake()
     {
         health = GetComponent<Health>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -43,7 +53,8 @@ public class Bear : MonoBehaviour
         foreach (GameObject gameObj in gameObjs)
         {
             vectorDiff = currentPos - gameObj.transform.position;
-            if (vectorDiff.magnitude < bestDist)
+            if (vectorDiff.magnitude < bestDist
+                && !gameObj.GetComponent<Health>().IsDead())
             {
                 bestDist = vectorDiff.magnitude;
                 gameObjTarget = gameObj;
@@ -75,7 +86,7 @@ public class Bear : MonoBehaviour
 
         GameObject baseRef = GameObject.FindWithTag("Base");
         GameObject[] playersRef = GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] turretsRef = GameObject.FindGameObjectsWithTag("Turret");
+        GameObject[] turretsRef = GameObject.FindGameObjectsWithTag("Building");
 
         if (baseRef)
         {
@@ -99,38 +110,56 @@ public class Bear : MonoBehaviour
         DetermineTarget();
         if (attackerRef)
         {
-            agent.destination = attackerRef!.transform.position;
+            agent.destination =attackerRef!.transform.position;
+        }
+        if (isAttacking)
+        {
+            cooldown -= Time.deltaTime;
+            if (cooldown<=0f)
+            {
+                cooldown =attackDelay;
+                DoAttack();
+            }
         }
     }
 
+    void OnTouchEnter(Collider2D collider)
+    {
+        if (collider.gameObject ==attackerRef)
+        {
+            cooldown =attackDelay;
+            isAttacking =true;
+        }
+    }
+
+    void OnTouchExit(Collider2D collider)
+    {
+        isAttacking=false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        OnTouchEnter(collider);
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        OnTouchExit(collider);
+    }
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == attackerRef)
-        {
-            damageRoutine = DoDamageRoutine(collision.gameObject);
-            StartCoroutine(damageRoutine);
-        }
-    }
-
-    IEnumerator DoDamageRoutine(GameObject target)
-    {
-        Health targetHealth = target.GetComponent<Health>();
-        while (true)
-        {
-            if (targetHealth.DoDamage(damage))
-            {
-                break;
-            }
-            yield return new WaitForSeconds(1);
-        }
+        OnTouchEnter(collision.collider);
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (damageRoutine != null)
-        {
-            StopCoroutine(damageRoutine);
-            damageRoutine = null;
-        }
+        OnTouchExit(collision.collider);
+    }
+
+    void DoAttack()
+    {
+        attackerRef.GetComponent<Health>().DoDamage(damage);
+        hitSource.Play();
     }
 }

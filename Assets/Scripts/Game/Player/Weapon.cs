@@ -132,8 +132,8 @@ public class Weapon : MonoBehaviour
 
     public void Upgrade()
     {
-        m_fireSpeed = 0.2f-(m_fireSpeedLvl*0.6f);
-        m_reloadSpeed =0.74f -(m_reloadSpeedLvl *0.7f);
+        m_fireSpeed = 0.45f-(0.45f*m_fireSpeedLvl*0.1f);
+        m_reloadSpeed =0.74f -(0.74f*m_reloadSpeedLvl *0.1f);
         m_ammoCapacity =6+m_ammoCapacityLvl;
         m_damage =1 +m_damageLvl;
         m_ammo=m_ammoCapacity;

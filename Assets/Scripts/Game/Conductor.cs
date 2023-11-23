@@ -21,6 +21,9 @@ public class Conductor : MonoBehaviour
     GameObject foxPrefab;
 
     [SerializeField]
+    GameObject bearPrefab;
+
+    [SerializeField]
     List<BoxCollider2D> spawnLocations;
 
     [SerializeField]
@@ -66,6 +69,7 @@ public class Conductor : MonoBehaviour
             int numRabbit=0;
             int numSquirrel =0;
             int numFox =0;
+            int numBear =0;
             int enumDiff =0;
 
             if (internalDiff <1.5f)
@@ -90,6 +94,8 @@ public class Conductor : MonoBehaviour
                 }
                 numRabbit =Random.Range(3 +(int)(internalBias*0.366f), 10);
                 numSquirrel =Random.Range(2 +(int)(internalBias*0.1666f), 5);
+                numFox =Random.Range(1, 3);
+                numBear =Random.Range(0,1);
             }
             spawnTime -= Time.deltaTime;
             if (spawnTime<0)
@@ -97,6 +103,7 @@ public class Conductor : MonoBehaviour
                 SpawnEnemies(rabbitPrefab, numRabbit, enumDiff);
                 SpawnEnemies(squirrelPrefab, numSquirrel, enumDiff);
                 SpawnEnemies(foxPrefab, numFox, enumDiff);
+                SpawnEnemies(bearPrefab, numBear, enumDiff);
                 CalculateCooldown();
             }
         }

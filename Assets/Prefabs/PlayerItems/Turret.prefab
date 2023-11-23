@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -1831951727063326582}
   - component: {fileID: -3475225960186583052}
   - component: {fileID: 6466629817009743673}
+  - component: {fileID: 5427565500361895413}
   m_Layer: 3
   m_Name: Turret
   m_TagString: Building
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2751959643139573574}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0159, y: -0.0271, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -56,8 +57,8 @@ MonoBehaviour:
   weapon: {fileID: 7682374708172503461}
   firePoint: {fileID: 664108010889659877}
   rotateView: {fileID: 2332048975006810849}
-  detectRadius: 5
-  delay: 1
+  detectRadius: 2.5
+  delay: 2
   damage: 1
 --- !u!58 &2941056196336492088
 CircleCollider2D:
@@ -246,10 +247,26 @@ MonoBehaviour:
   - {x: -0.33020633, y: -0.3315, z: 0}
   m_ShapePathHash: 606017593
   m_Mesh: {fileID: 0}
-  m_InstanceId: 144512
+  m_InstanceId: 57552
   m_LocalBounds:
     m_Center: {x: -0.0063164234, y: 0.0010849535, z: 0}
     m_Extent: {x: 0.47170532, y: 0.4847479, z: 0}
+--- !u!208 &5427565500361895413
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2751959643139573574}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.5}
+  m_TimeToStationary: 0.5
 --- !u!1 &3604535360271235148
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AmmoUpgrade
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  moneyReq: 0700000007000000070000000700000007000000
+  moneyReq: 0f00000014000000190000001e00000028000000
   description:
-  - Increase Ammo by 10%
+  - Increase Ammo by 1
   Name: Ammo
