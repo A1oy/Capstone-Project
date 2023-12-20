@@ -15,10 +15,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     int damage;
 
-    [SerializeField]
-    float detectRadius =4.0f;
+    //no longer needed (was used to detect honey bait)
+	//[SerializeField]
+	//float detectRadius = 4.0f;
 
-    [SerializeField]
+	[SerializeField]
     float attackDelay;
 
     [SerializeField]
@@ -30,67 +31,18 @@ public class EnemyMovement : MonoBehaviour
 
 
       void Start()
-    {
+      {
+        attackerRef = GameObject.FindGameObjectWithTag("Player");
         rigidBody = GetComponent<Rigidbody2D>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        DetermineTarget();
-
 
         agent.updateRotation =false;
         agent.updateUpAxis =false;
-    }
+      }
 
-    float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
+	void FixedUpdate()
     {
-        Vector3 vectorDiff =new Vector3(0.0f, 0.0f, 0.0f);
-        foreach (GameObject gameObj in gameObjs)
-        {
-            vectorDiff =currentPos-gameObj.transform.position;
-            if (vectorDiff.magnitude < bestDist
-                && !gameObj.GetComponent<Health>().IsDead())
-            {
-                bestDist =vectorDiff.magnitude;
-                gameObjTarget =gameObj;
-            }
-        }
-        return bestDist;
-    }
-
-    void DetermineTarget()
-    {
-        Vector3 currentPos =transform.position;
-
-        Collider2D baitCollide =Physics2D.OverlapCircle(transform.position, detectRadius, 1<<8);
-        if (baitCollide)
-        {
-            attackerRef =baitCollide.gameObject;
-            return ;
-        }
-
-        GameObject baseRef =GameObject.FindWithTag("Base");
-        GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] buildingRef  =GameObject.FindGameObjectsWithTag("Building");
-
-        if (baseRef)
-        {
-            GameObject gameObjTarget =baseRef;
-            float dist =(currentPos -baseRef.transform.position).magnitude;
-            dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
-            dist = DetermineClosest(currentPos, dist, buildingRef, ref gameObjTarget);
-            
-            attackerRef =gameObjTarget;
-        }
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.3f);
-        Gizmos.DrawSphere(transform.position, detectRadius);
-    }
-
-    void FixedUpdate()
-    {
-        DetermineTarget();
+        //DetermineTarget();
         if (attackerRef)
         {
             agent.destination =attackerRef!.transform.position;
@@ -146,3 +98,53 @@ public class EnemyMovement : MonoBehaviour
         hitSource.Play();
     }
 }
+
+//Old code that searched for the closest game object
+/*float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
+{
+    Vector3 vectorDiff = new Vector3(0.0f, 0.0f, 0.0f);
+    foreach (GameObject gameObj in gameObjs)
+    {
+        vectorDiff = currentPos - gameObj.transform.position;
+        if (vectorDiff.magnitude < bestDist
+            && !gameObj.GetComponent<Health>().IsDead())
+        {
+            bestDist = vectorDiff.magnitude;
+            gameObjTarget = gameObj;
+        }
+    }
+    return bestDist;
+}*/
+
+//Old code that returns the target to follow and attack
+/*void DetermineTarget()
+{
+    Vector3 currentPos = transform.position;
+
+    Collider2D baitCollide = Physics2D.OverlapCircle(transform.position, detectRadius, 1 << 8);
+    if (baitCollide)
+    {
+        attackerRef = baitCollide.gameObject;
+        return;
+    }
+
+    GameObject baseRef = GameObject.FindWithTag("Base");
+    GameObject[] playersRef = GameObject.FindGameObjectsWithTag("Player");
+    GameObject[] buildingRef = GameObject.FindGameObjectsWithTag("Building");
+
+    if (baseRef)
+    {
+        GameObject gameObjTarget = baseRef;
+        float dist = (currentPos - baseRef.transform.position).magnitude;
+        dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
+        dist = DetermineClosest(currentPos, dist, buildingRef, ref gameObjTarget);
+
+        attackerRef = gameObjTarget;
+    }
+}*/
+
+/*void OnDrawGizmos()
+{
+    Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.3f);
+    Gizmos.DrawSphere(transform.position, detectRadius);
+}*/
