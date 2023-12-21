@@ -67,19 +67,13 @@ public class EnemyMovement : MonoBehaviour
             return ;
         }
 
-        GameObject baseRef =GameObject.FindWithTag("Base");
         GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] buildingRef  =GameObject.FindGameObjectsWithTag("Building");
 
-        if (baseRef)
-        {
-            GameObject gameObjTarget =baseRef;
-            float dist =(currentPos -baseRef.transform.position).magnitude;
-            dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
-            dist = DetermineClosest(currentPos, dist, buildingRef, ref gameObjTarget);
-            
-            attackerRef =gameObjTarget;
-        }
+        GameObject gameObjTarget =null;
+        float dist =Mathf.Infinity;
+        dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
+        
+        attackerRef =gameObjTarget;
     }
 
     void OnDrawGizmos()

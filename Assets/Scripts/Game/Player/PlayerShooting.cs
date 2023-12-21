@@ -5,27 +5,33 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {   
     [SerializeField]
-    float bulletForce;
+    PlayerMovement movement;
+
+    [SerializeField]
+    int numShootPerFrames;
+
+    int curShootFrame =0;
 
     [SerializeField]
     Transform firePoint;
 
     [SerializeField]
-    PlayerStatus status;
+    public GameObject bullet;
 
-    [SerializeField]
-    public Weapon weapon;
-
-    void Update()
+    void FixedUpdate()
     {
-        
-		if (MenuManager.singleton!.isMovement
-            && !status.CanBuild())
+        if (movement.Move())
 		{
-            if (Input.GetButtonDown("Fire1"))
+            curShootFrame++;
+            if (curShootFrame==numShootPerFrames)
             {
-                weapon.Shoot(firePoint);
+                curShootFrame=0;
+                if (Input.GetButton("Fire1"))
+                {
+                    Instantiate(bullet, firePoint.position, firePoint.rotation);
+                }
             }
+          
         }
     }
 }

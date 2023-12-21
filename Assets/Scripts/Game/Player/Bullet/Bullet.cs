@@ -4,33 +4,29 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    Vector3 m_direction;
-    Vector2 m_startPos;
-    float m_endCoefficient;
+    [SerializeField]
+    float speed;
 
     [SerializeField]
-    float m_speed;
+    GameObject explosion;
 
     void FixedUpdate()
     {
-        float coeff = (new Vector2(transform.position.x, transform.position.y) -m_startPos)
-                .magnitude/m_endCoefficient;
-        if (coeff>=1
-            || coeff!=coeff)
-        {
-            Destroy(gameObject);
-        }
-        transform.position += m_direction  *m_speed*Time.deltaTime;
+        transform.position += transform.up  *speed*Time.deltaTime;
     }
 
-    public void Init(Vector3 direction, Vector2 startPos, Vector2 endPos, bool isEnemy)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        m_direction =direction.normalized;
-        m_direction.z = 0f;
+        if (collider.gameObject.CompareTag("Enemy")
+            || collider.gameObject.CompareTag("Obstacle"))
+        {
+            DoBulletTrigger(collider.gameObject);
+            Destroy(gameObject);
+        }
+    }
 
-        m_startPos =startPos;
-        m_endCoefficient = (endPos -startPos).magnitude;
-        gameObject.SetActive(true);
-
+    virtual public void DoBulletTrigger(GameObject gameobj)
+    {
+        Instantiate(explosion, transform.position, Quaternion.identity);
     }
 }

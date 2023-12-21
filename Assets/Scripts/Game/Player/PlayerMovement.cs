@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    bool canMove =true;
+
     public Rigidbody2D rb;
     public Camera cam;
     public float speed = 5f;
@@ -32,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     void UpdateMovementAudio()
     {
-        if (MenuManager.singleton!.isMovement)
+        if (canMove)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
@@ -88,5 +90,10 @@ public class PlayerMovement : MonoBehaviour
         rotateView.rotation = Quaternion.Euler(0f, 0f, angle);;
 
         UpdatePlayerSprite(angle);
+    }
+
+    public bool Move()
+    {
+        return canMove;
     }
 }

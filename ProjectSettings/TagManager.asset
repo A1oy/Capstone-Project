@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Base
   - Bait
+  - Obstacle
   - Building
   layers:
   - Default
@@ -20,7 +21,7 @@ TagManager:
   - Players
   - Honey
   - Enemy
-  - 
+  - Bloom
   - 
   - 
   - 

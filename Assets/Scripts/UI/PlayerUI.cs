@@ -17,32 +17,13 @@ public class PlayerUI : MonoBehaviour
     TMP_Text gameTime;
 
     [SerializeField]
-    PlayerInventory m_inventory;
-
-    [SerializeField]
-    TMP_Text moneyAmount;
-
-    [SerializeField]
     Slider honeySlider;
-
-    [SerializeField]
-    TMP_Text honeyAmount;
-
-    [SerializeField]
-    TMP_Text playerScore;
 
     void Awake()
     {
         gameDay.text ="Day 1";
     }
 
-    void HandlePlayerUI()
-    {
-        honeySlider.value =m_inventory.GetHoney();
-        honeyAmount.text =$"{m_inventory.GetHoney()}%";
-        moneyAmount.text =Convert.ToString(m_inventory.GetMoney());
-        playerScore.text =m_inventory.GetScore().ToString("D8");
-    }
 
     void OnDaylightChange()
     {
@@ -53,7 +34,6 @@ public class PlayerUI : MonoBehaviour
     }
     void FixedUpdate()
     {
-        HandlePlayerUI();
         gameTime.text =m_gameManager.GetTimeString();
     }
 }
