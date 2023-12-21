@@ -15,10 +15,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField]
     int damage;
 
-    [SerializeField]
-    float detectRadius =4.0f;
-
-    [SerializeField]
+	[SerializeField]
     float attackDelay;
 
     [SerializeField]
@@ -30,17 +27,16 @@ public class EnemyMovement : MonoBehaviour
 
 
       void Start()
-    {
+      {
+        attackerRef = GameObject.FindGameObjectWithTag("Player");
         rigidBody = GetComponent<Rigidbody2D>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        DetermineTarget();
-
 
         agent.updateRotation =false;
         agent.updateUpAxis =false;
-    }
+      }
 
-    float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
+	float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
     {
         Vector3 vectorDiff =new Vector3(0.0f, 0.0f, 0.0f);
         foreach (GameObject gameObj in gameObjs)
@@ -60,13 +56,6 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector3 currentPos =transform.position;
 
-        Collider2D baitCollide =Physics2D.OverlapCircle(transform.position, detectRadius, 1<<8);
-        if (baitCollide)
-        {
-            attackerRef =baitCollide.gameObject;
-            return ;
-        }
-
         GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
 
         GameObject gameObjTarget =null;
@@ -76,18 +65,12 @@ public class EnemyMovement : MonoBehaviour
         attackerRef =gameObjTarget;
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.3f);
-        Gizmos.DrawSphere(transform.position, detectRadius);
-    }
-
     void FixedUpdate()
     {
         DetermineTarget();
         if (attackerRef)
-        {
             agent.destination =attackerRef!.transform.position;
+        {
         }
         if (isAttacking)
         {
