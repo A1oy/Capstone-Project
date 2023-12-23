@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {   
     [SerializeField]
-    PlayerMovement movement;
+    PlayerController controller;
 
     [SerializeField]
     int numShootPerFrames;
@@ -20,7 +20,7 @@ public class PlayerShooting : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (movement.Move())
+        if (controller.Move())
 		{
             curShootFrame++;
             if (curShootFrame==numShootPerFrames)

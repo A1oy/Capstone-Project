@@ -79,7 +79,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4171763241227865208}
   - component: {fileID: 4171763241227865209}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff6dd8a669daa349a782e25924ec05a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 1
   rb: {fileID: 4171763242807627270}
   cam: {fileID: 0}
   speed: 2.5
@@ -223,6 +224,7 @@ MonoBehaviour:
   - {fileID: -1653863470, guid: 2c8cfee213babaf48be7ae372c50c857, type: 3}
   - {fileID: 1724110388, guid: 2c8cfee213babaf48be7ae372c50c857, type: 3}
   rotateView: {fileID: 2150853277104620254}
+  pauseController: {fileID: 0}
 --- !u!114 &4171763242807627279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,8 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982c2e39024fc2b4885850505ab1109d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 4171763242807627269}
-  numShootPerFrames: 100
+  controller: {fileID: 4171763242807627269}
+  numShootPerFrames: 10
   firePoint: {fileID: 4171763240705784055}
   bullet: {fileID: 7596222526318212825, guid: 03e1e2137b1cfe345885cf7323281770, type: 3}
 --- !u!114 &4171763242807627265
@@ -510,7 +512,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4570926564566407115}
   - component: {fileID: 5157280590640086198}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

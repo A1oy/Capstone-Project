@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    bool canMove =true;
+    public bool canMove =true;
 
     public Rigidbody2D rb;
     public Camera cam;
@@ -23,6 +24,42 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     Transform rotateView;
+
+    PauseController pauseController;
+
+    void OnEnable()
+    {
+        InputManager.ToggleActionMap(InputManager.input.Player);
+        InputManager.input.Player.Upgrade.performed += OnUpgrade;
+        InputManager.input.Player.SolarPanel.performed += OnSolarPanel;
+        InputManager.input.Player.EscapeToMenu.performed += OnEscapeToMenu;
+        pauseController =GameObject.Find("PauseController").GetComponent<PauseController>();
+    }
+
+    void OnDisable()
+    {
+        InputManager.input.Player.Upgrade.performed -= OnUpgrade;
+        InputManager.input.Player.SolarPanel.performed -= OnSolarPanel;
+        InputManager.input.Player.EscapeToMenu.performed -= OnEscapeToMenu;
+    }
+
+    void OnUpgrade(InputAction.CallbackContext cc)
+    {
+        Debug.Log("OnUpgrade.");
+    }
+
+    void OnSolarPanel(InputAction.CallbackContext cc)
+    {
+        Debug.Log("OnSolarPanel");
+    }
+
+    void OnEscapeToMenu(InputAction.CallbackContext cc)
+    {
+        Debug.Log("OnEscapeToMenu");
+        canMove =false;
+        InputManager.ToggleActionMap(InputManager.input.Menu);
+        pauseController.Pause();
+    }
 
     void Awake()
     {
