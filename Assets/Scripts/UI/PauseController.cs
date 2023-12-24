@@ -30,12 +30,10 @@ public class PauseController : MonoBehaviour
 		Debug.Log(settingsMenu.activeInHierarchy);
 		if (settingsMenu.activeInHierarchy)
 		{
-			Debug.Log("Settings");
 			settingsMenu.SetActive(false);
 			pauseMenu.SetActive(true);
 		}
 		else {
-			Debug.Log("Resume");
 			NetworkManager.GetLocalPlayer().GetComponent<PlayerController>().canMove =true;
 			InputManager.ToggleActionMap(InputManager.input.Player);
 			Resume();

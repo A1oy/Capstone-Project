@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     PauseController pauseController;
 
+    UpgradeController upgradeController;
+
     void OnEnable()
     {
         InputManager.ToggleActionMap(InputManager.input.Player);
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
         InputManager.input.Player.SolarPanel.performed += OnSolarPanel;
         InputManager.input.Player.EscapeToMenu.performed += OnEscapeToMenu;
         pauseController =GameObject.Find("PauseController").GetComponent<PauseController>();
+        upgradeController =GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
     }
 
     void OnDisable()
@@ -41,11 +44,15 @@ public class PlayerController : MonoBehaviour
         InputManager.input.Player.Upgrade.performed -= OnUpgrade;
         InputManager.input.Player.SolarPanel.performed -= OnSolarPanel;
         InputManager.input.Player.EscapeToMenu.performed -= OnEscapeToMenu;
+        InputManager.input.Player.Disable();
     }
 
     void OnUpgrade(InputAction.CallbackContext cc)
     {
         Debug.Log("OnUpgrade.");
+        InputManager.ToggleActionMap(InputManager.input.Upgrade);
+        Time.timeScale =0;
+        upgradeController.OpenUpgrade();
     }
 
     void OnSolarPanel(InputAction.CallbackContext cc)

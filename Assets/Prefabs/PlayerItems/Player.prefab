@@ -62,7 +62,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4171763240705784054}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.35, z: 0}
+  m_LocalPosition: {x: 0, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -224,7 +224,6 @@ MonoBehaviour:
   - {fileID: -1653863470, guid: 2c8cfee213babaf48be7ae372c50c857, type: 3}
   - {fileID: 1724110388, guid: 2c8cfee213babaf48be7ae372c50c857, type: 3}
   rotateView: {fileID: 2150853277104620254}
-  pauseController: {fileID: 0}
 --- !u!114 &4171763242807627279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +239,7 @@ MonoBehaviour:
   controller: {fileID: 4171763242807627269}
   numShootPerFrames: 10
   firePoint: {fileID: 4171763240705784055}
-  bullet: {fileID: 7596222526318212825, guid: 03e1e2137b1cfe345885cf7323281770, type: 3}
+  bullet: {fileID: 4640923333562842645, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
 --- !u!114 &4171763242807627265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
   maxHealth: 20
 --- !u!212 &4171763242807627271
 SpriteRenderer:

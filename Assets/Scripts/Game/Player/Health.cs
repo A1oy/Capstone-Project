@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     public int health;
+
+    [SerializeField]
+    GameObject damagePrefab;
     
     [SerializeField]
     int maxHealth;
@@ -29,6 +32,10 @@ public class Health : MonoBehaviour
     public bool DoDamage(int damage)
     {
         health -=damage;
+        Instantiate(damagePrefab,
+            transform, false);
+        damagePrefab.GetComponent<IDamageValue>().text = $"-{damage}";
+        damagePrefab.SetActive(true);
         if (health <=0)
         {
             SendMessage("OnDead");
