@@ -239,7 +239,7 @@ MonoBehaviour:
   controller: {fileID: 4171763242807627269}
   numShootPerFrames: 10
   firePoint: {fileID: 4171763240705784055}
-  bullet: {fileID: 4640923333562842645, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
+  bullet: {fileID: 0}
 --- !u!114 &4171763242807627265
 MonoBehaviour:
   m_ObjectHideFlags: 0

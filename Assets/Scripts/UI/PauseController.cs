@@ -27,7 +27,6 @@ public class PauseController : MonoBehaviour
 
 	void OnClose(InputAction.CallbackContext cc)
 	{
-		Debug.Log(settingsMenu.activeInHierarchy);
 		if (settingsMenu.activeInHierarchy)
 		{
 			settingsMenu.SetActive(false);

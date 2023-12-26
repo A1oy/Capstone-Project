@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
-public class Bullet : MonoBehaviour
+public class Bullet : IPoolable
 {
     [SerializeField]
     float speed;
 
     [SerializeField]
-    GameObject explosion;
+    private GameObject explosion;
 
     void FixedUpdate()
     {
@@ -21,11 +22,17 @@ public class Bullet : MonoBehaviour
             || collider.gameObject.CompareTag("Obstacle"))
         {
             DoBulletTrigger(collider.gameObject);
-            Destroy(gameObject);
+            Release();
         }
     }
-
-    virtual public void DoBulletTrigger(GameObject gameobj)
+    
+    override public void Release()
+    {
+        GetComponentInChildren<TrailRenderer>()?.Clear();
+        base.Release();
+    }
+    
+    public virtual void DoBulletTrigger(GameObject go)
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
     }
