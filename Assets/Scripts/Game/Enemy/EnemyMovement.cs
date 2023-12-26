@@ -36,41 +36,11 @@ public class EnemyMovement : MonoBehaviour
         agent.updateUpAxis =false;
       }
 
-	float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
-    {
-        Vector3 vectorDiff =new Vector3(0.0f, 0.0f, 0.0f);
-        foreach (GameObject gameObj in gameObjs)
-        {
-            vectorDiff =currentPos-gameObj.transform.position;
-            if (vectorDiff.magnitude < bestDist
-                && !gameObj.GetComponent<Health>().IsDead())
-            {
-                bestDist =vectorDiff.magnitude;
-                gameObjTarget =gameObj;
-            }
-        }
-        return bestDist;
-    }
-
-    void DetermineTarget()
-    {
-        Vector3 currentPos =transform.position;
-
-        GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
-
-        GameObject gameObjTarget =null;
-        float dist =Mathf.Infinity;
-        dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
-        
-        attackerRef =gameObjTarget;
-    }
-
     void FixedUpdate()
     {
-        DetermineTarget();
         if (attackerRef)
-            agent.destination =attackerRef!.transform.position;
         {
+            agent.destination = attackerRef!.transform.position;
         }
         if (isAttacking)
         {
@@ -123,3 +93,32 @@ public class EnemyMovement : MonoBehaviour
         hitSource.Play();
     }
 }
+
+/*float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
+    {
+        Vector3 vectorDiff =new Vector3(0.0f, 0.0f, 0.0f);
+        foreach (GameObject gameObj in gameObjs)
+        {
+            vectorDiff =currentPos-gameObj.transform.position;
+            if (vectorDiff.magnitude < bestDist
+                && !gameObj.GetComponent<Health>().IsDead())
+            {
+                bestDist =vectorDiff.magnitude;
+                gameObjTarget =gameObj;
+            }
+        }
+        return bestDist;
+    }*/
+
+/*void DetermineTarget()
+{
+    Vector3 currentPos =transform.position;
+
+    GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
+
+    GameObject gameObjTarget =null;
+    float dist =Mathf.Infinity;
+    dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
+
+    attackerRef =gameObjTarget;
+}*/
