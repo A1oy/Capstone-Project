@@ -40,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (attackerRef)
         {
+            agent.acceleration = 10f;
             agent.destination = attackerRef!.transform.position;
         }
         if (isAttacking)
@@ -113,6 +114,13 @@ public class EnemyMovement : MonoBehaviour
 /*void DetermineTarget()
 {
     Vector3 currentPos =transform.position;
+
+    Collider2D baitCollide = Physics2D.OverlapCircle(transform.position, detectRadius, 1 << 8);
+    if (baitCollide)
+    {
+        attackerRef = baitCollide.gameObject;
+        return;
+    }
 
     GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
 
