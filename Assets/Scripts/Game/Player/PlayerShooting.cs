@@ -73,6 +73,12 @@ public class PlayerShooting : MonoBehaviour
                 case BulletType.SplitBomb:
                     ShootSpread(SplitBombPool.pool, transform.position, firePoint.rotation);
                     break;
+                case BulletType.Radial:
+                    ShootSpread(RadialShotPool.pool, transform.position, firePoint.rotation);
+                    break;
+                case BulletType.Split:
+                    ShootSpread(SplitShotPool.pool, transform.position, firePoint.rotation);
+                    break;
             }
         }
     }

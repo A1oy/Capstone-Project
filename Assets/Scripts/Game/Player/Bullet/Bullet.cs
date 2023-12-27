@@ -6,6 +6,9 @@ using UnityEngine.Pool;
 public class Bullet : IPoolable
 {
     [SerializeField]
+    int damage =1;
+
+    [SerializeField]
     float speed;
 
     [SerializeField]
@@ -18,9 +21,14 @@ public class Bullet : IPoolable
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.CompareTag("Enemy")
+        bool isEnemy =collider.gameObject.CompareTag("Enemy");
+        if (isEnemy
             || collider.gameObject.CompareTag("Obstacle"))
         {
+            if (isEnemy)
+            {
+                collider.gameObject.GetComponent<Health>().DoDamage(damage);
+            }
             DoBulletTrigger(collider.gameObject);
             Release();
         }

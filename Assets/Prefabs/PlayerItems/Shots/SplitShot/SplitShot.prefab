@@ -262,9 +262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd0facdb56c1544cb6117c21e9a47cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  explosion: {fileID: 0}
-  knifeBullet: {fileID: 0}
+  damage: 2
+  speed: 20
+  explosion: {fileID: 43520982865979776, guid: 7a2e8afce80da7f45b7d6bb7c8b035fd, type: 3}
+  knifeBullet: {fileID: 4640923333562842645, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
 --- !u!212 &3930070464265888547
 SpriteRenderer:
   m_ObjectHideFlags: 0

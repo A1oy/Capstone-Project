@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c051e5ee6d5d449ba0568b78072333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   speed: 15
   explosion: {fileID: 3410580156279919885, guid: 023186070dfcd7448b1af2b70063c4ff, type: 3}
   bulletPrefab: {fileID: 4640923333562842645, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
