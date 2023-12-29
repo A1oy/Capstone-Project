@@ -83,7 +83,6 @@ public class PlayerUIController : MonoBehaviour
     // Radar related functions
     public void UpdateRadarRotation(Quaternion rotation)
     {
-        Debug.Log(rotation.eulerAngles);
         playerRadarArrow.rotation =rotation;
     }
 }
