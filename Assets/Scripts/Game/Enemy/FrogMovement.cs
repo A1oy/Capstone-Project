@@ -15,8 +15,6 @@ public class FrogMovement : MonoBehaviour
 
     //damage related
     [SerializeField]
-    int damage;
-    [SerializeField]
     float attackDelay;
     float cooldown;
     float range = 4f;
@@ -25,6 +23,7 @@ public class FrogMovement : MonoBehaviour
     public GameObject tongue;
     public Transform tonguePos;
 
+    //audio
     [SerializeField]
     AudioSource hitSource;
 
@@ -80,12 +79,6 @@ public class FrogMovement : MonoBehaviour
 	{
         Instantiate(tongue, tonguePos.position, Quaternion.identity);
 	}
-
-    void DoAttack()
-    {
-        attackerRef.GetComponent<Health>().DoDamage(damage);
-        hitSource.Play();
-    }
 
     void OnDrawGizmos()
     {
