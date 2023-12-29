@@ -21,12 +21,7 @@ public class GameWinning : MonoBehaviour
         if (doDaylightCheck
             && m_globalLight.color.r ==1f)
         {
-            GameObject instance =new GameObject();
-            instance.tag ="Player";
-            PlayerInventory inventory =instance.AddComponent(typeof(PlayerInventory)) as PlayerInventory;
-            inventory.AddScore(NetworkManager.GetLocalPlayer().GetComponent<PlayerInventory>().GetScore());
-            DontDestroyOnLoad(instance);
-
+            DontDestroyOnLoad(GameObject.Find("GameplayManager"));
             SceneManager.LoadScene("Game Win");
         }
     }

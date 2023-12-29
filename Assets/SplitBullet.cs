@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SplitBullet : Bullet
 {
-    [SerializeField]
-    GameObject knifeBullet;
-
     override public void DoBulletTrigger(GameObject gameObj)
     {
-        Instantiate(knifeBullet, transform.position, transform.rotation);
+        Quaternion quat =transform.rotation;
+        ShotPool.Instantiate(transform.position, quat, player);
+        quat.eulerAngles += new Vector3(0f, 0f, 30f);
+        ShotPool.Instantiate(transform.position, quat, player);
+        quat.eulerAngles -= new Vector3(0f, 0f, 60f);
+        ShotPool.Instantiate(transform.position, quat, player);
     }
 }

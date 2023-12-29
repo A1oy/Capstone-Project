@@ -20,7 +20,7 @@ public class UpgradeButton : MonoBehaviour
             transform.GetChild(i).GetComponent<Button>()
                 .interactable =true;
         }
-        NetworkManager.GetLocalPlayer()
+        NetworkManager0.GetLocalPlayer()
             .GetComponent<PlayerShooting>()
             .SetUpgrade(data);
 

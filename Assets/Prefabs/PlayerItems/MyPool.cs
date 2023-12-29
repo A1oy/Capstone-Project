@@ -50,7 +50,7 @@ public class MyPool<T>  : MyPoolBase where T: IPoolable
         Destroy(go);
     }
 
-    static public GameObject Instantiate(Vector3 position, Quaternion rotation)
+    static protected GameObject Instantiate(Vector3 position, Quaternion rotation)
     {
         GameObject go =pool.Get();
         go.transform.position =position;

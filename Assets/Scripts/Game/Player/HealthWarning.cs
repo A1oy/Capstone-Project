@@ -5,10 +5,7 @@ using UnityEngine.UI;
 
 public class HealthWarning : MonoBehaviour
 {
-    Health m_health;
-
-    [SerializeField]
-    GameObject playerRef;
+    Health health;
     
     [SerializeField]
     float redThreshold;
@@ -18,12 +15,13 @@ public class HealthWarning : MonoBehaviour
 
     void Awake()
     {
-        m_health =playerRef.GetComponent<Health>();
+        health =NetworkManager0.GetLocalPlayer()
+            .GetComponent<Health>();
     }
 
     void FixedUpdate()
     {
-        float alpha = 1f - ((float)m_health.GetCurrentHealth()/m_health.GetMaxHealth());
+        float alpha = 1f - ((float)health.GetCurrentHealth()/health.GetMaxHealth());
         if (alpha >redThreshold)
         {
             alpha =redThreshold;

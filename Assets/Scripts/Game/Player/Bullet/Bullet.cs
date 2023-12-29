@@ -5,6 +5,8 @@ using UnityEngine.Pool;
 
 public class Bullet : IPoolable
 {
+    public PlayerData player;
+
     [SerializeField]
     int damage =1;
 
@@ -27,7 +29,7 @@ public class Bullet : IPoolable
         {
             if (isEnemy)
             {
-                collider.gameObject.GetComponent<Health>().DoDamage(damage);
+                collider.gameObject.GetComponent<Animal>().DoAttack(damage, player);
             }
             DoBulletTrigger(collider.gameObject);
             Release();

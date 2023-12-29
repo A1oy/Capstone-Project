@@ -24,6 +24,9 @@ public class PlayerShooting : MonoBehaviour
     BulletType bullet =BulletType.Normal;
 
     [SerializeField]
+    PlayerData player;
+
+    [SerializeField]
     PlayerController controller;
 
     [SerializeField]
@@ -55,7 +58,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (shot ==ShotType.Single)
         {
-            ShotPool.Instantiate(transform.position, firePoint.rotation);
+            ShotPool.Instantiate(transform.position, firePoint.rotation, player);
         }
         else if (shot ==ShotType.Multi)
         {
@@ -101,6 +104,7 @@ public class PlayerShooting : MonoBehaviour
     {
         go.transform.position =position;
         go.transform.rotation =quat;
+        go.GetComponent<Bullet>().player = player;
     }
 
     public void SetUpgrade(UpgradeData data)

@@ -1,19 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerFlashlight : MonoBehaviour
 {
     [SerializeField]
-    UnityEngine.Rendering.Universal.Light2D m_flashlight;
+    Light2D flashLight;
 
     [SerializeField]
-    UnityEngine.Rendering.Universal.Light2D m_spotlight;
+    Light2D spotLight;
 
-    void OnDaylightChange(bool isDayTime)
+    [SerializeField]
+    float flIntensity;
+
+    [SerializeField]
+    float slIntensity;
+
+    bool isflOff =true;
+    bool isslOff =true;
+
+    void OnEnable()
     {
-        m_flashlight.intensity =isDayTime ? 0f:1f;
-        m_spotlight.intensity = isDayTime ? 0f:0.5f;
+        InputManager.input.Player.Flashlight.performed += OnFlashlight;
     }
 
+    void OnDisable()
+    {
+        InputManager.input.Player.Flashlight.performed -= OnFlashlight;
+    }
+
+    void OnFlashlight(InputAction.CallbackContext cc)
+    {
+        isflOff =!isflOff;
+        flashLight.intensity =isflOff ? 0f : flIntensity;
+    }
+
+    public void SwitchSpotLight()
+    {
+        isslOff =!isslOff;
+        spotLight.intensity = isslOff ? 0f: slIntensity;
+    }
 }

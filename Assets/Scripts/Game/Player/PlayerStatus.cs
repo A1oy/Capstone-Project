@@ -10,9 +10,6 @@ public class PlayerStatus : MonoBehaviour
     Health health;
 
     [SerializeField]
-    PlayerUI playerUI;
-
-    [SerializeField]
     Texture2D aimCursor;
 
     void Awake()
@@ -33,11 +30,6 @@ public class PlayerStatus : MonoBehaviour
     public void SetAimCursor()
     {
         Cursor.SetCursor(aimCursor, new Vector2(16f, 16f), CursorMode.Auto);
-    }
-    
-    public void SetUI(PlayerUI playerUI)
-    {
-        this.playerUI =playerUI;
     }
 
     void OnDead()

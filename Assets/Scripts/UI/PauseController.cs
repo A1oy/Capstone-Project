@@ -33,7 +33,10 @@ public class PauseController : MonoBehaviour
 			pauseMenu.SetActive(true);
 		}
 		else {
-			NetworkManager.GetLocalPlayer().GetComponent<PlayerController>().canMove =true;
+			Animal.UnPauseAllAnimals();
+			NetworkManager0.GetLocalPlayer()
+				.GetComponent<PlayerController>()
+				.ReturnToMenu();
 			InputManager.ToggleActionMap(InputManager.input.Player);
 			Resume();
 		}

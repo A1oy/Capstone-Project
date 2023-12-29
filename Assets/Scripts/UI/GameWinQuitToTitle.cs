@@ -12,8 +12,8 @@ public class GameWinQuitToTitle : MonoBehaviour
 
     void Awake()
     {
-        int score =NetworkManager.GetLocalPlayer().GetComponent<PlayerInventory>().GetScore();
-        Destroy(NetworkManager.GetLocalPlayer());
+        int score =NetworkManager0.GetLocalPlayer().GetComponent<PlayerInventory>().GetScore();
+        Destroy(NetworkManager0.GetLocalPlayer());
         m_score.text = Convert.ToString(score);
     }
 

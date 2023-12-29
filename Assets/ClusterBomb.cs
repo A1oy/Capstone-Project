@@ -12,6 +12,6 @@ public class ClusterBomb : Bomb
          Vector3 angleDelta = new Vector3(0f, 0f, Random.value >0.5f ? -45f : 45f);
         Quaternion quat =Quaternion.identity;
         quat.eulerAngles += angleDelta;
-        BombPool.Instantiate(transform.position, quat);
+        BombPool.Instantiate(transform.position, quat, player);
     }
 }

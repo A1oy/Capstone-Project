@@ -82,13 +82,40 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Eating"",
+                    ""type"": ""Button"",
+                    ""id"": ""ec69fcf6-c65a-4913-9720-d786e7fca565"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Flashlight"",
+                    ""type"": ""Button"",
+                    ""id"": ""d71db477-be92-4cd3-be18-2e5e1f2c665a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Walking"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd139e1a-f645-418a-a763-acb50d7215c8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""d12587b6-0635-4b4a-a174-fa333eff8e77"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/u"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
@@ -99,7 +126,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7f48d0b3-39e5-4834-a120-1eee1b7997e6"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
@@ -126,6 +153,72 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Escape To Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2ae69821-f000-438e-9b80-7722d552d42d"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Eating"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5baeb002-f153-4453-9209-b38ed38be492"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flashlight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4261474-0270-40ac-8fd5-69b159af5834"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71f1b2fc-a975-45e5-8787-a9e1c8bdfc46"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""04862570-9b93-4298-8582-783ff709f4d9"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walking"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f826f091-84d9-4be6-9d77-8fea96b6b4e6"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -170,6 +263,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         m_Player_Upgrade = m_Player.FindAction("Upgrade", throwIfNotFound: true);
         m_Player_SolarPanel = m_Player.FindAction("Solar Panel", throwIfNotFound: true);
         m_Player_EscapeToMenu = m_Player.FindAction("Escape To Menu", throwIfNotFound: true);
+        m_Player_Eating = m_Player.FindAction("Eating", throwIfNotFound: true);
+        m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
+        m_Player_Walking = m_Player.FindAction("Walking", throwIfNotFound: true);
         // Upgrade
         m_Upgrade = asset.FindActionMap("Upgrade", throwIfNotFound: true);
         m_Upgrade_CloseMenu = m_Upgrade.FindAction("Close Menu", throwIfNotFound: true);
@@ -290,6 +386,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Upgrade;
     private readonly InputAction m_Player_SolarPanel;
     private readonly InputAction m_Player_EscapeToMenu;
+    private readonly InputAction m_Player_Eating;
+    private readonly InputAction m_Player_Flashlight;
+    private readonly InputAction m_Player_Walking;
     public struct PlayerActions
     {
         private @GameControls m_Wrapper;
@@ -297,6 +396,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         public InputAction @Upgrade => m_Wrapper.m_Player_Upgrade;
         public InputAction @SolarPanel => m_Wrapper.m_Player_SolarPanel;
         public InputAction @EscapeToMenu => m_Wrapper.m_Player_EscapeToMenu;
+        public InputAction @Eating => m_Wrapper.m_Player_Eating;
+        public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
+        public InputAction @Walking => m_Wrapper.m_Player_Walking;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -315,6 +417,15 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @EscapeToMenu.started += instance.OnEscapeToMenu;
             @EscapeToMenu.performed += instance.OnEscapeToMenu;
             @EscapeToMenu.canceled += instance.OnEscapeToMenu;
+            @Eating.started += instance.OnEating;
+            @Eating.performed += instance.OnEating;
+            @Eating.canceled += instance.OnEating;
+            @Flashlight.started += instance.OnFlashlight;
+            @Flashlight.performed += instance.OnFlashlight;
+            @Flashlight.canceled += instance.OnFlashlight;
+            @Walking.started += instance.OnWalking;
+            @Walking.performed += instance.OnWalking;
+            @Walking.canceled += instance.OnWalking;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -328,6 +439,15 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @EscapeToMenu.started -= instance.OnEscapeToMenu;
             @EscapeToMenu.performed -= instance.OnEscapeToMenu;
             @EscapeToMenu.canceled -= instance.OnEscapeToMenu;
+            @Eating.started -= instance.OnEating;
+            @Eating.performed -= instance.OnEating;
+            @Eating.canceled -= instance.OnEating;
+            @Flashlight.started -= instance.OnFlashlight;
+            @Flashlight.performed -= instance.OnFlashlight;
+            @Flashlight.canceled -= instance.OnFlashlight;
+            @Walking.started -= instance.OnWalking;
+            @Walking.performed -= instance.OnWalking;
+            @Walking.canceled -= instance.OnWalking;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -400,6 +520,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         void OnUpgrade(InputAction.CallbackContext context);
         void OnSolarPanel(InputAction.CallbackContext context);
         void OnEscapeToMenu(InputAction.CallbackContext context);
+        void OnEating(InputAction.CallbackContext context);
+        void OnFlashlight(InputAction.CallbackContext context);
+        void OnWalking(InputAction.CallbackContext context);
     }
     public interface IUpgradeActions
     {

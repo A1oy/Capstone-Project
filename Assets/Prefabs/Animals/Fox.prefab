@@ -58,6 +58,7 @@ MonoBehaviour:
   health: 3
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
   maxHealth: 3
+  iFrames: {fileID: 0}
 --- !u!114 &1235720188764108218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d96c6156af26e4a9ad025e73afa531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_scoreGiven: 5
 --- !u!114 &-9091826713302542655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  attackDelay: 1.5
+  attackDelay: 0.1
   hitSource: {fileID: -3224592827261057344}
 --- !u!114 &1633012228791222268
 MonoBehaviour:

@@ -4,16 +4,5 @@ using UnityEngine;
 
 public class GameplayManager : MonoBehaviour
 {
-    [SerializeField]
-    List<PlayerData> players;
-
-    [SerializeField]
-    PlayerUI playerUI;
-
-    void Awake()
-    {
-        NetworkManager.GetLocalPlayer()
-            .GetComponent<PlayerStatus>()
-            .SetUI(playerUI);
-    }
+    public PlayerData players;
 }

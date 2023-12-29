@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerRadar : MonoBehaviour
 {
-    [SerializeField]
     Transform player;
 
     [SerializeField]
@@ -14,6 +12,9 @@ public class PlayerRadar : MonoBehaviour
 
     [SerializeField]
     GameObject radar;
+
+    [SerializeField]
+    GameObject radarPlayer;
 
     float radarRadius;
 
@@ -25,6 +26,7 @@ public class PlayerRadar : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        player =NetworkManager0.GetLocalPlayer().transform;
         enemyPool =new List<GameObject>();
         radarRadius =radar.GetComponent<RectTransform>().rect.width/2.0f;
     }
@@ -69,13 +71,16 @@ public class PlayerRadar : MonoBehaviour
             newPoint.SetActive(true);
         }
     }
-
+    
     void OnDrawGizmos()
     {
-        // Draw a yellow sphere at the transform's position
-        Color c = Color.yellow;
-        c.a =0.5f;
-        Gizmos.color = c;
-        Gizmos.DrawSphere(player.position, radius);
+        if (player)
+        {
+            // Draw a yellow sphere at the transform's position
+            Color c = Color.yellow;
+            c.a =0.5f;
+            Gizmos.color = c;
+            Gizmos.DrawSphere(player.position, radius);
+        }
     }
 }

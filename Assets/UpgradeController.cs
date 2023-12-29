@@ -42,6 +42,9 @@ public class UpgradeController : MonoBehaviour
         mainUi.SetActive(true);
         InputManager.ToggleActionMap(InputManager.input.Player);
         Time.timeScale =1;
+        NetworkManager0.GetLocalPlayer()
+            .GetComponent<PlayerController>()
+            .ReturnToMenu();
     }
 
     public void OpenUpgrade()

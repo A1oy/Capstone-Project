@@ -53,7 +53,7 @@ namespace UnityEngine.InputSystem.Interactions
         private float durationOrDefault => duration > 0.0 ? duration : InputSystem.settings.defaultHoldTime;
         private float pressPointOrDefault => pressPoint > 0.0 ? pressPoint : ButtonControl.s_GlobalDefaultButtonPressPoint;
 
-        private double m_TimePressed;
+        private double m_timePassed;
 
         /// <inheritdoc />
         public void Process(ref InputInteractionContext context)
@@ -69,7 +69,7 @@ namespace UnityEngine.InputSystem.Interactions
                 case InputActionPhase.Waiting:
                     if (context.ControlIsActuated(pressPointOrDefault))
                     {
-                        m_TimePressed = context.time;
+                        m_timePassed = context.time;
 
                         context.Started();
                         context.SetTimeout(durationOrDefault);
@@ -79,7 +79,7 @@ namespace UnityEngine.InputSystem.Interactions
                 case InputActionPhase.Started:
                     // If we've reached our hold time threshold, perform the hold.
                     // We do this regardless of what state the control changed to.
-                    if (context.time - m_TimePressed >= durationOrDefault)
+                    if (context.time - m_timePassed >= durationOrDefault)
                     {
                         context.PerformedAndStayPerformed();
                     }
@@ -100,7 +100,7 @@ namespace UnityEngine.InputSystem.Interactions
         /// <inheritdoc />
         public void Reset()
         {
-            m_TimePressed = 0;
+            m_timePassed = 0;
         }
     }
 

@@ -14,6 +14,9 @@ public class Health : MonoBehaviour
     [SerializeField]
     int maxHealth;
 
+    [SerializeField]
+    IFrame iFrames;
+
     void Awake()
     {
         health =maxHealth;
@@ -29,21 +32,27 @@ public class Health : MonoBehaviour
         }
     }
 
-    public bool DoDamage(int damage)
+    public void DoDamage(int damage)
     {
-        health -=damage;
-        Instantiate(damagePrefab,
-            transform, false);
-        damagePrefab.GetComponent<IDamageValue>().text = $"-{damage}";
-        damagePrefab.SetActive(true);
-        if (health <=0)
+        bool canAttack = iFrames ? iFrames.CanAttack() : true;
+        if (canAttack)
         {
-            SendMessage("OnDead");
-            return true;
+            health -=damage;
+            if (iFrames)
+            {
+                iFrames.TriggerFrames();
+            }
+            Instantiate(damagePrefab,
+                transform, false);
+            damagePrefab.GetComponent<IDamageValue>().text = $"-{damage}";
+            damagePrefab.SetActive(true);
+            if (health <=0)
+            {
+                SendMessage("OnDead");
+            }
         }
-        return false;
     }
-
+    
     public int GetCurrentHealth()
     {
         return health;

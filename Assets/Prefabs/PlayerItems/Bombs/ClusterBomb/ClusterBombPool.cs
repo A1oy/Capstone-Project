@@ -2,4 +2,4 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClusterBombPool : MyPool<ClusterBomb> { }
+public class ClusterBombPool : ProjectilePool<ClusterBomb> { }

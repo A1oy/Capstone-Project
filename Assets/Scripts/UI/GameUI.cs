@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
-
+using UnityEngine.Rendering.Universal;
 
 public class GameUI : MonoBehaviour
 {
@@ -21,9 +21,7 @@ public class GameUI : MonoBehaviour
     int day=1;
 
     [SerializeField]
-    UnityEngine.Rendering.Universal.Light2D globalLight;
-
-    public TMP_Text interactableText;
+    Light2D globalLight;
 
     [SerializeField]
     float daylightInSeconds;
@@ -44,9 +42,20 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     float daylightSmoothingInSeconds;
 
+    [SerializeField]
+    PlayerUIController uiController;
+
+    [SerializeField]
+    PlayerFlashlight flashlight;
+
+    [SerializeField]
+    GameWinning winning;
+
     void Awake()
     {
         daylightSmoothingInSeconds = 1.0f/daylightSmoothingInSeconds;
+        uiController.UpdateDay(GetDayString());
+        uiController.UpdateTime(GetTimeString());
     }
 
     void DoDaylightChange()
@@ -87,6 +96,7 @@ public class GameUI : MonoBehaviour
             else
             {
                 day++;
+                uiController.UpdateDay(GetDayString());
                 if (day!=20 && day%nWavesEachIncrease ==0)
                 {
                     daylightInSeconds -= daylightDecrease;
@@ -95,10 +105,11 @@ public class GameUI : MonoBehaviour
                 time =daylightInSeconds;
             }
             isDaytime =!isDaytime;
-
-            gameObject.BroadcastMessage("OnDaylightChange", isDaytime, SendMessageOptions.DontRequireReceiver);
+            
+            flashlight.SwitchSpotLight();
             isDaylightChanging =true;
         }
+        uiController.UpdateTime(GetTimeString());
         DoDaylightChange();
     }
 
@@ -117,7 +128,7 @@ public class GameUI : MonoBehaviour
         return isDaytime;
     }
 
-    public string GetTimeString()
+    string GetTimeString()
     {
         int iTime =(int)time;
         int mins =iTime /60;
@@ -125,10 +136,16 @@ public class GameUI : MonoBehaviour
         string pad =secs<10? "0":"";
         return  $"{mins}:{pad}{secs}";
     }
+
+    string GetDayString()
+    {
+        return $"Day {day}";
+    }
+
 #if UNITY_EDITOR
     public void DebugFastForwardTime()
     {
-        time=1f;
+        time=0.1f;
     }
 #endif
 }

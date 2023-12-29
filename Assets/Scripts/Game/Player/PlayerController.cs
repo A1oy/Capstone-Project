@@ -5,16 +5,29 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool canMove =true;
+    enum PlayerMovementState
+    {
+        Normal,
+        Eating,
+        InMenu
+    };
 
     public Rigidbody2D rb;
-    public Camera cam;
-    public float speed = 5f;
-    Vector2 movement;
-    Vector2 mousePos;
+    Camera cam;
 
     [SerializeField]
-    AudioSource walkingSource;
+    PlayerMovementState state = PlayerMovementState.Normal;
+    
+    [SerializeField]
+    float speed = 5f;
+
+    [SerializeField]
+    float eatingSpeed =0.01f;
+
+    float playerSpeed;
+
+    Vector2 movement;
+    Vector2 mousePos;
 
     [SerializeField]
     SpriteRenderer spriteRenderer;
@@ -26,8 +39,15 @@ public class PlayerController : MonoBehaviour
     Transform rotateView;
 
     PauseController pauseController;
-
     UpgradeController upgradeController;
+
+    [SerializeField]
+    PlayerHoney playerHoney;
+
+    [SerializeField]
+    WalkingFX walkingfx;
+
+    PlayerUIController uiController;
 
     void OnEnable()
     {
@@ -35,8 +55,14 @@ public class PlayerController : MonoBehaviour
         InputManager.input.Player.Upgrade.performed += OnUpgrade;
         InputManager.input.Player.SolarPanel.performed += OnSolarPanel;
         InputManager.input.Player.EscapeToMenu.performed += OnEscapeToMenu;
+        InputManager.input.Player.Eating.performed += OnEating;
+        InputManager.input.Player.Eating.canceled += OnEatingCancelled;
+        InputManager.input.Player.Walking.performed += OnWalking;
+        InputManager.input.Player.Walking.canceled += OnWalkingCancelled;
+
         pauseController =GameObject.Find("PauseController").GetComponent<PauseController>();
         upgradeController =GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
+        uiController =GameObject.Find("PlayerUI").GetComponent<PlayerUIController>();
     }
 
     void OnDisable()
@@ -44,12 +70,16 @@ public class PlayerController : MonoBehaviour
         InputManager.input.Player.Upgrade.performed -= OnUpgrade;
         InputManager.input.Player.SolarPanel.performed -= OnSolarPanel;
         InputManager.input.Player.EscapeToMenu.performed -= OnEscapeToMenu;
+
+        InputManager.input.Player.Eating.performed -= OnEating;
+        InputManager.input.Player.Eating.canceled -= OnEatingCancelled;
         InputManager.input.Player.Disable();
     }
 
     void OnUpgrade(InputAction.CallbackContext cc)
     {
         Debug.Log("OnUpgrade.");
+        state = PlayerMovementState.InMenu;
         InputManager.ToggleActionMap(InputManager.input.Upgrade);
         Time.timeScale =0;
         upgradeController.OpenUpgrade();
@@ -63,47 +93,66 @@ public class PlayerController : MonoBehaviour
     void OnEscapeToMenu(InputAction.CallbackContext cc)
     {
         Debug.Log("OnEscapeToMenu");
-        canMove =false;
+        state = PlayerMovementState.InMenu;
         InputManager.ToggleActionMap(InputManager.input.Menu);
         pauseController.Pause();
     }
 
+    void OnEating(InputAction.CallbackContext cc)
+    {
+        if (state != PlayerMovementState.InMenu)
+        {
+            playerSpeed =eatingSpeed;
+            state = PlayerMovementState.Eating;
+            playerHoney.StartEating();
+        }
+    }
+
+    void OnEatingCancelled(InputAction.CallbackContext cc)
+    {
+        if (state == PlayerMovementState.Eating)
+        {
+            playerSpeed =speed;
+            state = PlayerMovementState.Normal;
+            playerHoney.StopEating();
+        }
+    }
+
+    void OnWalking(InputAction.CallbackContext cc)
+    {
+        walkingfx.StartWalking();
+    }
+
+    void OnWalkingCancelled(InputAction.CallbackContext cc)
+    {
+        walkingfx.StopWalking();
+    }
+
     void Awake()
     {
+        cam =GameObject.Find("Main Camera").GetComponent<Camera>();
+        playerSpeed = speed;
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         UpdatePlayerSprite(angle);
     }
 
+    public void ReturnToMenu()
+    {
+        state =PlayerMovementState.Normal;
+    }
+
     void UpdateMovementAudio()
     {
-        if (canMove)
+        if (state != PlayerMovementState.InMenu)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            if (movement.x!=0 || movement.y!=0)
-            {
-                if (!walkingSource.isPlaying)
-                {
-                    walkingSource.Play();
-                }
-            }
-            else
-            {
-                if (walkingSource.isPlaying)
-                {
-                    walkingSource.Stop();
-                }
-            }
         }
         else
         {
-            if (walkingSource.isPlaying)
-            {
-                walkingSource.Stop();
-            }
             movement.x =0;
             movement.y =0;
         }
@@ -125,19 +174,23 @@ public class PlayerController : MonoBehaviour
     {
         UpdateMovementAudio();
         
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
-        rb.velocity = movement * speed;
+        rb.MovePosition(rb.position + movement * playerSpeed * Time.fixedDeltaTime);
+        rb.velocity = movement * playerSpeed;
         Vector2 lookDir = mousePos - rb.position;
 
         //Finding angle using atan2 function
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rotateView.rotation = Quaternion.Euler(0f, 0f, angle);;
+        rotateView.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        UpdatePlayerSprite(angle);
+        if (state != PlayerMovementState.InMenu)
+        {
+            UpdatePlayerSprite(angle);
+            uiController.UpdateRadarRotation( Quaternion.Euler(0f, 0f, angle));
+        }
     }
 
     public bool Move()
     {
-        return canMove;
+        return state != PlayerMovementState.InMenu;
     }
 }

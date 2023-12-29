@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NetworkManager : MonoBehaviour
+public class NetworkManager0 : MonoBehaviour
 {
     static public GameObject GetLocalPlayer()
     {
