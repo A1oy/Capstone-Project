@@ -5,27 +5,29 @@ using UnityEngine;
 public class FrogMovement : MonoBehaviour
 {
     Rigidbody2D rigidBody;
-
     UnityEngine.AI.NavMeshAgent agent;
-
     GameObject attackerRef;
 
+    //movement related
     [SerializeField]
-    int damage;
+    float force;
+    float idleTimer = 0.0f;
 
+    //damage related
     [SerializeField]
     float attackDelay;
+    float cooldown;
+    float range = 4f;
 
+    //tongue related
+    public GameObject tongue;
+    public Transform tonguePos;
+
+    //audio
     [SerializeField]
     AudioSource hitSource;
 
-    float cooldown;
 
-    public float force;
-    float range = 4f;
-    float idleTimer = 0.0f;
-    float jumpForceX = 4f;
-    float jumpForceY = 4f;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,14 +44,11 @@ public class FrogMovement : MonoBehaviour
     {
         idleTimer += Time.deltaTime;
         bool playerFound = playerDetection();
-        if ((attackerRef) && (idleTimer >= 2f) && (playerFound == false))
+        if ((attackerRef) && (idleTimer >= 1.5f) && (playerFound == false))
         {
-            Vector3 direction = attackerRef.transform.position - transform.position.normalized;
-            Debug.Log(direction);
+            Vector3 direction = (attackerRef.transform.position - this.transform.position).normalized;
             direction = direction * force;
-            Debug.Log(direction);
             agent.velocity = direction;
-            //transform.position = Vector2.MoveTowards(transform.position, attackerRef.transform.position, 0.5f);
             idleTimer = 0.0f;
         }
         else if (playerFound)
@@ -58,7 +57,7 @@ public class FrogMovement : MonoBehaviour
             if (cooldown <= 0f)
             {
                 cooldown = attackDelay;
-                DoAttack();
+                shoot();
             }
         }
     }
@@ -76,11 +75,10 @@ public class FrogMovement : MonoBehaviour
         }
     }
 
-    void DoAttack()
-    {
-        attackerRef.GetComponent<Health>().DoDamage(damage);
-        hitSource.Play();
-    }
+    void shoot()
+	{
+        Instantiate(tongue, tonguePos.position, Quaternion.identity);
+	}
 
     void OnDrawGizmos()
     {
