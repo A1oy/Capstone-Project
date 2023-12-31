@@ -47,7 +47,16 @@ public class FrogMovement : MonoBehaviour
         if ((attackerRef) && (idleTimer >= 1.5f) && (playerFound == false))
         {
             Vector3 direction = (attackerRef.transform.position - this.transform.position).normalized;
-            direction = direction * force;
+			float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+			if (angle >= -90 && angle <= 90)
+			{
+                transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+			else if (angle >= -180 && angle <= 180)
+            {
+				transform.rotation = Quaternion.Euler(0, 0, 0);
+			}
+			direction = direction * force;
             agent.velocity = direction;
             idleTimer = 0.0f;
         }
