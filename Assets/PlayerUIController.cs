@@ -33,6 +33,18 @@ public class PlayerUIController : MonoBehaviour
     [SerializeField]
     Transform playerRadarArrow;
 
+
+    [Header("Battery UI")]
+    [SerializeField]
+    Slider[] sliders;
+
+
+    [Header("Hive UI")]
+    [SerializeField]
+    Slider collectProgressBar;
+
+    int curIndex =0;
+
     // Eating related functions
 
     public void StartEating()
@@ -84,5 +96,68 @@ public class PlayerUIController : MonoBehaviour
     public void UpdateRadarRotation(Quaternion rotation)
     {
         playerRadarArrow.rotation =rotation;
+    }
+
+    // Battery related functions
+
+    public void RemoveEmptyBattery()
+    {
+        for (int i=0; i<3; i++)
+        {
+            if (sliders[i].value ==0f)
+            {
+                sliders[i].gameObject.transform.parent.gameObject.SetActive(false);
+                break;
+            }
+        }
+    }
+
+    public void AddFilledBattery()
+    {
+        for (int i=0; i<3; i++)
+        {
+            if (!sliders[i].gameObject.transform.parent.gameObject.activeInHierarchy)
+            {
+                sliders[i].gameObject.transform.parent.gameObject.SetActive(true);
+                sliders[i].value =1f;
+                sliders[i].gameObject.transform.parent.SetAsFirstSibling();
+                break;
+            }
+        }
+    }
+
+    public void UpdateActiveBattery(float value)
+    {
+        sliders[curIndex].value =value;
+        if (value ==0f)
+        {
+            curIndex =0;
+            for (int i=0; i<3; i++)
+            {
+                if (sliders[i].value >0f && i!=curIndex)
+                {
+                    curIndex =i;
+                    Debug.Log(curIndex);
+                    break;
+                }
+            }
+        }
+    }
+
+    // Hive related functions
+
+    public void StartHoneyCollecting()
+    {
+        collectProgressBar.gameObject.SetActive(true);
+    }
+
+    public void StopHoneyCollecting()
+    {
+        collectProgressBar.gameObject.SetActive(false);
+    }
+
+    public void UpdateCollecting(float value)
+    {
+        collectProgressBar.value =value;
     }
 }

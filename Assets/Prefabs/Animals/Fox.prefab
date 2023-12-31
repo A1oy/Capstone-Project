@@ -115,7 +115,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 2
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
@@ -196,7 +196,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!195 &-5201214466480199786
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -447,13 +447,13 @@ MonoBehaviour:
   m_SelfShadows: 1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  m_ShapePathHash: 0
+  - {x: -0.16199279, y: -0.16339009, z: 0}
+  - {x: -0.1618757, y: 0.16094382, z: 0}
+  - {x: 0.16022757, y: 0.1606169, z: 0}
+  - {x: 0.16191788, y: -0.16112068, z: 0}
+  m_ShapePathHash: 1461221740
   m_Mesh: {fileID: 0}
-  m_InstanceId: 50802
+  m_InstanceId: 53236
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.5, y: 0.5, z: 0}
+    m_Center: {x: -0.00003746152, y: -0.001223132, z: 0}
+    m_Extent: {x: 0.16195533, y: 0.16216695, z: 0}

@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.ToggleActionMap(InputManager.input.Player);
         InputManager.input.Player.Upgrade.performed += OnUpgrade;
-        InputManager.input.Player.SolarPanel.performed += OnSolarPanel;
         InputManager.input.Player.EscapeToMenu.performed += OnEscapeToMenu;
         InputManager.input.Player.Eating.performed += OnEating;
         InputManager.input.Player.Eating.canceled += OnEatingCancelled;
@@ -68,7 +67,6 @@ public class PlayerController : MonoBehaviour
     void OnDisable()
     {
         InputManager.input.Player.Upgrade.performed -= OnUpgrade;
-        InputManager.input.Player.SolarPanel.performed -= OnSolarPanel;
         InputManager.input.Player.EscapeToMenu.performed -= OnEscapeToMenu;
 
         InputManager.input.Player.Eating.performed -= OnEating;
@@ -78,21 +76,14 @@ public class PlayerController : MonoBehaviour
 
     void OnUpgrade(InputAction.CallbackContext cc)
     {
-        Debug.Log("OnUpgrade.");
         state = PlayerMovementState.InMenu;
         InputManager.ToggleActionMap(InputManager.input.Upgrade);
         Time.timeScale =0;
         upgradeController.OpenUpgrade();
     }
 
-    void OnSolarPanel(InputAction.CallbackContext cc)
-    {
-        Debug.Log("OnSolarPanel");
-    }
-
     void OnEscapeToMenu(InputAction.CallbackContext cc)
     {
-        Debug.Log("OnEscapeToMenu");
         state = PlayerMovementState.InMenu;
         InputManager.ToggleActionMap(InputManager.input.Menu);
         pauseController.Pause();
