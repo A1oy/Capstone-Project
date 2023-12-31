@@ -132,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d96c6156af26e4a9ad025e73afa531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_scoreGiven: 1
 --- !u!114 &3828643224639200834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +147,7 @@ MonoBehaviour:
   health: 0
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
   maxHealth: 1
+  iFrames: {fileID: 0}
 --- !u!114 &-2947946099314163221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!195 &6309044208894622659
 NavMeshAgent:
   m_ObjectHideFlags: 0

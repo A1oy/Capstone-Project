@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6356890049845407201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   health: 0
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
   maxHealth: 5
+  iFrames: {fileID: 0}
 --- !u!114 &2693776082002587827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +190,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d96c6156af26e4a9ad025e73afa531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_scoreGiven: 10
 --- !u!114 &6356890049845407197
 MonoBehaviour:
   m_ObjectHideFlags: 0
