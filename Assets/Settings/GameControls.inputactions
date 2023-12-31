@@ -43,7 +43,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Solar Panel",
+                    "name": "Add Battery",
                     "type": "Button",
                     "id": "04f7991b-50ab-4dc4-8fbd-0f535967a905",
                     "expectedControlType": "Button",
@@ -86,6 +86,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Remove Battery",
+                    "type": "Button",
+                    "id": "c5e25ff7-a4f3-4b75-8c4a-65708c1127db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Activate Hive",
+                    "type": "Button",
+                    "id": "4cd94c66-e221-4378-94e1-4cad21ed56c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -107,18 +125,7 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Solar Panel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9a743088-1535-4c30-af52-7162c65fcf01",
-                    "path": "<Keyboard>/r",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Solar Panel",
+                    "action": "Add Battery",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -196,6 +203,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Walking",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71451105-8f4c-47f5-b77f-9bbbfe9c756a",
+                    "path": "<Keyboard>/r",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Remove Battery",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3dc28483-a818-4c68-a443-84ef02a53778",
+                    "path": "<Keyboard>/f",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate Hive",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

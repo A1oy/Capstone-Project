@@ -10,16 +10,15 @@ GameObject:
   m_Component:
   - component: {fileID: 8605943059218332475}
   - component: {fileID: 3613953715875991461}
-  - component: {fileID: -4320747336072677478}
   - component: {fileID: -8237102587139322189}
   - component: {fileID: 4076290684103387666}
   - component: {fileID: 1316753982213257204}
   - component: {fileID: 6233785138992800419}
-  - component: {fileID: 2967046524517552402}
+  - component: {fileID: 4991575500030062656}
   - component: {fileID: 4399587063538980720}
   - component: {fileID: 6329163080388654984}
   - component: {fileID: 4214634000079846227}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: Hive
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -35,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 601549028536971070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,21 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04275680c47970d4aa1ac0b00e32b023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_honeyProduction: {fileID: -4320747336072677478}
---- !u!114 &-4320747336072677478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601549028536971070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d0785117a80e6e4aa8796a7c2cbae43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  honeyEachRound: 8
-  m_honeyDrainingSource: {fileID: 6329163080388654984}
+  honeyToGenerate: 10
+  cooldown: 10
 --- !u!114 &-8237102587139322189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +156,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006043181, y: -0.011177838}
+  m_Offset: {x: -0.00035176054, y: -0.0001078397}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -181,9 +167,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9750737, y: 0.97856987}
+  m_Size: {x: 0.13274318, y: 0.13431305}
   m_EdgeRadius: 0
---- !u!114 &2967046524517552402
+--- !u!114 &4991575500030062656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,27 +186,23 @@ MonoBehaviour:
   m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
-  m_SelfShadows: 1
+  m_SelfShadows: 0
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.4253788, y: -0.3643251, z: 0}
-  - {x: -0.48402074, y: -0.26582327, z: 0}
-  - {x: -0.48304063, y: 0.27952826, z: 0}
-  - {x: -0.388077, y: 0.38880813, z: 0}
-  - {x: -0.2663688, y: 0.47573307, z: 0}
-  - {x: 0.2727446, y: 0.48304063, z: 0}
-  - {x: 0.39247498, y: 0.384995, z: 0}
-  - {x: 0.47769293, y: 0.25313324, z: 0}
-  - {x: 0.4776928, y: -0.2786017, z: 0}
-  - {x: 0.36771697, y: -0.3914601, z: 0}
-  - {x: 0.24026194, y: -0.46594375, z: 0}
-  - {x: -0.2786946, y: -0.46933562, z: 0}
-  m_ShapePathHash: -196064175
+  - {x: -0.06611254, y: -0.04367895, z: 0}
+  - {x: -0.06736095, y: 0.04448331, z: 0}
+  - {x: -0.040509835, y: 0.06763943, z: 0}
+  - {x: 0.04495145, y: 0.06657117, z: 0}
+  - {x: 0.06504428, y: 0.05008855, z: 0}
+  - {x: 0.061839487, y: -0.047952008, z: 0}
+  - {x: 0.036405325, y: -0.066962115, z: 0}
+  - {x: -0.043714635, y: -0.06589383, z: 0}
+  m_ShapePathHash: -111510483
   m_Mesh: {fileID: 0}
-  m_InstanceId: 41436
+  m_InstanceId: 163354
   m_LocalBounds:
-    m_Center: {x: -0.003163904, y: 0.0068525076, z: 0}
-    m_Extent: {x: 0.48085684, y: 0.47618812, z: 0}
+    m_Center: {x: -0.0011583418, y: 0.0003386587, z: 0}
+    m_Extent: {x: 0.06620261, y: 0.067300774, z: 0}
 --- !u!114 &4399587063538980720
 MonoBehaviour:
   m_ObjectHideFlags: 0

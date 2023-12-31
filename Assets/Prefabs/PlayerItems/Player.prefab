@@ -275,6 +275,17 @@ MonoBehaviour:
   spotLight: {fileID: 5157280590640086198}
   flIntensity: 1
   slIntensity: 0.5
+  fl:
+    timeToDrain: 10
+    batteries:
+    - timeUsed: 0
+      state: 0
+    - timeUsed: 0
+      state: 0
+    - timeUsed: 0
+      state: 0
+  uiController: {fileID: 0}
+  radiusInteract: 3
 --- !u!114 &3128416110433347007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,11 +298,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3087f9178dac9744593544d8b3accfdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHealth: {fileID: 4171763242807627267}
   eatingTime: 5
   honeyDeducted: 5
   healthHealed: 2
-  cooldown: 1.2
+  cooldown: 0.6
   glupingSource: {fileID: 395658827057782469}
+  timeToCollect: 5
+  hiveRadius: 3.2
 --- !u!114 &8726285559092026344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,7 +586,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.8857155
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

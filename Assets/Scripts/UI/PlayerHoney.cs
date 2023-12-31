@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI; 
+using UnityEngine.InputSystem;
 
 public class PlayerHoney : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class PlayerHoney : MonoBehaviour
     Health playerHealth;
 
     PlayerUIController uiController;
+
+    [SerializeField]
+    PlayerData playerdata;
 
     int honey =10;
 
@@ -41,6 +45,39 @@ public class PlayerHoney : MonoBehaviour
     float timePassed = 0f;
 
     bool EnoughHoney() => honey >= honeyDeducted;
+
+    [SerializeField]
+    float timeToCollect;
+
+    [SerializeField]
+    float hiveRadius;
+
+    float timeCollecting =0f;
+
+    bool canHiveInteract =false;
+
+    const int hiveLayer =1<<14;
+
+    void OnEnable()
+    {
+        InputManager.input.Player.ActivateHive.performed += OnActivateHive; 
+    }
+    
+    void OnDisable()
+    {
+        InputManager.input.Player.ActivateHive.performed -= OnActivateHive;
+    }
+
+    void OnActivateHive(InputAction.CallbackContext cc)
+    {
+        Collider2D collider =Physics2D.OverlapCircle(transform.position,
+                hiveRadius,
+                hiveLayer);
+        if (collider)
+        {
+            collider.gameObject.GetComponent<Hive>().StartHive();
+        }
+    }
 
     void Awake()
     {
@@ -101,8 +138,51 @@ public class PlayerHoney : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (!canHiveInteract)
+        {
+            Collider2D collider =Physics2D.OverlapCircle(transform.position,
+                hiveRadius,
+                hiveLayer);
+            if (collider)
+            {
+                if (collider.gameObject.GetComponent<Hive>().HasHoney())
+                {
+                    canHiveInteract =true;
+                    uiController.StartHoneyCollecting();
+                }
+            }
+        }
+        else if (canHiveInteract)
+        {
+            Collider2D collider =Physics2D.OverlapCircle(transform.position,
+                hiveRadius,
+                hiveLayer);
+            Debug.Log(collider);
+            if (!collider)
+            {
+                canHiveInteract =false;
+                uiController.StopHoneyCollecting();
+                timeCollecting =0f;
+            }
+            else 
+            {
+                timeCollecting +=Time.deltaTime;
+                if (timeCollecting >= timeToCollect)
+                {
+                    uiController.StopHoneyCollecting();
+                    timeCollecting =0f;
+                    canHiveInteract =false;
+                    honey += collider.gameObject.GetComponent<Hive>().GetHoney();
+                }
+                else
+                {
+                    uiController.UpdateCollecting(timeCollecting/timeToCollect);
+                }
+            }
+        }
+
         if (state ==CosumeHoneyState.Eating)
         {
             DoEating();
@@ -111,5 +191,12 @@ public class PlayerHoney : MonoBehaviour
         {
             DoCooldown();
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Color color =new Color(0f, 0f, 1f, 0.4f);
+        Gizmos.color =color;
+        Gizmos.DrawSphere(transform.position, hiveRadius);
     }
 }

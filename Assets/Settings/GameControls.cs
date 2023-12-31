@@ -66,7 +66,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Solar Panel"",
+                    ""name"": ""Add Battery"",
                     ""type"": ""Button"",
                     ""id"": ""04f7991b-50ab-4dc4-8fbd-0f535967a905"",
                     ""expectedControlType"": ""Button"",
@@ -109,6 +109,24 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Remove Battery"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5e25ff7-a4f3-4b75-8c4a-65708c1127db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Activate Hive"",
+                    ""type"": ""Button"",
+                    ""id"": ""4cd94c66-e221-4378-94e1-4cad21ed56c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -130,18 +148,7 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Solar Panel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9a743088-1535-4c30-af52-7162c65fcf01"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Solar Panel"",
+                    ""action"": ""Add Battery"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -221,6 +228,28 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""action"": ""Walking"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""71451105-8f4c-47f5-b77f-9bbbfe9c756a"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Remove Battery"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3dc28483-a818-4c68-a443-84ef02a53778"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Activate Hive"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -261,11 +290,13 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Upgrade = m_Player.FindAction("Upgrade", throwIfNotFound: true);
-        m_Player_SolarPanel = m_Player.FindAction("Solar Panel", throwIfNotFound: true);
+        m_Player_AddBattery = m_Player.FindAction("Add Battery", throwIfNotFound: true);
         m_Player_EscapeToMenu = m_Player.FindAction("Escape To Menu", throwIfNotFound: true);
         m_Player_Eating = m_Player.FindAction("Eating", throwIfNotFound: true);
         m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
         m_Player_Walking = m_Player.FindAction("Walking", throwIfNotFound: true);
+        m_Player_RemoveBattery = m_Player.FindAction("Remove Battery", throwIfNotFound: true);
+        m_Player_ActivateHive = m_Player.FindAction("Activate Hive", throwIfNotFound: true);
         // Upgrade
         m_Upgrade = asset.FindActionMap("Upgrade", throwIfNotFound: true);
         m_Upgrade_CloseMenu = m_Upgrade.FindAction("Close Menu", throwIfNotFound: true);
@@ -384,21 +415,25 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Upgrade;
-    private readonly InputAction m_Player_SolarPanel;
+    private readonly InputAction m_Player_AddBattery;
     private readonly InputAction m_Player_EscapeToMenu;
     private readonly InputAction m_Player_Eating;
     private readonly InputAction m_Player_Flashlight;
     private readonly InputAction m_Player_Walking;
+    private readonly InputAction m_Player_RemoveBattery;
+    private readonly InputAction m_Player_ActivateHive;
     public struct PlayerActions
     {
         private @GameControls m_Wrapper;
         public PlayerActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Upgrade => m_Wrapper.m_Player_Upgrade;
-        public InputAction @SolarPanel => m_Wrapper.m_Player_SolarPanel;
+        public InputAction @AddBattery => m_Wrapper.m_Player_AddBattery;
         public InputAction @EscapeToMenu => m_Wrapper.m_Player_EscapeToMenu;
         public InputAction @Eating => m_Wrapper.m_Player_Eating;
         public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
         public InputAction @Walking => m_Wrapper.m_Player_Walking;
+        public InputAction @RemoveBattery => m_Wrapper.m_Player_RemoveBattery;
+        public InputAction @ActivateHive => m_Wrapper.m_Player_ActivateHive;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -411,9 +446,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Upgrade.started += instance.OnUpgrade;
             @Upgrade.performed += instance.OnUpgrade;
             @Upgrade.canceled += instance.OnUpgrade;
-            @SolarPanel.started += instance.OnSolarPanel;
-            @SolarPanel.performed += instance.OnSolarPanel;
-            @SolarPanel.canceled += instance.OnSolarPanel;
+            @AddBattery.started += instance.OnAddBattery;
+            @AddBattery.performed += instance.OnAddBattery;
+            @AddBattery.canceled += instance.OnAddBattery;
             @EscapeToMenu.started += instance.OnEscapeToMenu;
             @EscapeToMenu.performed += instance.OnEscapeToMenu;
             @EscapeToMenu.canceled += instance.OnEscapeToMenu;
@@ -426,6 +461,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Walking.started += instance.OnWalking;
             @Walking.performed += instance.OnWalking;
             @Walking.canceled += instance.OnWalking;
+            @RemoveBattery.started += instance.OnRemoveBattery;
+            @RemoveBattery.performed += instance.OnRemoveBattery;
+            @RemoveBattery.canceled += instance.OnRemoveBattery;
+            @ActivateHive.started += instance.OnActivateHive;
+            @ActivateHive.performed += instance.OnActivateHive;
+            @ActivateHive.canceled += instance.OnActivateHive;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -433,9 +474,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Upgrade.started -= instance.OnUpgrade;
             @Upgrade.performed -= instance.OnUpgrade;
             @Upgrade.canceled -= instance.OnUpgrade;
-            @SolarPanel.started -= instance.OnSolarPanel;
-            @SolarPanel.performed -= instance.OnSolarPanel;
-            @SolarPanel.canceled -= instance.OnSolarPanel;
+            @AddBattery.started -= instance.OnAddBattery;
+            @AddBattery.performed -= instance.OnAddBattery;
+            @AddBattery.canceled -= instance.OnAddBattery;
             @EscapeToMenu.started -= instance.OnEscapeToMenu;
             @EscapeToMenu.performed -= instance.OnEscapeToMenu;
             @EscapeToMenu.canceled -= instance.OnEscapeToMenu;
@@ -448,6 +489,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Walking.started -= instance.OnWalking;
             @Walking.performed -= instance.OnWalking;
             @Walking.canceled -= instance.OnWalking;
+            @RemoveBattery.started -= instance.OnRemoveBattery;
+            @RemoveBattery.performed -= instance.OnRemoveBattery;
+            @RemoveBattery.canceled -= instance.OnRemoveBattery;
+            @ActivateHive.started -= instance.OnActivateHive;
+            @ActivateHive.performed -= instance.OnActivateHive;
+            @ActivateHive.canceled -= instance.OnActivateHive;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -518,11 +565,13 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnUpgrade(InputAction.CallbackContext context);
-        void OnSolarPanel(InputAction.CallbackContext context);
+        void OnAddBattery(InputAction.CallbackContext context);
         void OnEscapeToMenu(InputAction.CallbackContext context);
         void OnEating(InputAction.CallbackContext context);
         void OnFlashlight(InputAction.CallbackContext context);
         void OnWalking(InputAction.CallbackContext context);
+        void OnRemoveBattery(InputAction.CallbackContext context);
+        void OnActivateHive(InputAction.CallbackContext context);
     }
     public interface IUpgradeActions
     {
