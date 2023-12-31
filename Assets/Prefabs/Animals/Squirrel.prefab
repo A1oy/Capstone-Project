@@ -171,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0030973926}
+  m_Offset: {x: 0, y: 0.00018462539}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -182,7 +182,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.31236774, y: 0.32475746}
+  m_Size: {x: 0.31236774, y: 0.31893194}
   m_EdgeRadius: 0
 --- !u!195 &-575305959052192684
 NavMeshAgent:
@@ -434,13 +434,13 @@ MonoBehaviour:
   m_SelfShadows: 1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.5, y: -0.5, z: 0}
-  - {x: -0.5, y: 0.5, z: 0}
-  - {x: 0.5, y: 0.5, z: 0}
-  - {x: 0.5, y: -0.5, z: 0}
-  m_ShapePathHash: 0
+  - {x: -0.1595348, y: -0.15919268, z: 0}
+  - {x: -0.16038401, y: 0.16153625, z: 0}
+  - {x: 0.1589857, y: 0.15972048, z: 0}
+  - {x: 0.15975463, y: -0.1603392, z: 0}
+  m_ShapePathHash: -1799993621
   m_Mesh: {fileID: 0}
-  m_InstanceId: 50526
+  m_InstanceId: 55210
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.5, y: 0.5, z: 0}
+    m_Center: {x: -0.00031469762, y: 0.00059852004, z: 0}
+    m_Extent: {x: 0.16006932, y: 0.16093773, z: 0}

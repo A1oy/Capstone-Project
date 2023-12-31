@@ -128,7 +128,6 @@ public class PlayerUIController : MonoBehaviour
 
     public void UpdateActiveBattery(float value)
     {
-        Debug.Log(value);
         sliders[curIndex].value =value;
         if (value ==0f)
         {

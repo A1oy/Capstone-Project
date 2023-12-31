@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fddf54bf388a7cd4c878c123534f55fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 5
   radar: {fileID: 6602666872174333579}
   radarPlayer: {fileID: 6413404676264619921}
   enemyPrefab: {fileID: 6562581496295938971, guid: 694be005462bb144badb10c43bc9db8c, type: 3}
@@ -1298,7 +1298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5644479327601248868, guid: 876b485245306e94ab90da6a334477c7, type: 3}
       propertyPath: radius
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5644479327601248870, guid: 876b485245306e94ab90da6a334477c7, type: 3}
       propertyPath: m_Layer
