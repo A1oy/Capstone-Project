@@ -108,10 +108,10 @@ TextureImporter:
       name: Frog_Move_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 8
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,10 +129,10 @@ TextureImporter:
       name: Frog_Move_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 41
         y: 0
-        width: 32
-        height: 32
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +150,10 @@ TextureImporter:
       name: Frog_Move_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 72
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,10 +171,10 @@ TextureImporter:
       name: Frog_Move_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 104
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,10 +192,10 @@ TextureImporter:
       name: Frog_Move_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 136
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,10 +213,10 @@ TextureImporter:
       name: Frog_Move_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 168
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +234,10 @@ TextureImporter:
       name: Frog_Move_6
       rect:
         serializedVersion: 2
-        x: 192
+        x: 200
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,10 +255,10 @@ TextureImporter:
       name: Frog_Move_7
       rect:
         serializedVersion: 2
-        x: 224
+        x: 232
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,10 +276,10 @@ TextureImporter:
       name: Frog_Move_8
       rect:
         serializedVersion: 2
-        x: 256
+        x: 264
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -297,10 +297,10 @@ TextureImporter:
       name: Frog_Move_9
       rect:
         serializedVersion: 2
-        x: 288
+        x: 297
         y: 0
-        width: 32
-        height: 32
+        width: 14
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,10 +318,10 @@ TextureImporter:
       name: Frog_Move_10
       rect:
         serializedVersion: 2
-        x: 320
+        x: 328
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -339,10 +339,10 @@ TextureImporter:
       name: Frog_Move_11
       rect:
         serializedVersion: 2
-        x: 352
+        x: 360
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,10 +360,10 @@ TextureImporter:
       name: Frog_Move_12
       rect:
         serializedVersion: 2
-        x: 384
+        x: 392
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -381,10 +381,10 @@ TextureImporter:
       name: Frog_Move_13
       rect:
         serializedVersion: 2
-        x: 416
+        x: 424
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -402,10 +402,10 @@ TextureImporter:
       name: Frog_Move_14
       rect:
         serializedVersion: 2
-        x: 448
+        x: 456
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -423,10 +423,10 @@ TextureImporter:
       name: Frog_Move_15
       rect:
         serializedVersion: 2
-        x: 480
+        x: 488
         y: 0
-        width: 32
-        height: 32
+        width: 16
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

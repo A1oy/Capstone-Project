@@ -7,17 +7,20 @@ public class FrogMovement : MonoBehaviour
     Rigidbody2D rigidBody;
     UnityEngine.AI.NavMeshAgent agent;
     GameObject attackerRef;
+    Animator animator;
 
     //movement related
     [SerializeField]
     float force;
     float idleTimer = 0.0f;
+    public string stringDirection;
 
     //damage related
     [SerializeField]
     float attackDelay;
     float cooldown;
     float range = 4f;
+    string attackDirection;
 
     //tongue related
     public GameObject tongue;
@@ -34,6 +37,7 @@ public class FrogMovement : MonoBehaviour
         attackerRef = GameObject.FindGameObjectWithTag("Player");
         rigidBody = GetComponent<Rigidbody2D>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -44,18 +48,23 @@ public class FrogMovement : MonoBehaviour
     {
         idleTimer += Time.deltaTime;
         bool playerFound = playerDetection();
+        Vector3 direction = (attackerRef.transform.position - this.transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (angle >= -90 && angle <= 90)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            stringDirection = "JumpRight";
+            attackDirection = "AttackRight";
+        }
+        else if (angle >= -180 && angle <= 180)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            stringDirection = "JumpLeft";
+            attackDirection = "AttackLeft";
+        }
         if ((attackerRef) && (idleTimer >= 1.5f) && (playerFound == false))
         {
-            Vector3 direction = (attackerRef.transform.position - this.transform.position).normalized;
-			float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-			if (angle >= -90 && angle <= 90)
-			{
-                transform.rotation = Quaternion.Euler(0, 0, 180);
-            }
-			else if (angle >= -180 && angle <= 180)
-            {
-				transform.rotation = Quaternion.Euler(0, 0, 0);
-			}
+            animator.SetTrigger(stringDirection);
 			direction = direction * force;
             agent.velocity = direction;
             idleTimer = 0.0f;
@@ -86,6 +95,7 @@ public class FrogMovement : MonoBehaviour
 
     void shoot()
 	{
+        animator.SetTrigger(attackDirection);
         Instantiate(tongue, tonguePos.position, Quaternion.identity);
 	}
 

@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,7 +103,70 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Frog_Tongue_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 2
+        width: 6
+        height: 11
+      alignment: 9
+      pivot: {x: 0.49501753, y: 0.008316473}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb2e6b226cc11064db8a54e6367b7a83
+      internalID: 249690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frog_Tongue_1
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 2
+        width: 6
+        height: 20
+      alignment: 9
+      pivot: {x: 0.5, y: 0.0031056881}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f6af22160d56ca40854d746f74d000a
+      internalID: 621621837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Frog_Tongue_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 2
+        width: 4
+        height: 27
+      alignment: 9
+      pivot: {x: 0.5051861, y: 0.0027026776}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f1c970bc44db144e94a0a22b04d8406
+      internalID: 467024970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -114,7 +177,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Frog_Tongue_0: 249690
+      Frog_Tongue_1: 621621837
+      Frog_Tongue_2: 467024970
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
