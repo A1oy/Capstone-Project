@@ -11,4 +11,8 @@ public class UpgradeData: ScriptableObject
 
     [SerializeField]
     public PlayerShooting.BulletType bullet;
+
+
+    [SerializeField]
+    public int honeyNeeded;
 }

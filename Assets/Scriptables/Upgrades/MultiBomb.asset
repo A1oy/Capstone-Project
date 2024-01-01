@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shot: 1
   bullet: 3
+  honeyNeeded: 90

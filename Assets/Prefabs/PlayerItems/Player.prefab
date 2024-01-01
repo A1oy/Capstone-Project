@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 4171763242807627267}
-  playerdata: {fileID: 0}
+  playerdata: {fileID: 11400000, guid: ac125b84fd821234b99367b079b13c50, type: 2}
   eatingTime: 5
   honeyDeducted: 5
   healthHealed: 2
@@ -390,7 +390,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1338027987, guid: 2c8cfee213babaf48be7ae372c50c857, type: 3}
+  m_Sprite: {fileID: 1724110388, guid: 2c8cfee213babaf48be7ae372c50c857, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

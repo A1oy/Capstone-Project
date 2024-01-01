@@ -73,9 +73,11 @@ public class PlayerHoney : MonoBehaviour
         Collider2D collider =Physics2D.OverlapCircle(transform.position,
                 hiveRadius,
                 hiveLayer);
-        if (collider)
+        if (collider && collider.GetComponent<Hive>().IsInactive())
         {
             collider.gameObject.GetComponent<Hive>().StartHive();
+            canHiveInteract =false;
+            uiController.DisableHiveActivate();
         }
     }
 
@@ -147,10 +149,14 @@ public class PlayerHoney : MonoBehaviour
                 hiveLayer);
             if (collider)
             {
+                canHiveInteract =true;
                 if (collider.gameObject.GetComponent<Hive>().HasHoney())
                 {
-                    canHiveInteract =true;
                     uiController.StartHoneyCollecting();
+                }
+                else if (collider.gameObject.GetComponent<Hive>().IsInactive())
+                {
+                    uiController.EnableHiveActivate();
                 }
             }
         }
@@ -159,11 +165,20 @@ public class PlayerHoney : MonoBehaviour
             Collider2D collider =Physics2D.OverlapCircle(transform.position,
                 hiveRadius,
                 hiveLayer);
-            Debug.Log(collider);
             if (!collider)
             {
+                
                 canHiveInteract =false;
-                uiController.StopHoneyCollecting();
+                Debug.Log(uiController.IsHiveActivateEnabled());
+
+                if (uiController.IsCollecting())
+                {
+                    uiController.StopHoneyCollecting();
+                }
+                else if (uiController.IsHiveActivateEnabled())
+                {
+                    uiController.DisableHiveActivate();
+                }
                 timeCollecting =0f;
             }
             else 
@@ -175,6 +190,7 @@ public class PlayerHoney : MonoBehaviour
                     timeCollecting =0f;
                     canHiveInteract =false;
                     honey += collider.gameObject.GetComponent<Hive>().GetHoney();
+                    uiController.UpdateHoney(honey);
                 }
                 else
                 {

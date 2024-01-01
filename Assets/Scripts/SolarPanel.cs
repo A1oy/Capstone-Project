@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SolarPanel : MonoBehaviour
 {
@@ -27,6 +28,24 @@ public class SolarPanel : MonoBehaviour
 
     [SerializeField]
     Slot[] slots = new Slot[3];
+
+    UnityAction<bool> daylightChangeAction;
+
+    [SerializeField]
+    bool isActive =true;
+
+    void Start()
+    {
+        GameUI gameui =GameObject.Find("GameManager").GetComponent<GameUI>();
+        daylightChangeAction += OnDaylightChange;
+        gameui.AddDayChangeListener(daylightChangeAction);
+    }
+
+    void OnDaylightChange(bool isday)
+    {
+        Debug.Log("OnDaylightChange");
+        isActive =isday;
+    }
 
     public bool GetBattery()
     {
@@ -58,19 +77,47 @@ public class SolarPanel : MonoBehaviour
         return hasSpace;
     }
 
-    void FixedUpdate()
+    public bool HasSpace()
     {
         for (int i=0; i<3; i++)
         {
-            if (slots[i].state ==Slot.SlotState.Empty)
+            if (slots[i].state == Slot.SlotState.Nothing)
             {
-                slots[i].timeFilled += Time.deltaTime;
-                if (slots[i].timeFilled >= timeToFill)
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public bool HasFilledBattery()
+    {
+        for (int i=0; i<3; i++)
+        {
+            if (slots[i].state == Slot.SlotState.Filled)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void FixedUpdate()
+    {
+        if (isActive)
+        {
+            for (int i=0; i<3; i++)
+            {
+                if (slots[i].state ==Slot.SlotState.Empty)
                 {
-                    slots[i].timeFilled =0f;
-                    slots[i].state =Slot.SlotState.Filled;
+                    slots[i].timeFilled += Time.deltaTime;
+                    if (slots[i].timeFilled >= timeToFill)
+                    {
+                        slots[i].timeFilled =0f;
+                        slots[i].state =Slot.SlotState.Filled;
+                    }
                 }
             }
         }
+
     }
 }

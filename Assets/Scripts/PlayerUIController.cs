@@ -33,15 +33,22 @@ public class PlayerUIController : MonoBehaviour
     [SerializeField]
     Transform playerRadarArrow;
 
-
     [Header("Battery UI")]
     [SerializeField]
     Slider[] sliders;
 
+    [SerializeField]
+    GameObject insertBatteryButton;
+
+    [SerializeField]
+    GameObject getBatteryButton;
 
     [Header("Hive UI")]
     [SerializeField]
     Slider collectProgressBar;
+
+    [SerializeField]
+    GameObject hiveActiveButton;
 
     int curIndex =0;
 
@@ -144,11 +151,46 @@ public class PlayerUIController : MonoBehaviour
         }
     }
 
+    public bool InsertBatteryEnabled()
+    {
+        return insertBatteryButton.activeInHierarchy;
+    }
+    
+    public bool GetBatteryEnabled()
+    {
+        return getBatteryButton.activeInHierarchy;
+    }
+
+    public void EnableInsertBattery()
+    {
+        insertBatteryButton.SetActive(true);
+    }
+
+    public void EnableGetBattery()
+    {
+        getBatteryButton.SetActive(true);
+    }
+
+    public void DisableInsertBattery()
+    {
+        insertBatteryButton.SetActive(false);
+    }
+
+    public void DisableGetBattery()
+    {
+        getBatteryButton.SetActive(false);
+    }
+
     // Hive related functions
 
     public void StartHoneyCollecting()
     {
         collectProgressBar.gameObject.SetActive(true);
+    }
+
+    public bool IsCollecting()
+    {
+        return collectProgressBar.gameObject.activeInHierarchy;
     }
 
     public void StopHoneyCollecting()
@@ -159,5 +201,20 @@ public class PlayerUIController : MonoBehaviour
     public void UpdateCollecting(float value)
     {
         collectProgressBar.value =value;
+    }
+
+    public void EnableHiveActivate()
+    {
+        hiveActiveButton.SetActive(true);
+    }
+
+    public bool IsHiveActivateEnabled()
+    {
+        return hiveActiveButton.activeInHierarchy;
+    }
+
+    public void DisableHiveActivate()
+    {
+        hiveActiveButton.SetActive(false);
     }
 }

@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   honeyToGenerate: 10
   cooldown: 10
+  state: 1
 --- !u!114 &-8237102587139322189
 MonoBehaviour:
   m_ObjectHideFlags: 0

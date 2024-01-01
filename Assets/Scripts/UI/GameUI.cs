@@ -5,6 +5,10 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Events;
+
+[Serializable]
+public class GameEvent : UnityEvent<bool> { }
 
 public class GameUI : MonoBehaviour
 {
@@ -51,11 +55,19 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     GameWinning winning;
 
+    public GameEvent gameEvent;
+
     void Awake()
     {
+        gameEvent =new GameEvent();
         daylightSmoothingInSeconds = 1.0f/daylightSmoothingInSeconds;
         uiController.UpdateDay(GetDayString());
         uiController.UpdateTime(GetTimeString());
+    }
+
+    public void AddDayChangeListener(UnityAction<bool> cb)
+    {
+        gameEvent.AddListener(cb);
     }
 
     void DoDaylightChange()
@@ -105,6 +117,7 @@ public class GameUI : MonoBehaviour
                 time =daylightInSeconds;
             }
             isDaytime =!isDaytime;
+            gameEvent.Invoke(isDaytime);
             
             flashlight.SwitchSpotLight();
             isDaylightChanging =true;

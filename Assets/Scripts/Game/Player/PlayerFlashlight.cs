@@ -186,11 +186,15 @@ public class PlayerFlashlight : MonoBehaviour
             Collider2D solarPanel =SolarPanelNearby();
             if (solarPanel)
             {
-                uiController.RemoveEmptyBattery();
                 if (solarPanel.GetComponent<SolarPanel>().AddBattery())
                 {
                     fl.RemoveBattery();
                     uiController.RemoveEmptyBattery();
+                    if (!solarPanel.GetComponent<SolarPanel>().HasSpace()
+                        || !fl.HasEmptyBattery())
+                    {
+                        uiController.DisableInsertBattery();
+                    }
                 }
             }
         }
@@ -203,11 +207,15 @@ public class PlayerFlashlight : MonoBehaviour
             Collider2D solarPanel =SolarPanelNearby();
             if (solarPanel)
             {
-                uiController.AddFilledBattery();
                 if (solarPanel.GetComponent<SolarPanel>().GetBattery())
                 {
                     fl.AddBattery();
                     uiController.AddFilledBattery();
+                    if (!solarPanel.GetComponent<SolarPanel>().HasFilledBattery()
+                        || !fl.HasSpace())
+                    {
+                        uiController.DisableGetBattery();
+                    }
                 }
             }
         }
@@ -233,6 +241,31 @@ public class PlayerFlashlight : MonoBehaviour
             if (!fl.IsNotEmpty())
             {
                 SwitchFlashLight();
+            }
+        }
+        Collider2D solarPanel =SolarPanelNearby();
+        if (solarPanel)
+        {
+            if (!uiController.InsertBatteryEnabled()
+                && solarPanel.GetComponent<SolarPanel>().HasSpace() && fl.HasEmptyBattery())
+            {
+                uiController.EnableInsertBattery();
+            }
+            if (!uiController.GetBatteryEnabled()
+                && solarPanel.GetComponent<SolarPanel>().HasFilledBattery() && fl.HasSpace())
+            {
+                uiController.EnableGetBattery();
+            }
+        }
+        else
+        {
+            if (uiController.InsertBatteryEnabled())
+            {
+                uiController.DisableInsertBattery();
+            }
+            if (uiController.GetBatteryEnabled())
+            {
+                uiController.DisableGetBattery();
             }
         }
     }

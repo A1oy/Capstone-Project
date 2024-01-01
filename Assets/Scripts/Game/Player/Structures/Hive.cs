@@ -34,13 +34,22 @@ public class Hive : MonoBehaviour
     
     public int GetHoney()
     {
-        state =HiveState.Inactive;
-        return honeyToGenerate;
+        if (state == HiveState.Generated)
+        {
+            state =HiveState.Inactive;
+            return honeyToGenerate;
+        }
+        return 0;
     }
 
     public bool HasHoney()
     {
         return state ==HiveState.Generated;
+    }
+
+    public bool IsInactive()
+    {
+        return state ==HiveState.Inactive;
     }
 
     void FixedUpdate()
@@ -51,6 +60,7 @@ public class Hive : MonoBehaviour
             if (timeGenerating >= cooldown)
             {
                 state =HiveState.Generated;
+                timeGenerating =0f;
             }
         }
     }
