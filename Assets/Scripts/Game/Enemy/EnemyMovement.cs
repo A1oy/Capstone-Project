@@ -40,6 +40,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (attackerRef)
         {
+            agent.acceleration = 10f;
             agent.destination = attackerRef!.transform.position;
         }
         if (isAttacking)
