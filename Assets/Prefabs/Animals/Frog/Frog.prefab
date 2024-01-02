@@ -39,7 +39,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
-  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8343237173870428883}
@@ -269,11 +268,7 @@ MonoBehaviour:
   - {x: 0.021954056, y: -0.06568007, z: 0}
   m_ShapePathHash: 55668540
   m_Mesh: {fileID: 0}
-<<<<<<< Updated upstream
   m_InstanceId: 46104
-=======
-  m_InstanceId: 52326
->>>>>>> Stashed changes
   m_LocalBounds:
     m_Center: {x: 0.0006034896, y: -0.0011971444, z: 0}
     m_Extent: {x: 0.07963398, y: 0.06448293, z: 0}
