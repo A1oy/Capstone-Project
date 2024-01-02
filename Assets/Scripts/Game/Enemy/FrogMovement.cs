@@ -10,17 +10,14 @@ public class FrogMovement : MonoBehaviour
     Animator animator;
 
     //movement related
-    [SerializeField]
-    float force;
+    float force = 5f;
     float idleTimer = 0.0f;
-    public string stringDirection;
 
     //damage related
     [SerializeField]
     float attackDelay;
-    float cooldown;
-    float range = 4f;
-    string attackDirection;
+    float cooldown = 1.5f;
+    float range = 3.5f;
 
     //tongue related
     public GameObject tongue;
@@ -46,28 +43,27 @@ public class FrogMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        idleTimer += Time.deltaTime;
         bool playerFound = playerDetection();
         Vector3 direction = (attackerRef.transform.position - this.transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         if (angle >= -90 && angle <= 90)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
-            stringDirection = "JumpRight";
-            attackDirection = "AttackRight";
         }
         else if (angle >= -180 && angle <= 180)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            stringDirection = "JumpLeft";
-            attackDirection = "AttackLeft";
         }
-        if ((attackerRef) && (idleTimer >= 1.5f) && (playerFound == false))
+        if ((attackerRef) && (playerFound == false) && (animator.GetBool("Attack") == false))
         {
-            animator.SetTrigger(stringDirection);
-			direction = direction * force;
-            agent.velocity = direction;
-            idleTimer = 0.0f;
+            idleTimer += Time.deltaTime;
+            if (idleTimer >= 1.5f)
+			{
+                animator.SetTrigger("Jump");
+                direction = direction * force;
+                agent.velocity = direction;
+                idleTimer = 0.0f;
+            }
         }
         else if (playerFound)
         {
@@ -75,7 +71,7 @@ public class FrogMovement : MonoBehaviour
             if (cooldown <= 0f)
             {
                 cooldown = attackDelay;
-                shoot();
+                StartCoroutine(shoot());
             }
         }
     }
@@ -93,11 +89,16 @@ public class FrogMovement : MonoBehaviour
         }
     }
 
-    void shoot()
+    IEnumerator shoot()
 	{
-        animator.SetTrigger(attackDirection);
+        force = 0.0f;
+        animator.SetBool("Attack", true);
+        yield return new WaitForSeconds(0.5f);
         Instantiate(tongue, tonguePos.position, Quaternion.identity);
-	}
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("Attack", false);
+        force = 5.0f;
+    }
 
     void OnDrawGizmos()
     {
