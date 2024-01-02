@@ -38,7 +38,7 @@ public class SolarPanel : MonoBehaviour
     {
         GameUI gameui =GameObject.Find("GameManager").GetComponent<GameUI>();
         daylightChangeAction += OnDaylightChange;
-        gameui.AddDayChangeListener(daylightChangeAction);
+        gameui.AddDaylightChangeListener(daylightChangeAction);
     }
 
     void OnDaylightChange(bool isday)

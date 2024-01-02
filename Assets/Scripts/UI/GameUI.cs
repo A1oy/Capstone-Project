@@ -8,7 +8,11 @@ using UnityEngine.Rendering.Universal;
 using UnityEngine.Events;
 
 [Serializable]
-public class GameEvent : UnityEvent<bool> { }
+public class DaylightEvent : UnityEvent<bool> { }
+
+
+[Serializable]
+public class DayChangeEvent : UnityEvent<int> { }
 
 public class GameUI : MonoBehaviour
 {
@@ -55,19 +59,27 @@ public class GameUI : MonoBehaviour
     [SerializeField]
     GameWinning winning;
 
-    public GameEvent gameEvent;
+    public DaylightEvent daylightEvent;
+
+    public DayChangeEvent dayChangeEvent;
 
     void Awake()
     {
-        gameEvent =new GameEvent();
+        daylightEvent =new DaylightEvent();
+        dayChangeEvent =new DayChangeEvent();
         daylightSmoothingInSeconds = 1.0f/daylightSmoothingInSeconds;
         uiController.UpdateDay(GetDayString());
         uiController.UpdateTime(GetTimeString());
     }
 
-    public void AddDayChangeListener(UnityAction<bool> cb)
+    public void AddDaylightChangeListener(UnityAction<bool> cb)
     {
-        gameEvent.AddListener(cb);
+        daylightEvent.AddListener(cb);
+    }
+
+    public void AddDayChangeListener(UnityAction<int> cb)
+    {
+        dayChangeEvent.AddListener(cb);
     }
 
     void DoDaylightChange()
@@ -109,6 +121,7 @@ public class GameUI : MonoBehaviour
             {
                 day++;
                 uiController.UpdateDay(GetDayString());
+                dayChangeEvent.Invoke(day);
                 if (day!=20 && day%nWavesEachIncrease ==0)
                 {
                     daylightInSeconds -= daylightDecrease;
@@ -117,7 +130,7 @@ public class GameUI : MonoBehaviour
                 time =daylightInSeconds;
             }
             isDaytime =!isDaytime;
-            gameEvent.Invoke(isDaytime);
+            daylightEvent.Invoke(isDaytime);
             
             flashlight.SwitchSpotLight();
             isDaylightChanging =true;

@@ -56,6 +56,7 @@ public class UpgradeController : MonoBehaviour
         mainUi.SetActive(false);
 
         upgradeCam.Priority =1;
+        upgradeUi.GetComponent<UpgradeUIController>().UpdateHoney();
         upgradeUi.SetActive(true);
     }
 }

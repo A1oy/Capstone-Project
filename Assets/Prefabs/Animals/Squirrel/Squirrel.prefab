@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4005127197643398657}
   - component: {fileID: 240229882709134113}
   - component: {fileID: -575305959052192684}
+  - component: {fileID: -6105392116178912631}
   - component: {fileID: 3071788150450936247}
   - component: {fileID: 4898262046181749255}
   - component: {fileID: 3502751330237878781}
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
-  maxHealth: 5
+  maxHealth: 3
   iFrames: {fileID: 0}
 --- !u!114 &4935831960538269831
 MonoBehaviour:
@@ -196,7 +197,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.1
-  m_Speed: 0.85
+  m_Speed: 1.8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -208,6 +209,19 @@ NavMeshAgent:
   m_BaseOffset: 0.08
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-6105392116178912631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3775392459466963349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e6ff649116dc542a409e7bc206a4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingFX: {fileID: 4898262046181749255}
 --- !u!114 &3071788150450936247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +470,7 @@ MonoBehaviour:
   - {x: -0.053062316, y: -0.13002312, z: 0}
   m_ShapePathHash: -1965709795
   m_Mesh: {fileID: 0}
-  m_InstanceId: 48918
+  m_InstanceId: 98952
   m_LocalBounds:
     m_Center: {x: 0.0052760392, y: -0.080923945, z: 0}
     m_Extent: {x: 0.09631384, y: 0.07392934, z: 0}

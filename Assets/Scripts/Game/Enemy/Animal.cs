@@ -35,6 +35,7 @@ public class Animal : MonoBehaviour
 
     public void OnPause()
     {
+        Debug.Log(gameObject.name);
         animalWalking.StopWalking();
     }
 

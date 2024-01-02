@@ -37,6 +37,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField]
     Transform firePoint;
 
+    [SerializeField]
+    AudioSource shootSfx;
+
     void FixedUpdate()
     {
         if (controller.Move())
@@ -56,6 +59,7 @@ public class PlayerShooting : MonoBehaviour
 
     public void DoShoot()
     {
+        shootSfx.Play();
         if (shot ==ShotType.Single)
         {
             ShotPool.Instantiate(transform.position, firePoint.rotation, player);

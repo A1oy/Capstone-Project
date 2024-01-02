@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d3bbcd9edebd64a811a47e420300c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hitClip: {fileID: 8300000, guid: 94e06240c1563f549aa4e386a351fefe, type: 3}
+  m_hitClip: {fileID: 8300000, guid: 43f1824f16e28a448a62d0d9ccc962dd, type: 3}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

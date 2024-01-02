@@ -67,7 +67,10 @@ public class Flashlight
                     }
                 }
             }
-            uiController.UpdateActiveBattery(GetActiveUsed());
+            if (IsNotEmpty())
+            {
+                uiController.UpdateActiveBattery(GetActiveUsed());
+            }
         }
     }
 

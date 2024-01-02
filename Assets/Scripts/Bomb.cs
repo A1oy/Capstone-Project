@@ -21,7 +21,6 @@ public class Bomb : Bullet
         {
             Vector3 dir =collision.transform.position -transform.position;
             Vector3 force =dir.normalized /(dir.magnitude*dir.magnitude) * 17.2f;
-            Debug.Log(force);
             collision.GetComponent<Rigidbody2D>().AddForce(
                 force,
                 ForceMode2D.Impulse);
