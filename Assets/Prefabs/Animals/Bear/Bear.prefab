@@ -16,7 +16,9 @@ GameObject:
   - component: {fileID: 6356890049845407199}
   - component: {fileID: 2693776082002587827}
   - component: {fileID: 6356890049845407197}
+  - component: {fileID: 4768823127212629887}
   - component: {fileID: 3533692079715206390}
+  - component: {fileID: 2035242577347608097}
   - component: {fileID: 5692961368823819840}
   - component: {fileID: -5215711583131772593}
   - component: {fileID: 9095378077536779319}
@@ -208,6 +210,50 @@ MonoBehaviour:
   damage: 4
   hitSource: {fileID: -5215711583131772593}
   attackDelay: 1.7
+--- !u!114 &4768823127212629887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356890049845407207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.19840948, y: -0.15131512, z: 0}
+  - {x: -0.17614609, y: -0.061573274, z: -0.000000007450581}
+  - {x: -0.21305749, y: 0.0122495685, z: -0.000000007450581}
+  - {x: -0.16801186, y: 0.10571865, z: 0}
+  - {x: 0.13868648, y: 0.10344236, z: -0.000000007450581}
+  - {x: 0.23749219, y: 0.1230886, z: 0}
+  - {x: 0.28850338, y: -0.015977014, z: -0.000000007450581}
+  - {x: 0.18428291, y: -0.01814812, z: -0.000000007450581}
+  - {x: 0.24617726, y: -0.15348622, z: 0}
+  - {x: 0.18862544, y: -0.15493745, z: -0.000000007450581}
+  - {x: 0.14085776, y: -0.07025852, z: -0.000000007450581}
+  - {x: 0.09091877, y: -0.15493745, z: -0.000000007450581}
+  - {x: 0.036637295, y: -0.14842385, z: -0.000000007450581}
+  - {x: 0.034466017, y: -0.076772116, z: -0.000000007450581}
+  - {x: -0.032842983, y: -0.07894322, z: -0.000000007450581}
+  - {x: -0.067583136, y: -0.115854785, z: -0.000000007450581}
+  - {x: -0.041528028, y: -0.15710883, z: -0.000000007450581}
+  - {x: -0.124035865, y: -0.15710883, z: -0.000000007450581}
+  m_ShapePathHash: -657840481
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -206620
+  m_LocalBounds:
+    m_Center: {x: 0.037722945, y: -0.017010108, z: 0}
+    m_Extent: {x: 0.25078043, y: 0.14009872, z: 0}
 --- !u!114 &3533692079715206390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +270,19 @@ MonoBehaviour:
   - {fileID: 5692961368823819840}
   - {fileID: -5215711583131772593}
   m_musicSources: []
+--- !u!114 &2035242577347608097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356890049845407207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e6ff649116dc542a409e7bc206a4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingFX: {fileID: 5692961368823819840}
 --- !u!82 &5692961368823819840
 AudioSource:
   m_ObjectHideFlags: 0

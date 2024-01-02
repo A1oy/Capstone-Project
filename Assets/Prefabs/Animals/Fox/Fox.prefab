@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -553118133812762622}
   - component: {fileID: -5201214466480199786}
   - component: {fileID: -3372629015977812078}
+  - component: {fileID: 8406323049852374693}
   - component: {fileID: 7171615442071013086}
   - component: {fileID: -3224592827261057344}
   - component: {fileID: 1083180422523515550}
@@ -165,7 +166,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.000000029802322, y: -0.00061929226}
+  m_Offset: {x: 0.011515826, y: -0.08437423}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -176,7 +177,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3222164, y: 0.32345492}
+  m_Size: {x: 0.20047796, y: 0.15594505}
   m_EdgeRadius: 0
 --- !u!50 &-553118133812762622
 Rigidbody2D:
@@ -209,7 +210,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.16
-  m_Speed: 1.2
+  m_Speed: 1.6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -237,6 +238,19 @@ MonoBehaviour:
   - {fileID: 7171615442071013086}
   - {fileID: -3224592827261057344}
   m_musicSources: []
+--- !u!114 &8406323049852374693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778099470594254656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e6ff649116dc542a409e7bc206a4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingFX: {fileID: 7171615442071013086}
 --- !u!82 &7171615442071013086
 AudioSource:
   m_ObjectHideFlags: 0
@@ -449,16 +463,27 @@ MonoBehaviour:
   m_SelfShadows: 1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: -0.16199279, y: -0.16339009, z: 0}
-  - {x: -0.1618757, y: 0.16094382, z: 0}
-  - {x: 0.16022757, y: 0.1606169, z: 0}
-  - {x: 0.16191788, y: -0.16112068, z: 0}
-  m_ShapePathHash: 1461221740
+  - {x: 0.017667515, y: -0.15020402, z: 0}
+  - {x: -0.057103757, y: -0.14211188, z: 0}
+  - {x: -0.065345064, y: -0.100905396, z: 0}
+  - {x: -0.09429706, y: -0.086295135, z: 0}
+  - {x: -0.072600566, y: -0.06002061, z: 0}
+  - {x: -0.08570567, y: -0.0076001887, z: 0}
+  - {x: -0.034741364, y: -0.039634883, z: 0}
+  - {x: -0.018724008, y: -0.009056305, z: 0}
+  - {x: 0.0016617094, y: -0.030898146, z: 0}
+  - {x: 0.0031178424, y: -0.060020614, z: 0}
+  - {x: 0.026415808, y: -0.0905992, z: 0}
+  - {x: 0.09764002, y: -0.038322143, z: 0}
+  - {x: 0.09948092, y: -0.0926641, z: 0}
+  - {x: 0.054977898, y: -0.122332774, z: 0}
+  - {x: 0.059725784, y: -0.15287939, z: 0}
+  m_ShapePathHash: 2030762011
   m_Mesh: {fileID: 0}
-  m_InstanceId: 54730
+  m_InstanceId: 109746
   m_LocalBounds:
-    m_Center: {x: -0.00003746152, y: -0.001223132, z: 0}
-    m_Extent: {x: 0.16195533, y: 0.16216695, z: 0}
+    m_Center: {x: 0.0025919303, y: -0.08023979, z: 0}
+    m_Extent: {x: 0.09688899, y: 0.0726396, z: 0}
 --- !u!95 &4923931082367404412
 Animator:
   serializedVersion: 5

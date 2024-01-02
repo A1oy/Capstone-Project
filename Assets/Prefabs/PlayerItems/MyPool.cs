@@ -19,6 +19,7 @@ public class MyPool<T>  : MyPoolBase where T: IPoolable
     void OnEnable()
     {
         MyPool<T>.prefabRef =prefab;
+        pool = new ObjectPool<GameObject>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, 100, 1000);
     }
 
     void OnDisable()
@@ -28,7 +29,7 @@ public class MyPool<T>  : MyPoolBase where T: IPoolable
     }
 
     static GameObject prefabRef;
-    public static IObjectPool<GameObject> pool =new ObjectPool<GameObject>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, true, 100, 1000);
+    public static IObjectPool<GameObject> pool;
 
     static GameObject CreatePooledItem()
     {

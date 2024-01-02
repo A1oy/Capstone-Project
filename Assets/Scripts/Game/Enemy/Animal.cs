@@ -12,6 +12,7 @@ public class Animal : MonoBehaviour
     void Awake()
     {
         health =GetComponent<Health>();
+        animalWalking =GetComponent<WalkingFX>();
     }
 
     public void DoAttack(int damage, PlayerData player)

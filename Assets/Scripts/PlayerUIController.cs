@@ -72,8 +72,11 @@ public class PlayerUIController : MonoBehaviour
 
     // Honey related functions
 
-    public void UpdateHoney(int value)
+    public void UpdateHoney()
     {
+        int value =NetworkManager0.GetLocalPlayer()
+            .GetComponent<PlayerHoney>()
+            .GetHoney();
         honey.text =Convert.ToString(value);
         honeyJar.value = value;
     }

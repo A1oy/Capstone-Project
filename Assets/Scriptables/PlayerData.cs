@@ -16,11 +16,11 @@ public class PlayerData : ScriptableObject
     
     public void AddHoneyCosumed(int honeyCosumed)
     {
-        honeyCosumed +=honeyCosumed;
+        this.honeyCosumed +=honeyCosumed;
     }
 
     public void AddHoneyCollected(int honeyCollected)
     {
-        honeyCollected +=honeyCollected;
+        this.honeyCollected +=honeyCollected;
     }
 }

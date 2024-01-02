@@ -23,7 +23,8 @@ public class PlayerHoney : MonoBehaviour
     [SerializeField]
     PlayerData playerdata;
 
-    int honey =10;
+    [SerializeField]
+    int honey;
 
     [SerializeField]
     float eatingTime;
@@ -85,7 +86,17 @@ public class PlayerHoney : MonoBehaviour
     {
         uiController =GameObject.Find("PlayerUI")
             .GetComponent<PlayerUIController>();
-        uiController.UpdateHoney(honey);
+        uiController.UpdateHoney();
+    }
+
+    public void RefreshHoney()
+    {
+        uiController.UpdateHoney();
+    }
+
+    public int GetHoney()
+    {
+        return honey;
     }
 
     void DoEating()
@@ -99,7 +110,9 @@ public class PlayerHoney : MonoBehaviour
             state = CosumeHoneyState.Cooldown;
 
             honey -= honeyDeducted;
-            uiController.UpdateHoney(honey);
+            playerdata.AddHoneyCosumed(honeyDeducted);
+
+            uiController.UpdateHoney();
             playerHealth.Heal(healthHealed);
             glupingSource.Play();
         }
@@ -138,6 +151,25 @@ public class PlayerHoney : MonoBehaviour
             StopEatingState();
             state =CosumeHoneyState.Nothing;
         }
+    }
+
+    void AddHoney(int honey)
+    {
+        if (this.honey <= 200)
+        {
+            this.honey +=honey;
+            playerdata.AddHoneyCollected(honey);
+        }
+    }
+    
+    public bool Purchase(UpgradeData data)
+    {
+        if (this.honey >=data.honeyNeeded)
+        {
+            honey -= data.honeyNeeded;
+            return true;
+        }
+        return false;
     }
 
     void FixedUpdate()
@@ -189,8 +221,8 @@ public class PlayerHoney : MonoBehaviour
                     uiController.StopHoneyCollecting();
                     timeCollecting =0f;
                     canHiveInteract =false;
-                    honey += collider.gameObject.GetComponent<Hive>().GetHoney();
-                    uiController.UpdateHoney(honey);
+                    AddHoney(collider.gameObject.GetComponent<Hive>().GetHoney());
+                    uiController.UpdateHoney();
                 }
                 else
                 {

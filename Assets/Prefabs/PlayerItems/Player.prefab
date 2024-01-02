@@ -300,8 +300,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 4171763242807627267}
   playerdata: {fileID: 11400000, guid: ac125b84fd821234b99367b079b13c50, type: 2}
+  honey: 100
   eatingTime: 5
-  honeyDeducted: 5
+  honeyDeducted: 15
   healthHealed: 2
   cooldown: 0.6
   glupingSource: {fileID: 395658827057782469}

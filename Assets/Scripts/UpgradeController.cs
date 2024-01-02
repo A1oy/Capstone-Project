@@ -31,6 +31,9 @@ public class UpgradeController : MonoBehaviour
     void OnClose(InputAction.CallbackContext cc)
     {
         CloseUpgrade();
+        NetworkManager0.GetLocalPlayer()
+            .GetComponent<PlayerHoney>()
+            .RefreshHoney();
     }
 
     void CloseUpgrade()

@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
         InputManager.input.Player.Walking.performed += OnWalking;
         InputManager.input.Player.Walking.canceled += OnWalkingCancelled;
 
+        walkingfx =GetComponent<WalkingFX>();
+
         pauseController =GameObject.Find("PauseController").GetComponent<PauseController>();
         upgradeController =GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
         uiController =GameObject.Find("PlayerUI").GetComponent<PlayerUIController>();
@@ -176,7 +178,7 @@ public class PlayerController : MonoBehaviour
         if (state != PlayerMovementState.InMenu)
         {
             UpdatePlayerSprite(angle);
-            uiController.UpdateRadarRotation( Quaternion.Euler(0f, 0f, angle));
+            uiController.UpdateRadarRotation(Quaternion.Euler(0f, 0f, angle));
         }
     }
 
