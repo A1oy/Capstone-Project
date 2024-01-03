@@ -119,6 +119,10 @@ public class Flashlight
             if (batteries[i].state == Battery.BatteryState.TakenOut)
             {
                 batteries[i].state =Battery.BatteryState.NotEmpty;
+                if (!IsNotEmpty())
+                {
+                    indexToDrain =i;
+                }
                 break;
             }
         }

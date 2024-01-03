@@ -24,6 +24,7 @@ public class Bomb : Bullet
             collision.GetComponent<Rigidbody2D>().AddForce(
                 force,
                 ForceMode2D.Impulse);
+            collision.GetComponent<Animal>().DoAttack(damage, player);
         }
     }
 }

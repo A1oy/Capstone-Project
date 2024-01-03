@@ -23,7 +23,6 @@ public class PlayerHoney : MonoBehaviour
     [SerializeField]
     PlayerData playerdata;
 
-    [SerializeField]
     int honey;
 
     [SerializeField]

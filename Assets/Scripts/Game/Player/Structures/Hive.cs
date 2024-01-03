@@ -22,6 +22,9 @@ public class Hive : MonoBehaviour
     float cooldown;
 
     [SerializeField]
+    float timeToGenerate;
+
+    [SerializeField]
     Sprite emptyHive;
 
     [SerializeField]
@@ -33,7 +36,7 @@ public class Hive : MonoBehaviour
     [SerializeField]
     HiveState state =HiveState.Inactive;
 
-    float timeGenerating;
+    float timeDone;
 
     [SerializeField]
     [Range(0, 1)]
@@ -45,7 +48,7 @@ public class Hive : MonoBehaviour
     {
         if (state == HiveState.Inactive)
         {
-            timeGenerating =0f;
+            timeDone =0f;
             state =HiveState.Generating;
             sr.color =Color.white;
         }
@@ -55,7 +58,7 @@ public class Hive : MonoBehaviour
     {
         if (state == HiveState.Generated)
         {
-            state =HiveState.Inactive;
+            state =HiveState.Cooldown;
             sr.color =inactiveColor;
             sr.sprite = emptyHive;
             return honeyToGenerate;
@@ -77,16 +80,25 @@ public class Hive : MonoBehaviour
     {
         if (state ==HiveState.Generating)
         {
-            timeGenerating += Time.deltaTime;
-            if (timeGenerating >= cooldown)
+            timeDone += Time.deltaTime;
+            if (timeDone >= timeToGenerate)
             {
                 state =HiveState.Generated;
                 sr.sprite = fullHive;
-                timeGenerating =0f;
+                timeDone =0f;
             }
-            else if ((timeGenerating/cooldown) >=0.6f)
+            else if ((timeDone/timeToGenerate) >=spriteChangeThreshold)
             {
                 sr.sprite =halfFullHive;
+            }
+        }
+        else if (state == HiveState.Cooldown)
+        {
+            timeDone += Time.deltaTime;
+            if (timeDone >= cooldown)
+            {
+                state =HiveState.Inactive;
+                timeDone =0f;
             }
         }
     }

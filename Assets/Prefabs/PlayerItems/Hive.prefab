@@ -53,12 +53,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sr: {fileID: 4076290684103387666}
   honeyToGenerate: 10
-  cooldown: 10
+  cooldown: 5
+  timeToGenerate: 10
   emptyHive: {fileID: 1705196482, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
   halfFullHive: {fileID: 32342417, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
   fullHive: {fileID: -1461838284, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
   state: 1
-  spriteChangeThreshold: 0
+  spriteChangeThreshold: 0.6
 --- !u!212 &4076290684103387666
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -188,7 +189,7 @@ MonoBehaviour:
   - {x: -0.043714635, y: -0.06589383, z: 0}
   m_ShapePathHash: -111510483
   m_Mesh: {fileID: 0}
-  m_InstanceId: 42644
+  m_InstanceId: 33850
   m_LocalBounds:
     m_Center: {x: -0.0011583418, y: 0.0003386587, z: 0}
     m_Extent: {x: 0.06620261, y: 0.067300774, z: 0}
