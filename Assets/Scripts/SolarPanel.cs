@@ -43,7 +43,6 @@ public class SolarPanel : MonoBehaviour
 
     void OnDaylightChange(bool isday)
     {
-        Debug.Log("OnDaylightChange");
         isActive =isday;
     }
 

@@ -114,7 +114,7 @@ public class PlayerUIController : MonoBehaviour
     {
         for (int i=0; i<3; i++)
         {
-            if (sliders[i].value ==0f)
+            if (sliders[i].value ==0f && sliders[i].gameObject.transform.parent.gameObject.activeInHierarchy)
             {
                 sliders[i].gameObject.transform.parent.gameObject.SetActive(false);
                 break;
@@ -147,7 +147,6 @@ public class PlayerUIController : MonoBehaviour
                 if (sliders[i].value >0f && i!=curIndex)
                 {
                     curIndex =i;
-                    Debug.Log(curIndex);
                     break;
                 }
             }

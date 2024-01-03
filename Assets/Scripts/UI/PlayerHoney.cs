@@ -181,14 +181,16 @@ public class PlayerHoney : MonoBehaviour
                 hiveLayer);
             if (collider)
             {
-                canHiveInteract =true;
+                
                 if (collider.gameObject.GetComponent<Hive>().HasHoney())
                 {
+                    canHiveInteract =true;
                     uiController.StartHoneyCollecting();
                 }
                 else if (collider.gameObject.GetComponent<Hive>().IsInactive())
                 {
                     uiController.EnableHiveActivate();
+                    canHiveInteract =true;
                 }
             }
         }
@@ -199,9 +201,7 @@ public class PlayerHoney : MonoBehaviour
                 hiveLayer);
             if (!collider)
             {
-                
                 canHiveInteract =false;
-                Debug.Log(uiController.IsHiveActivateEnabled());
 
                 if (uiController.IsCollecting())
                 {

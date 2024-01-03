@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8605943059218332475}
   - component: {fileID: 3613953715875991461}
-  - component: {fileID: -8237102587139322189}
   - component: {fileID: 4076290684103387666}
   - component: {fileID: 1316753982213257204}
   - component: {fileID: 6233785138992800419}
@@ -52,25 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04275680c47970d4aa1ac0b00e32b023, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sr: {fileID: 4076290684103387666}
   honeyToGenerate: 10
   cooldown: 10
+  emptyHive: {fileID: 1705196482, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
+  halfFullHive: {fileID: 32342417, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
+  fullHive: {fileID: -1461838284, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
   state: 1
---- !u!114 &-8237102587139322189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601549028536971070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4932d379480998242ac87515c6e09ad4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  damagePrefab: {fileID: 0}
-  maxHealth: 10
-  iFrames: {fileID: 0}
+  spriteChangeThreshold: 0
 --- !u!212 &4076290684103387666
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -112,8 +100,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.754717, g: 0.71312904, b: 0.009967921, a: 1}
+  m_Sprite: {fileID: 1705196482, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
+  m_Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -157,18 +145,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00035176054, y: -0.0001078397}
+  m_Offset: {x: -0.0003517568, y: 0.010104738}
   m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13274318, y: 0.13431305}
+  m_Size: {x: 0.19773233, y: 0.22344099}
   m_EdgeRadius: 0
 --- !u!114 &4991575500030062656
 MonoBehaviour:
@@ -200,7 +188,7 @@ MonoBehaviour:
   - {x: -0.043714635, y: -0.06589383, z: 0}
   m_ShapePathHash: -111510483
   m_Mesh: {fileID: 0}
-  m_InstanceId: 163354
+  m_InstanceId: 42644
   m_LocalBounds:
     m_Center: {x: -0.0011583418, y: 0.0003386587, z: 0}
     m_Extent: {x: 0.06620261, y: 0.067300774, z: 0}

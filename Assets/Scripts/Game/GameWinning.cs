@@ -2,24 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Events;
 
 public class GameWinning : MonoBehaviour
 {
     [SerializeField]
-    GameUI m_gameUI;
+    GameUI gameUI;
     
     [SerializeField]
-    UnityEngine.Rendering.Universal.Light2D m_globalLight;
+    Light2D globalLight;
 
     [SerializeField]
-    int m_winningDays;
+    int winningDays;
 
     bool doDaylightCheck=false;
+
+    UnityAction<bool> daylightChangeAction;
+
+    void Start()
+    {
+        daylightChangeAction += OnDaylightChange;
+        gameUI.AddDaylightChangeListener(daylightChangeAction);
+    }
 
     void FixedUpdate()
     {
         if (doDaylightCheck
-            && m_globalLight.color.r ==1f)
+            && globalLight.color.r ==1f)
         {
             DontDestroyOnLoad(GameObject.Find("GameplayManager"));
             SceneManager.LoadScene("Game Win");
@@ -28,7 +38,7 @@ public class GameWinning : MonoBehaviour
 
     void OnDaylightChange(bool isDayTime)
     {
-        if (m_gameUI.GetDay()==m_winningDays)
+        if (gameUI.GetDay()==winningDays)
         {
             doDaylightCheck =true;
         }

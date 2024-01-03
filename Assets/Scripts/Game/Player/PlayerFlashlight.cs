@@ -107,6 +107,7 @@ public class Flashlight
             if (batteries[i].state == Battery.BatteryState.Empty)
             {
                 batteries[i].state =Battery.BatteryState.TakenOut;
+                break;
             }
         }
     }
@@ -118,6 +119,7 @@ public class Flashlight
             if (batteries[i].state == Battery.BatteryState.TakenOut)
             {
                 batteries[i].state =Battery.BatteryState.NotEmpty;
+                break;
             }
         }
     }
@@ -189,15 +191,16 @@ public class PlayerFlashlight : MonoBehaviour
             Collider2D solarPanel =SolarPanelNearby();
             if (solarPanel)
             {
-                if (solarPanel.GetComponent<SolarPanel>().AddBattery())
+                if (fl.HasEmptyBattery() && solarPanel.GetComponent<SolarPanel>().AddBattery())
                 {
+                    Debug.Log("fl.RemoveBattery");
                     fl.RemoveBattery();
                     uiController.RemoveEmptyBattery();
-                    if (!solarPanel.GetComponent<SolarPanel>().HasSpace()
-                        || !fl.HasEmptyBattery())
-                    {
-                        uiController.DisableInsertBattery();
-                    }
+                }
+                if (!solarPanel.GetComponent<SolarPanel>().HasSpace()
+                    || !fl.HasEmptyBattery())
+                {
+                    uiController.DisableInsertBattery();
                 }
             }
         }
@@ -210,16 +213,16 @@ public class PlayerFlashlight : MonoBehaviour
             Collider2D solarPanel =SolarPanelNearby();
             if (solarPanel)
             {
-                if (solarPanel.GetComponent<SolarPanel>().GetBattery())
+                if (fl.HasSpace() && solarPanel.GetComponent<SolarPanel>().GetBattery())
                 {
                     fl.AddBattery();
                     uiController.AddFilledBattery();
-                    if (!solarPanel.GetComponent<SolarPanel>().HasFilledBattery()
+                }
+                if (!solarPanel.GetComponent<SolarPanel>().HasFilledBattery()
                         || !fl.HasSpace())
                     {
                         uiController.DisableGetBattery();
                     }
-                }
             }
         }
     }

@@ -287,7 +287,7 @@ MonoBehaviour:
     - timeUsed: 0
       state: 0
   uiController: {fileID: 0}
-  radiusInteract: 3
+  radiusInteract: 1.2
 --- !u!114 &3128416110433347007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   cooldown: 0.6
   glupingSource: {fileID: 395658827057782469}
   timeToCollect: 5
-  hiveRadius: 3.2
+  hiveRadius: 1.2
 --- !u!114 &8726285559092026344
 MonoBehaviour:
   m_ObjectHideFlags: 0
