@@ -8,7 +8,7 @@ public class Bullet : IPoolable
     public PlayerData player;
 
     [SerializeField]
-    int damage =1;
+    protected int damage =1;
 
     [SerializeField]
     float speed;

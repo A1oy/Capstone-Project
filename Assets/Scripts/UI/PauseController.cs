@@ -32,12 +32,7 @@ public class PauseController : MonoBehaviour
 			settingsMenu.SetActive(false);
 			pauseMenu.SetActive(true);
 		}
-		else {
-			Animal.UnPauseAllAnimals();
-			NetworkManager0.GetLocalPlayer()
-				.GetComponent<PlayerController>()
-				.ReturnToMenu();
-			InputManager.ToggleActionMap(InputManager.input.Player);
+		else {		
 			Resume();
 		}
 	}
@@ -50,6 +45,11 @@ public class PauseController : MonoBehaviour
 
 	public void Resume()
 	{
+		Animal.UnPauseAllAnimals();
+			NetworkManager0.GetLocalPlayer()
+				.GetComponent<PlayerController>()
+				.ReturnToMenu();
+		InputManager.ToggleActionMap(InputManager.input.Player);
 		pauseContainer.SetActive(false);
 		Time.timeScale =1;
 	}
