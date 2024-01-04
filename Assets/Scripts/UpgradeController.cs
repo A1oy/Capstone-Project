@@ -18,6 +18,9 @@ public class UpgradeController : MonoBehaviour
     [SerializeField]
     GameObject upgradeUi;
 
+    [SerializeField]
+    GameObject observer;
+
     public void OnEnable()
     {
         InputManager.input.Upgrade.CloseMenu.performed += OnClose;
@@ -45,6 +48,7 @@ public class UpgradeController : MonoBehaviour
         mainUi.SetActive(true);
         InputManager.ToggleActionMap(InputManager.input.Player);
         Time.timeScale =1;
+        observer.SetActive(false);
         NetworkManager0.GetLocalPlayer()
             .GetComponent<PlayerController>()
             .ReturnToMenu();
@@ -52,6 +56,7 @@ public class UpgradeController : MonoBehaviour
 
     public void OpenUpgrade()
     {
+        observer.SetActive(true);
         mainCam.Priority =0;
         mainUi.SetActive(false);
 
