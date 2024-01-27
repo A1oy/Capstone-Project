@@ -158,8 +158,9 @@ public class PlayerController : MonoBehaviour
         {
             angleLookAt+=360;
         }
-        angleLookAt *=1f/90f;
-        spriteRenderer.sprite =playerSprites[(int)angleLookAt];
+        const float reduce =1f/90f;
+        int index =(int)(angleLookAt*reduce);
+        spriteRenderer.sprite = index>3 ? playerSprites[3] : playerSprites[index];
     }
     
     // Update every frame

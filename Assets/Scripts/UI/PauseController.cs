@@ -40,6 +40,7 @@ public class PauseController : MonoBehaviour
 	public void Pause()
 	{
 		pauseContainer.SetActive(true);
+		Animal.PauseAllAnimals();
 		Time.timeScale =0;
 	}
 

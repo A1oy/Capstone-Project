@@ -24,6 +24,15 @@ public class Animal : MonoBehaviour
         }
     }
 
+    public static void PauseAllAnimals()
+    {
+        GameObject[] animals = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject animal in animals)
+        {
+            animal.GetComponent<Animal>().OnPause();
+        }
+    }
+
     public static void UnPauseAllAnimals()
     {
         GameObject[] animals =GameObject.FindGameObjectsWithTag("Enemy");
@@ -35,7 +44,6 @@ public class Animal : MonoBehaviour
 
     public void OnPause()
     {
-        Debug.Log(gameObject.name);
         animalWalking.StopWalking();
     }
 
