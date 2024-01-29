@@ -5,6 +5,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    bool poisoned = false;
+    float tickRate = 1.5f;
+    float poisonTime = 6.1f;
     enum PlayerMovementState
     {
         Normal,
@@ -181,10 +184,35 @@ public class PlayerController : MonoBehaviour
             UpdatePlayerSprite(angle);
             uiController.UpdateRadarRotation(Quaternion.Euler(0f, 0f, angle));
         }
+
+        if (poisoned)
+		{
+            poisonTime -= Time.deltaTime;
+            if (poisonTime > 0f)
+            {
+                tickRate -= Time.deltaTime;
+                if (tickRate <= 0f)
+                {
+                    tickRate = 1.5f;
+                    GetComponent<Health>().DoDamage(1);
+                }
+            }
+			else
+			{
+                poisoned = false;
+                poisonTime = 6.1f;
+
+            }
+        }
     }
 
     public bool Move()
     {
         return state != PlayerMovementState.InMenu;
     }
+
+    public void poison()
+	{
+        poisoned = true;
+	}
 }

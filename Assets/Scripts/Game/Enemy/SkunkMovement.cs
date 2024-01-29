@@ -2,33 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrogMovement : MonoBehaviour
+public class SkunkMovement : MonoBehaviour
 {
     Rigidbody2D rigidBody;
     UnityEngine.AI.NavMeshAgent agent;
     GameObject attackerRef;
     Animator animator;
-
-    //movement related
-    float force = 5f;
-    float idleTimer = 0.0f;
+    PlayerController playerScript;
 
     //damage related
+    int damage = 1;
     [SerializeField]
     float attackDelay;
     float cooldown = 1.5f;
     float range = 3.5f;
 
-    //tongue related
+    //poison gas related
     [SerializeField]
-    public GameObject tongue;
+    public GameObject gas;
     [SerializeField]
-    public Transform tonguePos;
+    public Transform gasPosition;
 
     //audio
     [SerializeField]
     AudioSource hitSource;
-
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +34,7 @@ public class FrogMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         animator = GetComponent<Animator>();
+        playerScript = attackerRef.GetComponent<PlayerController>();
 
         agent.updateRotation = false;
         agent.updateUpAxis = false;
@@ -56,50 +54,36 @@ public class FrogMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        if ((attackerRef) && (playerFound == false) && (animator.GetBool("Attack") == false))
+        if ((attackerRef) && (playerFound == false))
         {
-            idleTimer += Time.deltaTime;
-            if (idleTimer >= 1.5f)
-			{
-                animator.SetTrigger("Jump");
-                direction = direction * force;
-                agent.velocity = direction;
-                idleTimer = 0.0f;
-            }
+            agent.speed = 2.5f;
+            agent.destination = attackerRef!.transform.position;
         }
         else if (playerFound)
         {
+            agent.speed = 0;
             cooldown -= Time.deltaTime;
             if (cooldown <= 0f)
             {
                 cooldown = attackDelay;
-                StartCoroutine(shoot());
+                //DoAttack();
+                //playerScript.poison();
+                Instantiate(gas, gasPosition.position, Quaternion.identity);
             }
         }
     }
 
     private bool playerDetection()
-	{
+    {
         Collider2D playerFound = Physics2D.OverlapCircle(transform.position, range, 1 << 7);
         if (playerFound)
         {
             return true;
         }
-		else
-		{
+        else
+        {
             return false;
         }
-    }
-
-    IEnumerator shoot()
-	{
-        force = 0.0f;
-        animator.SetBool("Attack", true);
-        yield return new WaitForSeconds(0.5f);
-        Instantiate(tongue, tonguePos.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.5f);
-        animator.SetBool("Attack", false);
-        force = 5.0f;
     }
 
     void OnDrawGizmos()
@@ -107,5 +91,4 @@ public class FrogMovement : MonoBehaviour
         Gizmos.color = new Color(1.0f, 0.0f, 0.0f, 0.3f);
         Gizmos.DrawSphere(transform.position, range);
     }
-
 }
