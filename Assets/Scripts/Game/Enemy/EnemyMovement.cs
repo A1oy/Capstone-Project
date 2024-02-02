@@ -7,9 +7,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     Rigidbody2D rigidBody;
-    
     UnityEngine.AI.NavMeshAgent agent;
-    
     GameObject attackerRef;
 
     [SerializeField]

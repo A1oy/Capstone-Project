@@ -5,6 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    //Skunk's poison related
+    bool poisonStatus = false;
+    float tickRate = 1.5f;
+    float poisonTime = 6.1f;
     enum PlayerMovementState
     {
         Normal,
@@ -181,10 +185,38 @@ public class PlayerController : MonoBehaviour
             UpdatePlayerSprite(angle);
             uiController.UpdateRadarRotation(Quaternion.Euler(0f, 0f, angle));
         }
+
+        if (poisonStatus)
+        {
+            if (poisonTime > 0f)
+            {
+                poisonTime -= Time.deltaTime;
+                tickRate -= Time.deltaTime;
+                if (tickRate <= 0f)
+                {
+                    tickRate = 1.5f;
+                    GetComponent<Health>().DoDamage(1);
+                }
+            }
+            else
+            {
+                poisonStatus = false;
+                poisonTime = 6.1f;
+            }
+        }
     }
 
     public bool Move()
     {
         return state != PlayerMovementState.InMenu;
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Poison"))
+		{
+            poisonStatus = true;
+            poisonTime = 6.1f;
+        }
     }
 }

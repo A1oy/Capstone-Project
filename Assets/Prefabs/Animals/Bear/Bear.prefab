@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6356890049845407198}
   - component: {fileID: 6356890049845407199}
   - component: {fileID: 2693776082002587827}
-  - component: {fileID: 6356890049845407197}
+  - component: {fileID: 2070299868677334880}
   - component: {fileID: 4768823127212629887}
   - component: {fileID: 3533692079715206390}
   - component: {fileID: 2035242577347608097}
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d96c6156af26e4a9ad025e73afa531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6356890049845407197
+--- !u!114 &2070299868677334880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,13 +204,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6356890049845407207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf7af79e14afe846b39c46a288e6edd, type: 3}
+  m_Script: {fileID: 11500000, guid: 97ceb9652886e964ea12867159e8a5b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackerRef: {fileID: 0}
-  damage: 4
-  hitSource: {fileID: -5215711583131772593}
-  attackDelay: 1.7
+  damage: 5
+  attackDelay: 3
+  hitSource: {fileID: 0}
 --- !u!114 &4768823127212629887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +250,7 @@ MonoBehaviour:
   - {x: -0.124035865, y: -0.15710883, z: -0.000000007450581}
   m_ShapePathHash: -657840481
   m_Mesh: {fileID: 0}
-  m_InstanceId: 50380
+  m_InstanceId: 49226
   m_LocalBounds:
     m_Center: {x: 0.037722945, y: -0.017010108, z: 0}
     m_Extent: {x: 0.25078043, y: 0.14009872, z: 0}
