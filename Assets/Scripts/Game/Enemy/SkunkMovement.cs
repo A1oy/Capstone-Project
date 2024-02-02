@@ -15,7 +15,7 @@ public class SkunkMovement : MonoBehaviour
     [SerializeField]
     float attackDelay;
     float cooldown = 1.5f;
-    float range = 3.5f;
+    float range = 5f;
 
     //poison gas related
     [SerializeField]
@@ -54,20 +54,20 @@ public class SkunkMovement : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-        if ((attackerRef) && (playerFound == false))
+        if ((attackerRef) && (playerFound == false) && (animator.GetBool("Attack") == false))
         {
+            animator.SetBool("Moving", true);
             agent.speed = 2.5f;
             agent.destination = attackerRef!.transform.position;
         }
         else if (playerFound)
         {
+            animator.SetBool("Moving", false);
             agent.speed = 0;
             cooldown -= Time.deltaTime;
             if (cooldown <= 0f)
             {
                 cooldown = attackDelay;
-                //DoAttack();
-                //playerScript.poison();
                 Instantiate(gas, gasPosition.position, Quaternion.identity);
             }
         }
