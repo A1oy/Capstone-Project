@@ -54,6 +54,6 @@ public class Animal : MonoBehaviour
 
     void OnDead()
     {
-        Destroy(gameObject);
+        GetComponent<IPoolable>().Release();
     }
 }

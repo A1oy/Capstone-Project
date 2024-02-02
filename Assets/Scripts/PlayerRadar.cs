@@ -21,11 +21,17 @@ public class PlayerRadar : MonoBehaviour
     [SerializeField]
     GameObject enemyPrefab;
 
+    [SerializeField]
+    float secondsDelay;
+
+    float delay;
+
     List<GameObject> enemyPool;
 
     // Start is called before the first frame update
     void Awake()
     {
+        delay =secondsDelay;
         player =NetworkManager0.GetLocalPlayer().transform;
         enemyPool =new List<GameObject>();
         radarRadius =radar.GetComponent<RectTransform>().rect.width/2.0f;
@@ -47,28 +53,39 @@ public class PlayerRadar : MonoBehaviour
 
     void Update()
     {
-        Image[] images =GetComponentsInChildren<Image>();
-        foreach (Image image in images)
-            image.gameObject.SetActive(false);
-
-        const int layerMask=1<<9;
-        Collider2D[] colliders =Physics2D.OverlapCircleAll(
-            new Vector2(player.position.x, player.position.y),
-            radius-1f,
-            layerMask);
-
-        foreach (Collider2D collider in colliders)
+        delay -=Time.deltaTime;
+        if (delay <0f)
         {
+            Image[] images =GetComponentsInChildren<Image>();
+            foreach (Image image in images)
+                image.gameObject.SetActive(false);
 
-            Vector2 dist =new Vector2(collider.gameObject.transform.position.x -player.position.x,
-                collider.gameObject.transform.position.y -player.position.y);
-            Vector2 prevd =dist;
-            dist = (dist/radius)*radarRadius;
-            GameObject newPoint =InstantiateObjectFromPool(enemyPool, enemyPrefab);
-            newPoint.GetComponent<RectTransform>().anchoredPosition =dist;
-            newPoint.transform.eulerAngles = collider.transform.eulerAngles;
+            const int layerMask=1<<9;
+            Collider2D[] colliders =Physics2D.OverlapCircleAll(
+                new Vector2(player.position.x, player.position.y),
+                radius-1f,
+                layerMask);
 
-            newPoint.SetActive(true);
+            foreach (Collider2D collider in colliders)
+            {
+
+                Vector2 dist =new Vector2(collider.gameObject.transform.position.x -player.position.x,
+                    collider.gameObject.transform.position.y -player.position.y);
+                Vector2 prevd =dist;
+                dist = (dist/radius)*radarRadius;
+                GameObject newPoint =InstantiateObjectFromPool(enemyPool, enemyPrefab);
+                newPoint.GetComponent<RectTransform>().anchoredPosition =dist;
+                newPoint.transform.eulerAngles = collider.transform.eulerAngles;
+
+                newPoint.SetActive(true);
+            }
+            delay =secondsDelay;
+        }
+        else 
+        {
+            Image[] images =GetComponentsInChildren<Image>();
+            foreach (Image image in images)
+                image.color =new Color(1f, 1f, 1f, delay/secondsDelay);
         }
     }
     

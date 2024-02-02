@@ -133,6 +133,7 @@ public class GameUI : MonoBehaviour
             daylightEvent.Invoke(isDaytime);
             
             flashlight.SwitchSpotLight();
+            flashlight.SwitchFlashLight();
             isDaylightChanging =true;
         }
         uiController.UpdateTime(GetTimeString());

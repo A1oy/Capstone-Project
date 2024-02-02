@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IFrame : MonoBehaviour
+public class Invunerability : MonoBehaviour
 {
     [SerializeField]
-    float iFramesInSeconds;
+    float seconds;
 
     float cooldown;
 
     bool isActive =false;
 
-    public void TriggerFrames()
+    public void TriggerInvun()
     {
         isActive =true;
     }
@@ -26,7 +26,7 @@ public class IFrame : MonoBehaviour
         if (isActive)
         {
             cooldown += Time.deltaTime;
-            if (cooldown >= iFramesInSeconds)
+            if (cooldown >= seconds)
             {
                 isActive =false;
                 cooldown =0f;

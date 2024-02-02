@@ -93,39 +93,3 @@ public class EnemyMovement : MonoBehaviour
         hitSource.Play();
     }
 }
-
-/*float DetermineClosest(Vector3 currentPos, float bestDist, GameObject[] gameObjs, ref GameObject gameObjTarget)
-    {
-        Vector3 vectorDiff =new Vector3(0.0f, 0.0f, 0.0f);
-        foreach (GameObject gameObj in gameObjs)
-        {
-            vectorDiff =currentPos-gameObj.transform.position;
-            if (vectorDiff.magnitude < bestDist
-                && !gameObj.GetComponent<Health>().IsDead())
-            {
-                bestDist =vectorDiff.magnitude;
-                gameObjTarget =gameObj;
-            }
-        }
-        return bestDist;
-    }*/
-
-/*void DetermineTarget()
-{
-    Vector3 currentPos =transform.position;
-
-    Collider2D baitCollide = Physics2D.OverlapCircle(transform.position, detectRadius, 1 << 8);
-    if (baitCollide)
-    {
-        attackerRef = baitCollide.gameObject;
-        return;
-    }
-
-    GameObject[] playersRef =GameObject.FindGameObjectsWithTag("Player");
-
-    GameObject gameObjTarget =null;
-    float dist =Mathf.Infinity;
-    dist = DetermineClosest(currentPos, dist, playersRef, ref gameObjTarget);
-
-    attackerRef =gameObjTarget;
-}*/
