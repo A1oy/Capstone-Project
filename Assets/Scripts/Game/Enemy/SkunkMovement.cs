@@ -11,7 +11,6 @@ public class SkunkMovement : MonoBehaviour
     PlayerController playerScript;
 
     //damage related
-    int damage = 1;
     [SerializeField]
     float attackDelay;
     float cooldown = 1.5f;
