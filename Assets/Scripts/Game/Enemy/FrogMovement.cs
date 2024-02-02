@@ -21,9 +21,9 @@ public class FrogMovement : MonoBehaviour
 
     //tongue related
     [SerializeField]
-    public GameObject tongue;
+    GameObject tongue;
     [SerializeField]
-    public Transform tonguePos;
+    Transform tonguePos;
 
     //audio
     [SerializeField]

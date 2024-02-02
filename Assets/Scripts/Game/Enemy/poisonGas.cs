@@ -6,14 +6,12 @@ public class poisonGas : MonoBehaviour
 {
     float totalTime;
     private GameObject player;
-    PlayerController playerScript;
     Vector2 cSize;
     Vector2 cOffset;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<PlayerController>();
         cOffset = GetComponent<BoxCollider2D>().offset;
         cSize = GetComponent<BoxCollider2D>().size;
 
@@ -52,6 +50,5 @@ public class poisonGas : MonoBehaviour
             }
             GetComponent<BoxCollider2D>().size = cSize;
         }
-
     }
 }
