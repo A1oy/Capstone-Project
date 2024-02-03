@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,14 +11,17 @@ public class PlayerShooting : MonoBehaviour
         Single,
         Multi
     };
-    public enum BulletType
+
+    public enum BulletType : int
     {
-        Normal =0,
-        Radial,
-        Split,
-        Bomb,
-        ClusterBomb,
-        SplitBomb
+        Normal = 0,
+        Radial = 1,
+        Split = 2,  //add a feature where for every 5 kills, shoots 3 shots next 
+        SplitII = 3, //splitII skill (shoots additional 2 shots
+        DoubleShot = 4, //shots 1 extra shot regularly/reduce fire rate by 20%
+        Bomb = 5,
+        ClusterBomb = 6,
+        SplitBomb = 7
     };
 
     ShotType shot =ShotType.Single;
@@ -40,6 +44,11 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField]
     AudioSource shootSfx;
 
+    List<PostShotBehaviourCommand> psbcs = new List<PostShotBehaviourCommand>();
+    List<ShotBehaviourCommand> sbcs = new List<ShotBehaviourCommand>();
+
+    int numOfAnimalsKilledInARow = 0; 
+
     void FixedUpdate()
     {
         if (controller.Move())
@@ -57,10 +66,12 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    public bool PlayerHasFiveKills() => player.animalsKilled == 5;
+
     public void DoShoot()
     {
         shootSfx.Play();
-        if (shot ==ShotType.Single)
+        if (shot == ShotType.Single)
         {
             ShotPool.Instantiate(transform.position, firePoint.rotation, player);
         }
@@ -84,8 +95,14 @@ public class PlayerShooting : MonoBehaviour
                     ShootSpread(RadialShotPool.pool, transform.position, firePoint.rotation);
                     break;
                 case BulletType.Split:
-                    ShootSpread(SplitShotPool.pool, transform.position, firePoint.rotation);
+
                     break;
+                case BulletType.SplitII:
+                    //Implementation
+                    break;
+                case BulletType.DoubleShot:
+                    //Implementation
+                    break; 
             }
         }
     }
@@ -93,8 +110,7 @@ public class PlayerShooting : MonoBehaviour
     void ShootSpread(IObjectPool<GameObject> pool, Vector3 position, Quaternion quat)
     {
         quat.eulerAngles += new Vector3(0f, 0f, 30f);
-
-        GameObject go =pool.Get();
+        GameObject go =pool.Get(); 
         Init(go, position, quat);
         quat.eulerAngles -= new Vector3(0f, 0f, 60f);
         go =pool.Get();
@@ -116,4 +132,39 @@ public class PlayerShooting : MonoBehaviour
         shot =data.shot;
         bullet =data.bullet;
     }
+
+    /*
+    public void AddShotBehaviourCommand(ShotBehaviourCommand sbc)
+    {
+        sbcs.Add(sbc);
+        sbcs.Sort(); 
+    }
+
+    public void AddPostShotBehaviourCommand(PostShotBehaviourCommand psbc)
+    {
+        psbcs.Add(psbc);
+        psbcs.Sort(); 
+    }
+    */ 
+
+    /*
+    public void Shoot()
+    {
+        List<Bullet> bullets = new List<Bullet> { }; 
+
+        foreach(ShotBehaviourCommand sbc in sbcs) {
+            sbc.Execute(bullets); 
+        }
+
+        foreach(PostShotBehaviourCommand psbc in psbcs) {
+            foreach(Bullet bullet in bullets) {
+                psbc.Apply(bullet);
+            }
+        }
+
+        foreach(Bullet bullet in bullets) {
+            bullet.gameObject.SetActive(true);
+        }
+    }
+    */
 }

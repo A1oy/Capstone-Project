@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c403d757f50e58f4cbc1b7ef7393a0e0, type: 3}
   m_Name: Player0
   m_EditorClassIdentifier: 
+  animalsKilled: 10
+  honeyCosumed: 0
+  honeyCollected: 900
