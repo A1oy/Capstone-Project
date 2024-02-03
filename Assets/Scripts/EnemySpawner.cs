@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public struct EnemySpawn
 {
     [SerializeField]
-    public GameObject animal;
+    public MyPool2 animal;
     
     [SerializeField]
     [Range(0, 1)]
@@ -91,13 +91,14 @@ public class EnemySpawner : MonoBehaviour
         for (int i=0; i<waves[curWaveIndex].spawnMaxAmount; i++)
         {
             Vector3 luckyDraw =DoLuckyDraw();
-            GameObject animal =PickAnimal(waves[curWaveIndex].enemySpawnings);
-            Instantiate(animal, luckyDraw, Quaternion.identity);
+            MyPool2 animal =PickAnimal(waves[curWaveIndex].enemySpawnings);
+            animal.Instantiate(luckyDraw, Quaternion.identity);
+//            Instantiate(animal, luckyDraw, Quaternion.identity);
         }
         yield return new WaitForSeconds(0f);
     }
 
-    GameObject PickAnimal(EnemySpawn[] enemySpawnings)
+    MyPool2 PickAnimal(EnemySpawn[] enemySpawnings)
     {
         for (int i=0; i<enemySpawnings.Length; i++)
         {
@@ -126,7 +127,6 @@ public class EnemySpawner : MonoBehaviour
             if (radiusSquared <= (randomX+randomY))
             {
                 return new Vector3(x, y, 0f);
-                break;
             }
         }
         return Vector3.zero;

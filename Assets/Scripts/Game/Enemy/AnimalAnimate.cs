@@ -5,26 +5,28 @@ using UnityEngine.AI;
 
 public class AnimalAnimate : MonoBehaviour
 {
-    [SerializeField]
+    /*[SerializeField]
     Animator animator;
 
     [SerializeField]
     NavMeshAgent agent;
 
-    bool isRightDir =true;
+    bool isRightDir =true;*/
+    GameObject player;
 
     void Start()
     {
-        if (agent.velocity.x <0f)
+        player = GameObject.FindGameObjectWithTag("Player");
+        /*if (agent.velocity.x <0f)
         {
             animator.SetTrigger("TurnsLeft");
             isRightDir =false;
-        }
+        }*/
     }
 
     void FixedUpdate()
     {
-        if (isRightDir)
+        /*if (isRightDir)
         {
             if (agent.velocity.x <0f)
             {
@@ -36,6 +38,17 @@ public class AnimalAnimate : MonoBehaviour
         {
             isRightDir =true;
             animator.SetTrigger("TurnsRight");
+        }*/
+
+        Vector3 direction = (player.transform.position - this.transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (angle >= -90 && angle <= 90)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (angle >= -180 && angle <= 180)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }

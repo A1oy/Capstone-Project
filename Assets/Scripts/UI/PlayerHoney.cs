@@ -73,9 +73,8 @@ public class PlayerHoney : MonoBehaviour
         Collider2D collider =Physics2D.OverlapCircle(transform.position,
                 hiveRadius,
                 hiveLayer);
-        if (collider && collider.GetComponent<Hive>().IsInactive())
+        if (collider)
         {
-            collider.gameObject.GetComponent<Hive>().StartHive();
             canHiveInteract =false;
             uiController.DisableHiveActivate();
         }
@@ -185,11 +184,6 @@ public class PlayerHoney : MonoBehaviour
                 {
                     canHiveInteract =true;
                     uiController.StartHoneyCollecting();
-                }
-                else if (collider.gameObject.GetComponent<Hive>().IsInactive())
-                {
-                    uiController.EnableHiveActivate();
-                    canHiveInteract =true;
                 }
             }
         }

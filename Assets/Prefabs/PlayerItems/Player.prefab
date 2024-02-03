@@ -163,11 +163,9 @@ GameObject:
   - component: {fileID: 4171763242807627269}
   - component: {fileID: 4171763242807627279}
   - component: {fileID: 4171763242807627265}
-  - component: {fileID: 4171763242807627274}
   - component: {fileID: 3128416110433347007}
   - component: {fileID: 8726285559092026344}
   - component: {fileID: 4171763242807627267}
-  - component: {fileID: 8846253219018358216}
   - component: {fileID: 4171763242807627271}
   - component: {fileID: 4171763242807627270}
   - component: {fileID: 4171763242807627264}
@@ -176,6 +174,7 @@ GameObject:
   - component: {fileID: 4171763242807627277}
   - component: {fileID: 395658827057782469}
   - component: {fileID: 8605873228049751761}
+  - component: {fileID: 6990491800352958230}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -242,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982c2e39024fc2b4885850505ab1109d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 11400000, guid: ac125b84fd821234b99367b079b13c50, type: 2}
   controller: {fileID: 4171763242807627269}
   numShootPerFrames: 10
   firePoint: {fileID: 4171763240705784055}
@@ -261,33 +260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 4171763242807627267}
   aimCursor: {fileID: 2800000, guid: 57164753d2972bc46b00823b7146e26c, type: 3}
---- !u!114 &4171763242807627274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4171763242807627289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6adceb14bcc9f547b00c6bb87ae3138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashLight: {fileID: 4171763241227865209}
-  spotLight: {fileID: 5157280590640086198}
-  flIntensity: 1
-  slIntensity: 0.5
-  fl:
-    timeToDrain: 10
-    batteries:
-    - timeUsed: 0
-      state: 0
-    - timeUsed: 0
-      state: 0
-    - timeUsed: 0
-      state: 0
-  uiController: {fileID: 0}
-  radiusInteract: 1.2
 --- !u!114 &3128416110433347007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +274,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 4171763242807627267}
   playerdata: {fileID: 11400000, guid: ac125b84fd821234b99367b079b13c50, type: 2}
-  honey: 100
   eatingTime: 5
   honeyDeducted: 15
   healthHealed: 2
@@ -338,20 +309,7 @@ MonoBehaviour:
   health: 0
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
   maxHealth: 20
-  iFrames: {fileID: 8846253219018358216}
---- !u!114 &8846253219018358216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4171763242807627289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b828420e2a457fe4d9149de878dd3127, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iFramesInSeconds: 1
+  invunerable: {fileID: 0}
 --- !u!212 &4171763242807627271
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -764,6 +722,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6990491800352958230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4171763242807627289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6adceb14bcc9f547b00c6bb87ae3138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashLight: {fileID: 4171763241227865209}
+  spotLight: {fileID: 5157280590640086198}
+  flIntensity: 0.5
+  slIntensity: 0.3
 --- !u!1 &7720965888992046095
 GameObject:
   m_ObjectHideFlags: 0

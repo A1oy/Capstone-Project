@@ -20,8 +20,10 @@ public class FrogMovement : MonoBehaviour
     float range = 3.5f;
 
     //tongue related
-    public GameObject tongue;
-    public Transform tonguePos;
+    [SerializeField]
+    GameObject tongue;
+    [SerializeField]
+    Transform tonguePos;
 
     //audio
     [SerializeField]

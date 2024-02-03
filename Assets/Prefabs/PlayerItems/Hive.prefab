@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 4076290684103387666}
-  honeyToGenerate: 25
+  honeyToGenerate: 15
   cooldown: 15
   timeToGenerate: 25
   emptyHive: {fileID: 1705196482, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1705196482, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
+  m_Sprite: {fileID: -1461838284, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
   m_Color: {r: 0.49056602, g: 0.49056602, b: 0.49056602, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   - {x: -0.043714635, y: -0.06589383, z: 0}
   m_ShapePathHash: -111510483
   m_Mesh: {fileID: 0}
-  m_InstanceId: 56670
+  m_InstanceId: 58722
   m_LocalBounds:
     m_Center: {x: -0.0011583418, y: 0.0003386587, z: 0}
     m_Extent: {x: 0.06620261, y: 0.067300774, z: 0}

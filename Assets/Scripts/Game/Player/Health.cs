@@ -15,9 +15,9 @@ public class Health : MonoBehaviour
     int maxHealth;
 
     [SerializeField]
-    IFrame iFrames;
+    Invunerability invunerable;
 
-    void Awake()
+    void OnEnable()
     {
         health =maxHealth;
     }
@@ -34,16 +34,15 @@ public class Health : MonoBehaviour
 
     public void DoDamage(int damage)
     {
-        bool canAttack = iFrames ? iFrames.CanAttack() : true;
+        bool canAttack = invunerable ? invunerable.CanAttack() : true;
         if (canAttack)
         {
             health -=damage;
-            if (iFrames)
+            if (invunerable)
             {
-                iFrames.TriggerFrames();
+                invunerable.TriggerInvun();
             }
-            Instantiate(damagePrefab,
-                transform, false);
+            Instantiate(damagePrefab, transform, false);
             damagePrefab.GetComponent<IDamageValue>().text = $"-{damage}";
             damagePrefab.SetActive(true);
             if (health <=0)

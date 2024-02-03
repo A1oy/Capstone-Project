@@ -10,6 +10,7 @@ TagManager:
   - Bait
   - Obstacle
   - Building
+  - Poison
   layers:
   - Default
   - TransparentFX
