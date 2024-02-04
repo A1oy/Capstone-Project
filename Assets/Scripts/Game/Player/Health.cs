@@ -42,12 +42,13 @@ public class Health : MonoBehaviour
             {
                 invunerable.TriggerInvun();
             }
+            SendMessage("OnDamageTaken", damage, SendMessageOptions.DontRequireReceiver);
             Instantiate(damagePrefab, transform, false);
             damagePrefab.GetComponent<IDamageValue>().text = $"-{damage}";
             damagePrefab.SetActive(true);
             if (health <=0)
             {
-                SendMessage("OnDead");
+                SendMessage("OnDead", SendMessageOptions.DontRequireReceiver);
             }
         }
     }

@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField]
+    PlayerUIController uiController;
+
+    [SerializeField]
     Health health;
 
     [SerializeField]
@@ -15,6 +18,8 @@ public class PlayerStatus : MonoBehaviour
     void Awake()
     {
         SetAimCursor();
+        uiController =GameObject.Find("PlayerUI")
+            .GetComponent<PlayerUIController>();
     }
 
     void OnDestroy()
@@ -35,5 +40,11 @@ public class PlayerStatus : MonoBehaviour
     void OnDead()
     {
         SceneManager.LoadScene("Game Over");
+    }
+
+    void OnDamageTaken()
+    {
+        uiController.UpdateHealth(health);
+        uiController.UpdateHealthBar(health);
     }
 }

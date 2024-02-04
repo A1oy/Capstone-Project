@@ -1439,9 +1439,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1072625208}
     m_Modifications:
+    - target: {fileID: 2025689122353686306, guid: ccb359b714fb24a408fbdee0e259ec38, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2464638621969246121, guid: ccb359b714fb24a408fbdee0e259ec38, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861066547877339335, guid: ccb359b714fb24a408fbdee0e259ec38, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861066547877339335, guid: ccb359b714fb24a408fbdee0e259ec38, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861066547877339335, guid: ccb359b714fb24a408fbdee0e259ec38, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 11.176086
       objectReference: {fileID: 0}
     - target: {fileID: 3330280392663731951, guid: ccb359b714fb24a408fbdee0e259ec38, type: 3}
       propertyPath: m_Name
@@ -4152,6 +4168,7 @@ GameObject:
   - component: {fileID: 1013991673}
   - component: {fileID: 1013991672}
   - component: {fileID: 1013991671}
+  - component: {fileID: 1013991676}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -4290,6 +4307,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gamePrefab: {fileID: 6356890049845407207, guid: 1478dbdf2abf58641b0023716f0ba92d, type: 3}
+--- !u!114 &1013991676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013991668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592fdb362479f934bbc0384eef180454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gamePrefab: {fileID: 1188112099}
 --- !u!1 &1072625204
 GameObject:
   m_ObjectHideFlags: 0
@@ -4544,6 +4574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skunk
       objectReference: {fileID: 0}
+    - target: {fileID: 2920782066045257892, guid: ebdf1486e57e9fa4e92fdda0580d2bff, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2920782066045257900, guid: ebdf1486e57e9fa4e92fdda0580d2bff, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -4666,6 +4700,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181193372}
   m_CullTransparentMesh: 1
+--- !u!1 &1188112099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2920782066045257892, guid: ebdf1486e57e9fa4e92fdda0580d2bff, type: 3}
+  m_PrefabInstance: {fileID: 1158276778}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1194412540
 GameObject:
   m_ObjectHideFlags: 0

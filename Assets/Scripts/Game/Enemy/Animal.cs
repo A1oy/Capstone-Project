@@ -54,6 +54,14 @@ public class Animal : MonoBehaviour
 
     void OnDead()
     {
-        GetComponent<IPoolable>().Release();
+        IPoolable poolable =GetComponent<IPoolable>();
+        if (poolable)
+        {
+            poolable.Release();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

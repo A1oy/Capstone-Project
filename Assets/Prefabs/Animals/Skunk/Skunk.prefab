@@ -176,7 +176,7 @@ MonoBehaviour:
   health: 3
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
   maxHealth: 3
-  iFrames: {fileID: 0}
+  invunerable: {fileID: 0}
 --- !u!114 &2920782066045257894
 MonoBehaviour:
   m_ObjectHideFlags: 0

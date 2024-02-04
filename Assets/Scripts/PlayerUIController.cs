@@ -33,15 +33,9 @@ public class PlayerUIController : MonoBehaviour
     [SerializeField]
     Transform playerRadarArrow;
 
-    [Header("Battery UI")]
+    [Header("Health UI")]
     [SerializeField]
-    Slider[] sliders;
-
-    [SerializeField]
-    GameObject insertBatteryButton;
-
-    [SerializeField]
-    GameObject getBatteryButton;
+    Slider playerHealth;
 
     [Header("Hive UI")]
     [SerializeField]
@@ -108,81 +102,6 @@ public class PlayerUIController : MonoBehaviour
         playerRadarArrow.rotation =rotation;
     }
 
-    // Battery related functions
-
-    public void RemoveEmptyBattery()
-    {
-        for (int i=0; i<3; i++)
-        {
-            if (sliders[i].value ==0f && sliders[i].gameObject.transform.parent.gameObject.activeInHierarchy)
-            {
-                sliders[i].gameObject.transform.parent.gameObject.SetActive(false);
-                break;
-            }
-        }
-    }
-
-    public void AddFilledBattery()
-    {
-        for (int i=0; i<3; i++)
-        {
-            if (!sliders[i].gameObject.transform.parent.gameObject.activeInHierarchy)
-            {
-                sliders[i].gameObject.transform.parent.gameObject.SetActive(true);
-                sliders[i].value =1f;
-                sliders[i].gameObject.transform.parent.SetAsFirstSibling();
-                break;
-            }
-        }
-    }
-
-    public void UpdateActiveBattery(float value)
-    {
-        sliders[curIndex].value =value;
-        if (value ==0f)
-        {
-            curIndex =0;
-            for (int i=0; i<3; i++)
-            {
-                if (sliders[i].value >0f && i!=curIndex)
-                {
-                    curIndex =i;
-                    break;
-                }
-            }
-        }
-    }
-
-    public bool InsertBatteryEnabled()
-    {
-        return insertBatteryButton.activeInHierarchy;
-    }
-    
-    public bool GetBatteryEnabled()
-    {
-        return getBatteryButton.activeInHierarchy;
-    }
-
-    public void EnableInsertBattery()
-    {
-        insertBatteryButton.SetActive(true);
-    }
-
-    public void EnableGetBattery()
-    {
-        getBatteryButton.SetActive(true);
-    }
-
-    public void DisableInsertBattery()
-    {
-        insertBatteryButton.SetActive(false);
-    }
-
-    public void DisableGetBattery()
-    {
-        getBatteryButton.SetActive(false);
-    }
-
     // Hive related functions
 
     public void StartHoneyCollecting()
@@ -218,5 +137,10 @@ public class PlayerUIController : MonoBehaviour
     public void DisableHiveActivate()
     {
         hiveActiveButton.SetActive(false);
+    }
+
+    public void UpdateHealthBar(Health health)
+    {
+        playerHealth.value =health.GetCurrentHealth()/(float)health.GetMaxHealth();
     }
 }
