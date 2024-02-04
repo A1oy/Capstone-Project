@@ -6,15 +6,35 @@ using UnityEngine.EventSystems;
 
 public class SplitShotCommand : ShotBehaviourCommand
 {
-    public delegate void OnAnimalKilled(); 
+    int animalsKilled =0;
 
-    public override void Execute(List<Bullet> bullets)
+    public SplitShotCommand(PlayerData player)
     {
-        
+        player.AddAnimalsKilledListener(OnAnimalKilled);
+    }
+
+    public void OnAnimalKilled()
+    {
+        animalsKilled ++;
+    }
+
+    public override void Execute(Transform fp, GameObject prefab, List<GameObject> bullets)
+    {
+        if (animalsKilled>=5)
+        {
+            animalsKilled-=5;
+            Quaternion quat =fp.rotation;
+            quat.eulerAngles += new Vector3(0f, 0f, 30f);
+            bullets.Add(Object.Instantiate(prefab, fp.position, quat));
+            quat.eulerAngles -= new Vector3(0f, 0f, 60f);
+            bullets.Add(Object.Instantiate(prefab, fp.position, quat));
+            quat.eulerAngles += new Vector3(0f, 0f, 30f);
+            bullets.Add(Object.Instantiate(prefab, fp.position, quat));
+        }
     }
 
     public override int GetPrecedence()
     {
-        throw new System.NotImplementedException();
+        return 1;
     }
 }

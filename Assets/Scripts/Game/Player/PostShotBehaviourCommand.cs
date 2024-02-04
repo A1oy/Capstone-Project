@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 
 public abstract class PostShotBehaviourCommand : IComparable<PostShotBehaviourCommand>
 {
-    public abstract void Apply(Bullet bullet); 
+    public abstract void Apply(GameObject bullet); 
 
     public abstract int GetPrecedence();
 

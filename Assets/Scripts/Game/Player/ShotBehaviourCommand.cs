@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 
 public abstract class ShotBehaviourCommand : IComparable<ShotBehaviourCommand>
 {
-    public abstract void Execute(List<Bullet> bullets);
+    public abstract void Execute(Transform fp, GameObject prefab, List<GameObject> bullets);
 
     public abstract int GetPrecedence();
 

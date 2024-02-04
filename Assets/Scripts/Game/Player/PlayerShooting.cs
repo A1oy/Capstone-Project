@@ -34,6 +34,9 @@ public class PlayerShooting : MonoBehaviour
     PlayerController controller;
 
     [SerializeField]
+    GameObject bulletPrefab;
+
+    [SerializeField]
     int numShootPerFrames;
 
     int curShootFrame =0;
@@ -47,7 +50,12 @@ public class PlayerShooting : MonoBehaviour
     List<PostShotBehaviourCommand> psbcs = new List<PostShotBehaviourCommand>();
     List<ShotBehaviourCommand> sbcs = new List<ShotBehaviourCommand>();
 
-    int numOfAnimalsKilledInARow = 0; 
+    void Awake()
+    {
+        bulletPrefab.GetComponent<Bullet>().player =player;
+        sbcs.Add(new SplitShotCommand(player));
+    }
+
 
     void FixedUpdate()
     {
@@ -59,7 +67,7 @@ public class PlayerShooting : MonoBehaviour
                 curShootFrame=0;
                 if (Input.GetButton("Fire1"))
                 {
-                    DoShoot();
+                    Shoot();
                 }
             }
           
@@ -147,24 +155,24 @@ public class PlayerShooting : MonoBehaviour
     }
     */ 
 
-    /*
     public void Shoot()
     {
-        List<Bullet> bullets = new List<Bullet> { }; 
+        List<GameObject> bullets = new List<GameObject> { }; 
+        bullets.Add(Instantiate(bulletPrefab, firePoint.position, firePoint.rotation));
 
         foreach(ShotBehaviourCommand sbc in sbcs) {
-            sbc.Execute(bullets); 
+            sbc.Execute(firePoint, bulletPrefab, bullets); 
         }
 
         foreach(PostShotBehaviourCommand psbc in psbcs) {
-            foreach(Bullet bullet in bullets) {
+            foreach(GameObject bullet in bullets) {
                 psbc.Apply(bullet);
             }
         }
 
-        foreach(Bullet bullet in bullets) {
-            bullet.gameObject.SetActive(true);
+        foreach(GameObject bullet in bullets) {
+            bullet.SetActive(true);
         }
+        bullets.Clear();
     }
-    */
 }

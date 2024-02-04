@@ -5,10 +5,17 @@ using UnityEngine.Pool;
 
 public class IPoolable : MonoBehaviour
 {
-   public IObjectPool<GameObject> pool;
+   public IObjectPool<GameObject>? pool;
 
    public virtual void Release()
    {
-      pool.Release(gameObject);
+      if (pool==null)
+      {
+         Destroy(gameObject);
+      }
+      else
+      {
+         pool.Release(gameObject);
+      }
    }
 }
