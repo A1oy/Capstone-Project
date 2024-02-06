@@ -188,7 +188,6 @@ public class PlayerController : MonoBehaviour
         if (state != PlayerMovementState.InMenu)
         {
             UpdatePlayerSprite(angle);
-            uiController.UpdateRadarRotation(Quaternion.Euler(0f, 0f, angle));
         }
     }
 

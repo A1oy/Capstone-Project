@@ -29,10 +29,6 @@ public class PlayerUIController : MonoBehaviour
     [SerializeField]
     float redThreshold;
 
-    [Header("Radar UI")]
-    [SerializeField]
-    Transform playerRadarArrow;
-
     [Header("Health UI")]
     [SerializeField]
     Slider playerHealth;
@@ -102,12 +98,6 @@ public class PlayerUIController : MonoBehaviour
         }
         healthWarning.color = new Color(1f, 0f, 0f, alpha);
         playerHealth.value = health.GetCurrentHealth() / (float)health.GetMaxHealth();
-    }
-
-    // Radar related functions
-    public void UpdateRadarRotation(Quaternion rotation)
-    {
-        playerRadarArrow.rotation =rotation;
     }
 
     // Hive related functions
