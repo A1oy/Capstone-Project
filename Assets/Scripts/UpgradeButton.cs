@@ -31,7 +31,7 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnClick()
     {
-        if (NetworkManager0.GetLocalPlayer()
+        if (GameObject.Find("Player")
             .GetComponent<PlayerHoney>()
             .Purchase(data))
         {
@@ -52,7 +52,7 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                     button.interactable =true;
                 }
             }
-            NetworkManager0.GetLocalPlayer()
+            GameObject.Find("Player")
                 .GetComponent<PlayerShooting>()
                 .SetUpgrade(data);
         }

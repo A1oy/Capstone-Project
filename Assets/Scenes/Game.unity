@@ -4200,7 +4200,8 @@ MonoBehaviour:
     - animal: {fileID: 1013991671}
       probabilityOfSpawning: 0.284
     cooldown: 8
-    spawnMaxAmount: 15
+    spawnRate: 12
+    spawnMaxAmount: 45
   - startAtWave: 5
     enemySpawnings:
     - animal: {fileID: 1013991672}
@@ -4212,7 +4213,8 @@ MonoBehaviour:
     - animal: {fileID: 1013991673}
       probabilityOfSpawning: 0.114
     cooldown: 6
-    spawnMaxAmount: 25
+    spawnRate: 12
+    spawnMaxAmount: 60
   - startAtWave: 10
     enemySpawnings:
     - animal: {fileID: 1013991672}
@@ -4226,7 +4228,8 @@ MonoBehaviour:
     - animal: {fileID: 1013991675}
       probabilityOfSpawning: 0.114
     cooldown: 4.5
-    spawnMaxAmount: 40
+    spawnRate: 12
+    spawnMaxAmount: 100
 --- !u!4 &1013991670
 Transform:
   m_ObjectHideFlags: 0
@@ -19471,10 +19474,10 @@ MonoBehaviour:
   time: 10
   day: 1
   globalLight: {fileID: 619394801}
-  daylightInSeconds: 30
-  nightInSeconds: 90
+  daylightInSeconds: 50
+  nightInSeconds: 10
   daylightDecrease: 5
-  nighttimeIncrease: 10
+  nighttimeIncrease: 5
   nWavesEachIncrease: 3
   daylightSmoothingInSeconds: 1.8
   uiController: {fileID: 2054446639}
@@ -44742,6 +44745,18 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3128416110433347007, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: eatingTime
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128416110433347007, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: hiveRadius
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128416110433347007, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: timeToCollect
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3786406268915860027, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -44793,6 +44808,10 @@ PrefabInstance:
     - target: {fileID: 4171763242807627268, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171763242807627269, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: speed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4171763242807627269, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: uiController
@@ -44858,6 +44877,14 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 4640923333562842645, guid: 82d56e3d38582264fb67fb3045d9ffe1, type: 3}
+    - target: {fileID: 4171763242807627279, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: grenadePrefab
+      value: 
+      objectReference: {fileID: 2118948769674011784, guid: 3d966ef81ca28ac4295d29d87349fd36, type: 3}
+    - target: {fileID: 4171763242807627279, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: grenadeCooldownInSeconds
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4171763242807627289, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: m_Name
       value: Player

@@ -111,7 +111,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 3
-  m_LinearDrag: 2
+  m_LinearDrag: 5
   m_AngularDrag: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -219,7 +219,7 @@ MonoBehaviour:
   health: 0
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
   maxHealth: 5
-  iFrames: {fileID: 0}
+  invunerable: {fileID: 0}
 --- !u!114 &450806031868313579
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -43,15 +43,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Add Battery",
-                    "type": "Button",
-                    "id": "04f7991b-50ab-4dc4-8fbd-0f535967a905",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Escape To Menu",
                     "type": "Button",
                     "id": "79084552-0a3c-4162-a177-99520d8a6d2e",
@@ -70,15 +61,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Flashlight",
-                    "type": "Button",
-                    "id": "d71db477-be92-4cd3-be18-2e5e1f2c665a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Walking",
                     "type": "Button",
                     "id": "dd139e1a-f645-418a-a763-acb50d7215c8",
@@ -88,18 +70,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Remove Battery",
+                    "name": "Throw Grenade",
                     "type": "Button",
-                    "id": "c5e25ff7-a4f3-4b75-8c4a-65708c1127db",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Activate Hive",
-                    "type": "Button",
-                    "id": "4cd94c66-e221-4378-94e1-4cad21ed56c5",
+                    "id": "c9c87c07-22ab-4430-ba03-174f77f8a9d6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -120,17 +93,6 @@
                 },
                 {
                     "name": "",
-                    "id": "7f48d0b3-39e5-4834-a120-1eee1b7997e6",
-                    "path": "<Keyboard>/q",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Add Battery",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ab291bd4-9f0d-44da-a691-1276ce520eba",
                     "path": "<Keyboard>/escape",
                     "interactions": "Press",
@@ -144,21 +106,10 @@
                     "name": "",
                     "id": "2ae69821-f000-438e-9b80-7722d552d42d",
                     "path": "<Keyboard>/f",
-                    "interactions": "Hold",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Eating",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5baeb002-f153-4453-9209-b38ed38be492",
-                    "path": "<Keyboard>/e",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Flashlight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -208,23 +159,12 @@
                 },
                 {
                     "name": "",
-                    "id": "71451105-8f4c-47f5-b77f-9bbbfe9c756a",
-                    "path": "<Keyboard>/r",
-                    "interactions": "Press(behavior=1)",
+                    "id": "4c64f3cc-9df2-48a8-9802-758a205b13ea",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
-                    "action": "Remove Battery",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3dc28483-a818-4c68-a443-84ef02a53778",
-                    "path": "<Keyboard>/f",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Activate Hive",
+                    "action": "Throw Grenade",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

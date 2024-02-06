@@ -47,7 +47,7 @@ public class PauseController : MonoBehaviour
 	public void Resume()
 	{
 		Animal.UnPauseAllAnimals();
-			NetworkManager0.GetLocalPlayer()
+			GameObject.Find("Player")
 				.GetComponent<PlayerController>()
 				.ReturnToMenu();
 		InputManager.ToggleActionMap(InputManager.input.Player);

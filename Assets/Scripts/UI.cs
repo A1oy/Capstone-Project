@@ -11,6 +11,6 @@ public class UI : MonoBehaviour
 
     void OnDisable()
     {
-        NetworkManager0.GetLocalPlayer().GetComponent<PlayerStatus>().SetAimCursor();
+        GameObject.Find("Player").GetComponent<PlayerStatus>().SetAimCursor();
     }
 }

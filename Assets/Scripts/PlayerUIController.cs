@@ -68,7 +68,7 @@ public class PlayerUIController : MonoBehaviour
 
     public void UpdateHoney()
     {
-        int value =NetworkManager0.GetLocalPlayer()
+        int value =GameObject.Find("Player")
             .GetComponent<PlayerHoney>()
             .GetHoney();
         honey.text =Convert.ToString(value);
@@ -94,6 +94,7 @@ public class PlayerUIController : MonoBehaviour
         float alpha = 1f - ((float)health.GetCurrentHealth()/health.GetMaxHealth());
         alpha =Mathf.Clamp(alpha, 0f, redThreshold);
         healthWarning.color = new Color(1f, 0f, 0f, alpha);
+        playerHealth.value =health.GetCurrentHealth()/(float)health.GetMaxHealth();
     }
 
     // Radar related functions
@@ -106,6 +107,7 @@ public class PlayerUIController : MonoBehaviour
 
     public void StartHoneyCollecting()
     {
+        UpdateCollecting(0f);
         collectProgressBar.gameObject.SetActive(true);
     }
 
@@ -137,10 +139,5 @@ public class PlayerUIController : MonoBehaviour
     public void DisableHiveActivate()
     {
         hiveActiveButton.SetActive(false);
-    }
-
-    public void UpdateHealthBar(Health health)
-    {
-        playerHealth.value =health.GetCurrentHealth()/(float)health.GetMaxHealth();
     }
 }

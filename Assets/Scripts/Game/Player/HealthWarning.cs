@@ -15,7 +15,7 @@ public class HealthWarning : MonoBehaviour
 
     void Awake()
     {
-        health =NetworkManager0.GetLocalPlayer()
+        health =GameObject.Find("Player")
             .GetComponent<Health>();
     }
 

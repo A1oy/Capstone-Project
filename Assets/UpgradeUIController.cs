@@ -15,7 +15,7 @@ public class UpgradeUIController : MonoBehaviour
 
     public void UpdateHoney()
     {
-        int value =NetworkManager0.GetLocalPlayer()
+        int value =GameObject.Find("Player")
             .GetComponent<PlayerHoney>()
             .GetHoney();
         honey.text = Convert.ToString(value);

@@ -11,6 +11,7 @@ TagManager:
   - Obstacle
   - Building
   - Poison
+  - Hive
   layers:
   - Default
   - TransparentFX

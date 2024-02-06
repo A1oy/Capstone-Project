@@ -64,11 +64,12 @@ public class HiveSpawner : MonoBehaviour
     {
         foreach (GameObject go in hives)
         {
-            if (!go.activeInHierarchy)
+            if (!go)
             {
                 hives.Remove(go);
             }
         }
+        Debug.Log(hives.Count);
         if (hives.Count < numberOfHivesLeftToBecomeActive)
         {
             isActive =true;
@@ -90,15 +91,35 @@ public class HiveSpawner : MonoBehaviour
         const int iters =1000;
         for  (int i=0; i<iters; i++)
         {
+            bool ok=true;
             float randomX = UnityEngine.Random.Range(spawnArea.bounds.min.x, spawnArea.bounds.max.x);
             float randomY = UnityEngine.Random.Range(spawnArea.bounds.min.y, spawnArea.bounds.max.y);
             float x =randomX;
             float y =randomY;
             randomX -= player.position.x;
             randomY -= player.position.y;
-            Debug.Log($"Spawn location: ({randomX}, {randomY})");
             randomX *= randomX;
             randomY *= randomY;
+            foreach (GameObject hive in hives)
+            {
+                if (hive)
+                {
+                    float dx =x-hive.transform.position.x;
+                    float dy =y-hive.transform.position.y;
+                    dx *=dx;
+                    dy *=dy;
+
+                    if ((dx+dy) <radiusSquared)
+                    {
+                        ok =false;
+                        break;
+                    }
+                }
+            }
+            if (!ok)
+            {
+                continue;
+            }
             if (radiusSquared <= (randomX+randomY))
             {
                 return new Vector3(x, y, 0f);

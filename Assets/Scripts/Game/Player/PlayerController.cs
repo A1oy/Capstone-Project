@@ -59,7 +59,6 @@ public class PlayerController : MonoBehaviour
         InputManager.input.Player.Upgrade.performed += OnUpgrade;
         InputManager.input.Player.EscapeToMenu.performed += OnEscapeToMenu;
         InputManager.input.Player.Eating.performed += OnEating;
-        InputManager.input.Player.Eating.canceled += OnEatingCancelled;
         InputManager.input.Player.Walking.performed += OnWalking;
         InputManager.input.Player.Walking.canceled += OnWalkingCancelled;
 
@@ -76,7 +75,6 @@ public class PlayerController : MonoBehaviour
         InputManager.input.Player.EscapeToMenu.performed -= OnEscapeToMenu;
 
         InputManager.input.Player.Eating.performed -= OnEating;
-        InputManager.input.Player.Eating.canceled -= OnEatingCancelled;
         InputManager.input.Player.Disable();
     }
 
@@ -99,19 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         if (state != PlayerMovementState.InMenu)
         {
-            playerSpeed =eatingSpeed;
-            state = PlayerMovementState.Eating;
-            playerHoney.StartEating();
-        }
-    }
-
-    void OnEatingCancelled(InputAction.CallbackContext cc)
-    {
-        if (state == PlayerMovementState.Eating)
-        {
-            playerSpeed =speed;
-            state = PlayerMovementState.Normal;
-            playerHoney.StopEating();
+            playerHoney.DoEating();
         }
     }
 

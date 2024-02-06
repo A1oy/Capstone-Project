@@ -54,6 +54,7 @@ public class Animal : MonoBehaviour
 
     void OnDead()
     {
+        EnemySpawner.enemyAmt--;
         IPoolable poolable =GetComponent<IPoolable>();
         if (poolable)
         {

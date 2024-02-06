@@ -66,15 +66,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Add Battery"",
-                    ""type"": ""Button"",
-                    ""id"": ""04f7991b-50ab-4dc4-8fbd-0f535967a905"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Escape To Menu"",
                     ""type"": ""Button"",
                     ""id"": ""79084552-0a3c-4162-a177-99520d8a6d2e"",
@@ -93,15 +84,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Flashlight"",
-                    ""type"": ""Button"",
-                    ""id"": ""d71db477-be92-4cd3-be18-2e5e1f2c665a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Walking"",
                     ""type"": ""Button"",
                     ""id"": ""dd139e1a-f645-418a-a763-acb50d7215c8"",
@@ -111,18 +93,9 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Remove Battery"",
+                    ""name"": ""Throw Grenade"",
                     ""type"": ""Button"",
-                    ""id"": ""c5e25ff7-a4f3-4b75-8c4a-65708c1127db"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Activate Hive"",
-                    ""type"": ""Button"",
-                    ""id"": ""4cd94c66-e221-4378-94e1-4cad21ed56c5"",
+                    ""id"": ""c9c87c07-22ab-4430-ba03-174f77f8a9d6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -143,17 +116,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""7f48d0b3-39e5-4834-a120-1eee1b7997e6"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Add Battery"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ab291bd4-9f0d-44da-a691-1276ce520eba"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": ""Press"",
@@ -167,21 +129,10 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2ae69821-f000-438e-9b80-7722d552d42d"",
                     ""path"": ""<Keyboard>/f"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Eating"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5baeb002-f153-4453-9209-b38ed38be492"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Flashlight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -231,23 +182,12 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""71451105-8f4c-47f5-b77f-9bbbfe9c756a"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""id"": ""4c64f3cc-9df2-48a8-9802-758a205b13ea"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Remove Battery"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3dc28483-a818-4c68-a443-84ef02a53778"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Activate Hive"",
+                    ""action"": ""Throw Grenade"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -290,13 +230,10 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Upgrade = m_Player.FindAction("Upgrade", throwIfNotFound: true);
-        m_Player_AddBattery = m_Player.FindAction("Add Battery", throwIfNotFound: true);
         m_Player_EscapeToMenu = m_Player.FindAction("Escape To Menu", throwIfNotFound: true);
         m_Player_Eating = m_Player.FindAction("Eating", throwIfNotFound: true);
-        m_Player_Flashlight = m_Player.FindAction("Flashlight", throwIfNotFound: true);
         m_Player_Walking = m_Player.FindAction("Walking", throwIfNotFound: true);
-        m_Player_RemoveBattery = m_Player.FindAction("Remove Battery", throwIfNotFound: true);
-        m_Player_ActivateHive = m_Player.FindAction("Activate Hive", throwIfNotFound: true);
+        m_Player_ThrowGrenade = m_Player.FindAction("Throw Grenade", throwIfNotFound: true);
         // Upgrade
         m_Upgrade = asset.FindActionMap("Upgrade", throwIfNotFound: true);
         m_Upgrade_CloseMenu = m_Upgrade.FindAction("Close Menu", throwIfNotFound: true);
@@ -415,25 +352,19 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Upgrade;
-    private readonly InputAction m_Player_AddBattery;
     private readonly InputAction m_Player_EscapeToMenu;
     private readonly InputAction m_Player_Eating;
-    private readonly InputAction m_Player_Flashlight;
     private readonly InputAction m_Player_Walking;
-    private readonly InputAction m_Player_RemoveBattery;
-    private readonly InputAction m_Player_ActivateHive;
+    private readonly InputAction m_Player_ThrowGrenade;
     public struct PlayerActions
     {
         private @GameControls m_Wrapper;
         public PlayerActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Upgrade => m_Wrapper.m_Player_Upgrade;
-        public InputAction @AddBattery => m_Wrapper.m_Player_AddBattery;
         public InputAction @EscapeToMenu => m_Wrapper.m_Player_EscapeToMenu;
         public InputAction @Eating => m_Wrapper.m_Player_Eating;
-        public InputAction @Flashlight => m_Wrapper.m_Player_Flashlight;
         public InputAction @Walking => m_Wrapper.m_Player_Walking;
-        public InputAction @RemoveBattery => m_Wrapper.m_Player_RemoveBattery;
-        public InputAction @ActivateHive => m_Wrapper.m_Player_ActivateHive;
+        public InputAction @ThrowGrenade => m_Wrapper.m_Player_ThrowGrenade;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -446,27 +377,18 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Upgrade.started += instance.OnUpgrade;
             @Upgrade.performed += instance.OnUpgrade;
             @Upgrade.canceled += instance.OnUpgrade;
-            @AddBattery.started += instance.OnAddBattery;
-            @AddBattery.performed += instance.OnAddBattery;
-            @AddBattery.canceled += instance.OnAddBattery;
             @EscapeToMenu.started += instance.OnEscapeToMenu;
             @EscapeToMenu.performed += instance.OnEscapeToMenu;
             @EscapeToMenu.canceled += instance.OnEscapeToMenu;
             @Eating.started += instance.OnEating;
             @Eating.performed += instance.OnEating;
             @Eating.canceled += instance.OnEating;
-            @Flashlight.started += instance.OnFlashlight;
-            @Flashlight.performed += instance.OnFlashlight;
-            @Flashlight.canceled += instance.OnFlashlight;
             @Walking.started += instance.OnWalking;
             @Walking.performed += instance.OnWalking;
             @Walking.canceled += instance.OnWalking;
-            @RemoveBattery.started += instance.OnRemoveBattery;
-            @RemoveBattery.performed += instance.OnRemoveBattery;
-            @RemoveBattery.canceled += instance.OnRemoveBattery;
-            @ActivateHive.started += instance.OnActivateHive;
-            @ActivateHive.performed += instance.OnActivateHive;
-            @ActivateHive.canceled += instance.OnActivateHive;
+            @ThrowGrenade.started += instance.OnThrowGrenade;
+            @ThrowGrenade.performed += instance.OnThrowGrenade;
+            @ThrowGrenade.canceled += instance.OnThrowGrenade;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -474,27 +396,18 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Upgrade.started -= instance.OnUpgrade;
             @Upgrade.performed -= instance.OnUpgrade;
             @Upgrade.canceled -= instance.OnUpgrade;
-            @AddBattery.started -= instance.OnAddBattery;
-            @AddBattery.performed -= instance.OnAddBattery;
-            @AddBattery.canceled -= instance.OnAddBattery;
             @EscapeToMenu.started -= instance.OnEscapeToMenu;
             @EscapeToMenu.performed -= instance.OnEscapeToMenu;
             @EscapeToMenu.canceled -= instance.OnEscapeToMenu;
             @Eating.started -= instance.OnEating;
             @Eating.performed -= instance.OnEating;
             @Eating.canceled -= instance.OnEating;
-            @Flashlight.started -= instance.OnFlashlight;
-            @Flashlight.performed -= instance.OnFlashlight;
-            @Flashlight.canceled -= instance.OnFlashlight;
             @Walking.started -= instance.OnWalking;
             @Walking.performed -= instance.OnWalking;
             @Walking.canceled -= instance.OnWalking;
-            @RemoveBattery.started -= instance.OnRemoveBattery;
-            @RemoveBattery.performed -= instance.OnRemoveBattery;
-            @RemoveBattery.canceled -= instance.OnRemoveBattery;
-            @ActivateHive.started -= instance.OnActivateHive;
-            @ActivateHive.performed -= instance.OnActivateHive;
-            @ActivateHive.canceled -= instance.OnActivateHive;
+            @ThrowGrenade.started -= instance.OnThrowGrenade;
+            @ThrowGrenade.performed -= instance.OnThrowGrenade;
+            @ThrowGrenade.canceled -= instance.OnThrowGrenade;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -565,13 +478,10 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnUpgrade(InputAction.CallbackContext context);
-        void OnAddBattery(InputAction.CallbackContext context);
         void OnEscapeToMenu(InputAction.CallbackContext context);
         void OnEating(InputAction.CallbackContext context);
-        void OnFlashlight(InputAction.CallbackContext context);
         void OnWalking(InputAction.CallbackContext context);
-        void OnRemoveBattery(InputAction.CallbackContext context);
-        void OnActivateHive(InputAction.CallbackContext context);
+        void OnThrowGrenade(InputAction.CallbackContext context);
     }
     public interface IUpgradeActions
     {

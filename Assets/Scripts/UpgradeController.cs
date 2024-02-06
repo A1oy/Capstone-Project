@@ -34,7 +34,7 @@ public class UpgradeController : MonoBehaviour
     void OnClose(InputAction.CallbackContext cc)
     {
         CloseUpgrade();
-        NetworkManager0.GetLocalPlayer()
+        GameObject.Find("Player")
             .GetComponent<PlayerHoney>()
             .RefreshHoney();
     }
@@ -49,7 +49,7 @@ public class UpgradeController : MonoBehaviour
         InputManager.ToggleActionMap(InputManager.input.Player);
         Time.timeScale =1;
         observer.SetActive(false);
-        NetworkManager0.GetLocalPlayer()
+        GameObject.Find("Player")
             .GetComponent<PlayerController>()
             .ReturnToMenu();
     }

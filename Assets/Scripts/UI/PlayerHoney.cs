@@ -40,8 +40,6 @@ public class PlayerHoney : MonoBehaviour
     [SerializeField]
     AudioSource glupingSource;
 
-    CosumeHoneyState state =CosumeHoneyState.Nothing;
-
     float timePassed = 0f;
 
     bool EnoughHoney() => honey >= honeyDeducted;
@@ -57,16 +55,6 @@ public class PlayerHoney : MonoBehaviour
     bool canHiveInteract =false;
 
     const int hiveLayer =1<<14;
-
-    void OnEnable()
-    {
-        InputManager.input.Player.ActivateHive.performed += OnActivateHive; 
-    }
-    
-    void OnDisable()
-    {
-        InputManager.input.Player.ActivateHive.performed -= OnActivateHive;
-    }
 
     void OnActivateHive(InputAction.CallbackContext cc)
     {
@@ -97,57 +85,16 @@ public class PlayerHoney : MonoBehaviour
         return honey;
     }
 
-    void DoEating()
+    public void DoEating()
     {
-        timePassed += Time.deltaTime;
-
-        uiController.UpdateEating(timePassed / eatingTime);
-        if (timePassed >= eatingTime)
+        if (EnoughHoney())
         {
-            StopEatingState();
-            state = CosumeHoneyState.Cooldown;
-
-            honey -= honeyDeducted;
-            playerdata.AddHoneyCosumed(honeyDeducted);
-
-            uiController.UpdateHoney();
+            honey-=honeyDeducted;
             playerHealth.Heal(healthHealed);
+            uiController.UpdateHealth(GetComponent<Health>());
+            uiController.UpdateHoney();
+
             glupingSource.Play();
-        }
-    }
-
-    void DoCooldown()
-    {
-        timePassed += Time.deltaTime;
-        if (timePassed >= cooldown)
-        {
-            timePassed =0f;
-            state =CosumeHoneyState.Nothing;
-        }
-    }
-
-    void StopEatingState()
-    {
-        uiController.StopEating();
-        timePassed =0f;
-    }
-
-    public void StartEating()
-    {
-        if (state !=CosumeHoneyState.Cooldown
-            && playerHealth.health !=playerHealth.GetMaxHealth())
-        {
-            state =CosumeHoneyState.Eating;
-            uiController.StartEating();
-        }
-    }
-
-    public void StopEating()
-    {
-        if (state == CosumeHoneyState.Eating)
-        {
-            StopEatingState();
-            state =CosumeHoneyState.Nothing;
         }
     }
 
@@ -222,15 +169,6 @@ public class PlayerHoney : MonoBehaviour
                     uiController.UpdateCollecting(timeCollecting/timeToCollect);
                 }
             }
-        }
-
-        if (state ==CosumeHoneyState.Eating)
-        {
-            DoEating();
-        }
-        else if (state ==CosumeHoneyState.Cooldown)
-        {
-            DoCooldown();
         }
     }
 

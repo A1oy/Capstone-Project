@@ -28,6 +28,9 @@ public struct Wave
     public float cooldown;
 
     [SerializeField]
+    public int spawnRate;
+
+    [SerializeField]
     public int spawnMaxAmount;
 }
 
@@ -54,8 +57,11 @@ public class EnemySpawner : MonoBehaviour
 
     int curWaveIndex;
 
+    public static int enemyAmt;
+
     void Awake()
     {
+        enemyAmt =0;
         radiusSquared =radius*radius;
     }
 
@@ -88,8 +94,11 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator DoAnimalSpawning()
     {
-        for (int i=0; i<waves[curWaveIndex].spawnMaxAmount; i++)
+        int i=0;
+        while (i<waves[curWaveIndex].spawnRate && enemyAmt<waves[curWaveIndex].spawnMaxAmount)
         {
+            i++;
+            enemyAmt++;
             Vector3 luckyDraw =DoLuckyDraw();
             MyPool2 animal =PickAnimal(waves[curWaveIndex].enemySpawnings);
             animal.Instantiate(luckyDraw, Quaternion.identity);

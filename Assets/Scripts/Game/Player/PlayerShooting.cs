@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {   
@@ -37,6 +38,14 @@ public class PlayerShooting : MonoBehaviour
     GameObject bulletPrefab;
 
     [SerializeField]
+    float grenadeCooldownInSeconds;
+
+    float grenadeCooldown;
+
+    [SerializeField]
+    GameObject grenadePrefab;
+
+    [SerializeField]
     int numShootPerFrames;
 
     int curShootFrame =0;
@@ -54,11 +63,36 @@ public class PlayerShooting : MonoBehaviour
     {
         bulletPrefab.GetComponent<Bullet>().player =player;
         sbcs.Add(new SplitShotCommand(player));
+        grenadePrefab.GetComponent<Grenade>().player =player;
+    }
+
+    void OnEnable()
+    {
+        InputManager.input.Player.ThrowGrenade.performed +=OnThrowGrenade;
+    }
+
+    void OnDisable()
+    {
+        InputManager.input.Player.ThrowGrenade.performed -= OnThrowGrenade;
+    }
+
+    void OnThrowGrenade(InputAction.CallbackContext cc)
+    {
+        if (grenadeCooldown>= grenadeCooldownInSeconds)
+        {
+            grenadeCooldown =0f;
+            GameObject grenade =Instantiate(grenadePrefab, firePoint.transform.position, Quaternion.identity);
+            grenade.GetComponent<Rigidbody2D>().AddForce(firePoint.up *5f, ForceMode2D.Impulse);
+        }
     }
 
 
     void FixedUpdate()
     {
+        if (grenadeCooldown<grenadeCooldownInSeconds)
+        {
+            grenadeCooldown +=Time.deltaTime;
+        }
         if (controller.Move())
 		{
             curShootFrame++;
@@ -75,7 +109,7 @@ public class PlayerShooting : MonoBehaviour
     }
 
     public bool PlayerHasFiveKills() => player.animalsKilled == 5;
-
+/*
     public void DoShoot()
     {
         shootSfx.Play();
@@ -134,14 +168,13 @@ public class PlayerShooting : MonoBehaviour
         go.transform.rotation =quat;
         go.GetComponent<Bullet>().player = player;
     }
-
+*/
     public void SetUpgrade(UpgradeData data)
     {
         shot =data.shot;
         bullet =data.bullet;
     }
 
-    /*
     public void AddShotBehaviourCommand(ShotBehaviourCommand sbc)
     {
         sbcs.Add(sbc);
@@ -153,7 +186,6 @@ public class PlayerShooting : MonoBehaviour
         psbcs.Add(psbc);
         psbcs.Sort(); 
     }
-    */ 
 
     public void Shoot()
     {

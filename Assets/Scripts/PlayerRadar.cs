@@ -22,18 +22,23 @@ public class PlayerRadar : MonoBehaviour
     GameObject enemyPrefab;
 
     [SerializeField]
+    GameObject hivePrefab;
+
+    [SerializeField]
     float secondsDelay;
 
     float delay;
 
     List<GameObject> enemyPool;
+    List<GameObject> hivePool;
 
     // Start is called before the first frame update
     void Awake()
     {
         delay =secondsDelay;
-        player =NetworkManager0.GetLocalPlayer().transform;
+        player =GameObject.Find("FirePoint").transform;
         enemyPool =new List<GameObject>();
+        hivePool =new List<GameObject>();
         radarRadius =radar.GetComponent<RectTransform>().rect.width/2.0f;
     }
 
@@ -58,8 +63,9 @@ public class PlayerRadar : MonoBehaviour
         {
             Image[] images =GetComponentsInChildren<Image>();
             foreach (Image image in images)
+            {
                 image.gameObject.SetActive(false);
-
+            }
             const int layerMask=1<<9;
             Collider2D[] colliders =Physics2D.OverlapCircleAll(
                 new Vector2(player.position.x, player.position.y),
@@ -68,14 +74,31 @@ public class PlayerRadar : MonoBehaviour
 
             foreach (Collider2D collider in colliders)
             {
-
                 Vector2 dist =new Vector2(collider.gameObject.transform.position.x -player.position.x,
                     collider.gameObject.transform.position.y -player.position.y);
-                Vector2 prevd =dist;
                 dist = (dist/radius)*radarRadius;
                 GameObject newPoint =InstantiateObjectFromPool(enemyPool, enemyPrefab);
                 newPoint.GetComponent<RectTransform>().anchoredPosition =dist;
                 newPoint.transform.eulerAngles = collider.transform.eulerAngles;
+
+                newPoint.SetActive(true);
+            }
+
+            GameObject[] hives =GameObject.FindGameObjectsWithTag("Hive");
+            foreach (GameObject hive in hives)
+            {
+                Vector2 dist =new Vector2(hive.transform.position.x -player.position.x,
+                    hive.transform.position.y -player.position.y);
+                if (dist.magnitude>radius)
+                {
+                    dist =dist.normalized*radarRadius;
+                }
+                else
+                {
+                    dist =(dist/radius)*radarRadius;
+                }
+                GameObject newPoint =InstantiateObjectFromPool(hivePool, hivePrefab);
+                newPoint.GetComponent<RectTransform>().anchoredPosition =dist;
 
                 newPoint.SetActive(true);
             }
@@ -87,6 +110,7 @@ public class PlayerRadar : MonoBehaviour
             foreach (Image image in images)
                 image.color =new Color(1f, 1f, 1f, delay/secondsDelay);
         }
+        radarPlayer.transform.rotation =player.rotation;
     }
     
     void OnDrawGizmos()

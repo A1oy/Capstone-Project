@@ -45,6 +45,5 @@ public class PlayerStatus : MonoBehaviour
     void OnDamageTaken()
     {
         uiController.UpdateHealth(health);
-        uiController.UpdateHealthBar(health);
     }
 }
