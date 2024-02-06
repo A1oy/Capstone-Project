@@ -91,10 +91,17 @@ public class PlayerUIController : MonoBehaviour
 
     public void UpdateHealth(Health health)
     {
-        float alpha = 1f - ((float)health.GetCurrentHealth()/health.GetMaxHealth());
-        alpha =Mathf.Clamp(alpha, 0f, redThreshold);
+        float alpha = ((float)health.GetCurrentHealth()/health.GetMaxHealth());
+        if (alpha > redThreshold)
+        {
+            alpha = 0;
+        }
+		else
+		{
+            alpha = redThreshold - alpha;
+        }
         healthWarning.color = new Color(1f, 0f, 0f, alpha);
-        playerHealth.value =health.GetCurrentHealth()/(float)health.GetMaxHealth();
+        playerHealth.value = health.GetCurrentHealth() / (float)health.GetMaxHealth();
     }
 
     // Radar related functions

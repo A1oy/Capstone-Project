@@ -55,7 +55,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collider.gameObject ==attackerRef)
         {
-            cooldown =attackDelay;
+            cooldown = 0;
+            //cooldown = attackDelay/2;
             isAttacking =true;
         }
     }
