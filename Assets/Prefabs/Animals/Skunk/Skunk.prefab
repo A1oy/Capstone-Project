@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe1d20e55a987f4ea38268c7de3eeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 1.5
+  attackDelay: 3
   gas: {fileID: 643905453098409145, guid: 0e9dc1b4a75bdcc4ea9247cafd34e52b, type: 3}
   gasPosition: {fileID: 1221448926630482444}
   hitSource: {fileID: 0}

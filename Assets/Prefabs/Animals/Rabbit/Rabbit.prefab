@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  attackDelay: 1.3
+  attackDelay: 0.5
   hitSource: {fileID: -1270413334054869561}
 --- !u!50 &-268881942213859247
 Rigidbody2D:
@@ -465,7 +465,7 @@ MonoBehaviour:
   - {x: 0.06963974, y: -0.1528852, z: 0}
   m_ShapePathHash: 648294699
   m_Mesh: {fileID: 0}
-  m_InstanceId: 97104
+  m_InstanceId: 75344
   m_LocalBounds:
     m_Center: {x: -0.005914144, y: -0.08297099, z: 0}
     m_Extent: {x: 0.07913259, y: 0.07319388, z: 0}

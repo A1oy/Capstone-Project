@@ -1764,6 +1764,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.16944885
       objectReference: {fileID: 0}
+    - target: {fileID: 7962265547372930264, guid: ccb359b714fb24a408fbdee0e259ec38, type: 3}
+      propertyPath: redThreshold
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccb359b714fb24a408fbdee0e259ec38, type: 3}
 --- !u!1 &434665162 stripped
@@ -3493,6 +3497,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9091826713302542655, guid: 9df5b1db50289357eb55a2ffa91e7d52, type: 3}
+      propertyPath: attackDelay
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1083180422523515550, guid: 9df5b1db50289357eb55a2ffa91e7d52, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -4633,7 +4641,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2920782066045257892, guid: ebdf1486e57e9fa4e92fdda0580d2bff, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920782066045257893, guid: ebdf1486e57e9fa4e92fdda0580d2bff, type: 3}
+      propertyPath: attackDelay
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2920782066045257900, guid: ebdf1486e57e9fa4e92fdda0580d2bff, type: 3}
       propertyPath: m_RootOrder
@@ -44882,7 +44894,11 @@ PrefabInstance:
       objectReference: {fileID: 2054446639}
     - target: {fileID: 4171763242807627270, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: m_Mass
-      value: 10
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4171763242807627270, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4171763242807627274, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: uiController
@@ -45020,7 +45036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ebe9581e2f3374ba5a2c158d24a3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seconds: 1
+  seconds: 0.4
 --- !u!1001 &5687776199102457260
 PrefabInstance:
   m_ObjectHideFlags: 0
