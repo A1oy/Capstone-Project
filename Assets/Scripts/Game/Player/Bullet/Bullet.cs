@@ -45,5 +45,6 @@ public class Bullet : IPoolable
     public virtual void DoBulletTrigger(GameObject go)
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
+        gameObject.SendMessage("DoBulletHit", go, SendMessageOptions.DontRequireReceiver);
     }
 }

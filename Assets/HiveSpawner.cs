@@ -69,7 +69,6 @@ public class HiveSpawner : MonoBehaviour
                 hives.Remove(go);
             }
         }
-        Debug.Log(hives.Count);
         if (hives.Count < numberOfHivesLeftToBecomeActive)
         {
             isActive =true;

@@ -43,7 +43,11 @@ public class Health : MonoBehaviour
                 invunerable.TriggerInvun();
             }
             SendMessage("OnDamageTaken", damage, SendMessageOptions.DontRequireReceiver);
-            Instantiate(damagePrefab, transform, false);
+            GameObject go = Instantiate(damagePrefab, transform, false);
+            if (transform.rotation.eulerAngles.y == 180){
+                Debug.Log(go.transform.rotation.eulerAngles);
+                go.transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
             damagePrefab.GetComponent<IDamageValue>().text = $"-{damage}";
             damagePrefab.SetActive(true);
             if (health <=0)

@@ -63,6 +63,7 @@ public class PlayerShooting : MonoBehaviour
     {
         bulletPrefab.GetComponent<Bullet>().player =player;
         sbcs.Add(new SplitShotCommand(player));
+        psbcs.Add(new BurnShotBehaviourCommand(player));
         grenadePrefab.GetComponent<Grenade>().player =player;
     }
 
