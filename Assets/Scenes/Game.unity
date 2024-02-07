@@ -2845,6 +2845,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1752676696805336341, guid: e8d1cf53e8bb8844b881fe3853172f82, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2165913229663439331, guid: e8d1cf53e8bb8844b881fe3853172f82, type: 3}
       propertyPath: m_Name
       value: Frog

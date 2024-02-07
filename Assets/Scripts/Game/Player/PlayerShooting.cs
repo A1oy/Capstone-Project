@@ -59,11 +59,13 @@ public class PlayerShooting : MonoBehaviour
     List<PostShotBehaviourCommand> psbcs = new List<PostShotBehaviourCommand>();
     List<ShotBehaviourCommand> sbcs = new List<ShotBehaviourCommand>();
 
+
     void Awake()
     {
         bulletPrefab.GetComponent<Bullet>().player =player;
         sbcs.Add(new SplitShotCommand(player));
         psbcs.Add(new BurnShotBehaviourCommand(player));
+        psbcs.Add(new ExplosiveShotCommand(player));
         grenadePrefab.GetComponent<Grenade>().player =player;
     }
 

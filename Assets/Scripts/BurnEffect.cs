@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class BurnEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void DoBulletHit(GameObject go){
         if (go.CompareTag("Enemy")){
-            if (go.GetComponent<AnimalEffect>() == null){
-                    go.AddComponent<AnimalEffect>();
+            
+            if (go.GetComponent<Burn>() == null){
+                    go.AddComponent<Burn>();
                 }
                 else{
-                    go.GetComponent<AnimalEffect>().ResetBurn();
+                    go.GetComponent<Burn>().ResetBurn();
                 }
         }
     }
