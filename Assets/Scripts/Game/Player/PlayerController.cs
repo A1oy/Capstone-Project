@@ -63,10 +63,6 @@ public class PlayerController : MonoBehaviour
         InputManager.input.Player.Walking.canceled += OnWalkingCancelled;
 
         walkingfx =GetComponent<WalkingFX>();
-
-        pauseController =GameObject.Find("PauseController").GetComponent<PauseController>();
-        upgradeController =GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
-        uiController =GameObject.Find("PlayerUI").GetComponent<PlayerUIController>();
     }
 
     void OnDisable()
@@ -119,6 +115,13 @@ public class PlayerController : MonoBehaviour
         Vector2 lookDir = mousePos - rb.position;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         UpdatePlayerSprite(angle);
+    }
+
+    void Start()
+    {
+        pauseController =GameObject.Find("PauseController").GetComponent<PauseController>();
+        upgradeController =GameObject.Find("UpgradeController").GetComponent<UpgradeController>();
+        uiController =GameObject.Find("PlayerUI").GetComponent<PlayerUIController>();
     }
 
     public void ReturnToMenu()

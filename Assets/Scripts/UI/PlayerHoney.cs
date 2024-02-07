@@ -8,13 +8,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerHoney : MonoBehaviour
 {
-    enum CosumeHoneyState
-    {
-        Nothing,
-        Eating,
-        Cooldown
-    };
-
     [SerializeField]
     Health playerHealth;
 
@@ -23,6 +16,7 @@ public class PlayerHoney : MonoBehaviour
     [SerializeField]
     PlayerData playerdata;
 
+    [SerializeField]
     int honey;
 
     [SerializeField]
@@ -107,11 +101,11 @@ public class PlayerHoney : MonoBehaviour
         }
     }
     
-    public bool Purchase(UpgradeData data)
+    public bool Purchase(int amt)
     {
-        if (this.honey >=data.honeyNeeded)
+        if (this.honey >=amt)
         {
-            honey -= data.honeyNeeded;
+            honey -= amt;
             return true;
         }
         return false;

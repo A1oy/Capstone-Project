@@ -14,7 +14,7 @@ public class Bullet : IPoolable
     float speed;
 
     [SerializeField]
-    private GameObject explosion;
+    GameObject explosion;
 
     void FixedUpdate()
     {

@@ -18,9 +18,14 @@ public class SplitShotCommand : ShotBehaviourCommand
         animalsKilled ++;
     }
 
+    public bool HasReachedAmount()
+    {
+        return animalsKilled>=5;
+    }
+
     public override void Execute(Transform fp, GameObject prefab, List<GameObject> bullets)
     {
-        if (animalsKilled>=5)
+        if (HasReachedAmount())
         {
             animalsKilled-=5;
             Quaternion quat =fp.rotation;
@@ -35,6 +40,6 @@ public class SplitShotCommand : ShotBehaviourCommand
 
     public override int GetPrecedence()
     {
-        return 1;
+        return 2;
     }
 }

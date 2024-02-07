@@ -32,6 +32,11 @@ public class PlayerRadar : MonoBehaviour
     List<GameObject> enemyPool;
     List<GameObject> hivePool;
 
+    public void UpgradeDelay()
+    {
+        delay *=0.7f;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {

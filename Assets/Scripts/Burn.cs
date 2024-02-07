@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Burn : MonoBehaviour
 {
+    public PlayerData player;
+    public GameObject burnEff;
     private Health healthScript;
 
     private int burnDamage = 1;
@@ -27,6 +29,7 @@ public class Burn : MonoBehaviour
         currentBurnTimer += Time.deltaTime;
         if (currentBurnTimer >= burnTimer){
             Destroy(this);
+            SendMessage("OnBurnOut", SendMessageOptions.DontRequireReceiver);
         }
     }
 
@@ -34,32 +37,13 @@ public class Burn : MonoBehaviour
         currentBurnTimer = 0f;
     }
 
-    /*
-    public void ApplyBurn(int ticks)
+    public void OnDead()
     {
-        if(burnTickTimers.Count<=0)
-        {
-            burnTickTimers.Add(ticks);
-            StartCoroutine(Burn());
-        }
-        else
-        {
-            burnTickTimers.Add(ticks);
-        }
+        Destroy(this);
     }
-    
-    IEnumerator Burn()
+
+    void OnDestroy()
     {
-        while(burnTickTimers.Count>0)
-        {
-            for(int i = 0; i<burnTickTimers.Count; i++)
-            {
-                burnTickTimers[i]--;
-            }
-            healthScript.DoDamage(burnDamage);
-            burnTickTimers.RemoveAll(i => i == 0);
-            yield return new WaitForSeconds(0.75f);
-        }
+        Destroy(burnEff);
     }
-    */
 }

@@ -7,12 +7,5 @@ using UnityEngine;
 public class UpgradeData: ScriptableObject
 {
     [SerializeField]
-    public PlayerShooting.ShotType shot;
-
-    [SerializeField]
-    public PlayerShooting.BulletType bullet;
-
-
-    [SerializeField]
     public int honeyNeeded;
 }

@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class ExplosiveEffect : MonoBehaviour
 {
-   [SerializeField]
-    GameObject explosionPrefab;
+    public GameObject explosionPrefab;
 
     [SerializeField]
     int damage = 1;
-    [SerializeField]
-    PlayerData player;
+
+    public PlayerData player;
 
     public void DoBulletHit(GameObject go){
         PushEnemies();

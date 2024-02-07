@@ -54,6 +54,14 @@ public class Animal : MonoBehaviour
 
     void OnDead()
     {
+        for (int i=0; i<transform.childCount; i++)
+        {
+            Transform child =transform.GetChild(i);
+            if (child.gameObject.CompareTag("Damage"))
+            {
+                Destroy(child.gameObject);
+            }
+        }
         EnemySpawner.enemyAmt--;
         IPoolable poolable =GetComponent<IPoolable>();
         if (poolable)

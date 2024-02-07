@@ -12,6 +12,7 @@ TagManager:
   - Building
   - Poison
   - Hive
+  - Damage
   layers:
   - Default
   - TransparentFX

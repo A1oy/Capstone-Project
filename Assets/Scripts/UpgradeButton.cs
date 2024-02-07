@@ -7,9 +7,9 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{ 
+{
     [SerializeField]
-    UpgradeData data;
+    int amt; 
 
     [SerializeField]
     TMP_Text cost;
@@ -19,32 +19,27 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     void Awake()
     {
-        if (data ==null)
-        {
-            cost.text ="0";
-        }
-        else
-        {
-            cost.text =Convert.ToString(data.honeyNeeded);
-        }
+        cost.text =Convert.ToString(amt);
     }
 
     public void OnClick()
     {
         if (GameObject.Find("Player")
             .GetComponent<PlayerHoney>()
-            .Purchase(data))
+            .Purchase(amt))
         {
             UpgradeUIController uiController =GameObject.Find("UpgradeUI")
                 .GetComponent<UpgradeUIController>();
             uiController.UpdateHoney();
-            for (int i=0; i< transform.parent.childCount; i++)
+            /*for (int i=0; i< transform.parent.childCount; i++)
             {
                 if (transform.parent.GetChild(i).TryGetComponent<Button>(out Button button))
                 {
                     button.interactable =false;
                 }
             }
+            */
+            gameObject.GetComponent<Button>().interactable =false;
             for (int i=0; i<transform.childCount; i++)
             {
                 if (transform.GetChild(i).TryGetComponent<Button>(out Button button))
@@ -52,11 +47,10 @@ public class UpgradeButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                     button.interactable =true;
                 }
             }
-            GameObject.Find("Player")
-                .GetComponent<PlayerShooting>()
-                .SetUpgrade(data);
+            gameObject.SendMessage("OnUpgrade", SendMessageOptions.RequireReceiver);
         }
     }
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
