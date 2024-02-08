@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerRadar : MonoBehaviour
 {
+    [SerializeField]
     Transform player;
 
     [SerializeField]
@@ -12,6 +13,9 @@ public class PlayerRadar : MonoBehaviour
 
     [SerializeField]
     GameObject radar;
+
+    [SerializeField]
+    GameObject playerRadar;
 
     float radarRadius;
 
@@ -119,7 +123,7 @@ public class PlayerRadar : MonoBehaviour
             foreach (Image image in images)
                 image.color =new Color(1f, 1f, 1f, delay/secondsDelay);
         }
-        radar.transform.rotation=GameObject.Find("FirePoint").transform.rotation ;
+        playerRadar.transform.rotation=GameObject.Find("FirePoint").transform.rotation ;
     }
     
     void OnDrawGizmos()
