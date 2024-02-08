@@ -62,12 +62,17 @@ public class HiveSpawner : MonoBehaviour
 
     void CheckHiveActive()
     {
+        List<GameObject> remove =new List<GameObject>();
         foreach (GameObject go in hives)
         {
             if (!go)
             {
-                hives.Remove(go);
+                remove.Add(go);
             }
+        }
+        foreach(GameObject go in remove)
+        {
+            hives.Remove(go);
         }
         if (hives.Count < numberOfHivesLeftToBecomeActive)
         {

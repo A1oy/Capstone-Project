@@ -119,7 +119,7 @@ public class PlayerRadar : MonoBehaviour
             foreach (Image image in images)
                 image.color =new Color(1f, 1f, 1f, delay/secondsDelay);
         }
-        GameObject.Find("FirePoint").transform.rotation =player.rotation;
+        radar.transform.rotation=GameObject.Find("FirePoint").transform.rotation ;
     }
     
     void OnDrawGizmos()

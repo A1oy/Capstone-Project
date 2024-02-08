@@ -109,7 +109,10 @@ public class PlayerShooting : MonoBehaviour
     public void Shoot()
     {
         List<GameObject> bullets = new List<GameObject> { }; 
-        bullets.Add(Instantiate(bulletPrefab, firePoint.position, firePoint.rotation));
+        GameObject go =Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Debug.Log(go.transform.rotation);
+        bullets.Add(go);
+
 
         foreach(ShotBehaviourCommand sbc in sbcs) {
             sbc.Execute(firePoint, bulletPrefab, bullets); 

@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
-  maxHealth: 5
+  maxHealth: 8
   invunerable: {fileID: 0}
 --- !u!114 &450806031868313579
 MonoBehaviour:
