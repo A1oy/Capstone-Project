@@ -81,8 +81,10 @@ public class PlayerHoney : MonoBehaviour
 
     public void DoEating()
     {
-        if (EnoughHoney())
+        if (EnoughHoney() && timePassed<=0f
+            &&GetComponent<Health>().GetCurrentHealth() !=GetComponent<Health>().GetMaxHealth())
         {
+            timePassed= cooldown;
             honey-=honeyDeducted;
             playerHealth.Heal(healthHealed);
             uiController.UpdateHealth(GetComponent<Health>());
@@ -113,6 +115,15 @@ public class PlayerHoney : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            this.honey =200;
+            uiController.UpdateHoney();
+        }
+        if (timePassed>0f)
+        {
+            timePassed -= Time.deltaTime;
+        }
         if (!canHiveInteract)
         {
             Collider2D collider =Physics2D.OverlapCircle(transform.position,

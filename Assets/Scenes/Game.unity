@@ -20251,7 +20251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press "Enter" to Start Play
+  m_text: Press Any Key To Start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fee84050f7ea3844f80f2ab20e7bcaff, type: 2}
   m_sharedMaterial: {fileID: -5486085783202794017, guid: fee84050f7ea3844f80f2ab20e7bcaff, type: 2}
@@ -45609,6 +45609,10 @@ PrefabInstance:
     - target: {fileID: 3128416110433347007, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: honey
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128416110433347007, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: cooldown
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3128416110433347007, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: eatingTime

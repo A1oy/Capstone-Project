@@ -13,9 +13,6 @@ public class PlayerRadar : MonoBehaviour
     [SerializeField]
     GameObject radar;
 
-    [SerializeField]
-    GameObject radarPlayer;
-
     float radarRadius;
 
     [SerializeField]
@@ -40,8 +37,11 @@ public class PlayerRadar : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        delay =secondsDelay;
-        player =GameObject.Find("FirePoint").transform;
+;        delay =secondsDelay;
+        if (player==null)
+        {
+            Debug.Log("Player is null!");
+        }
         enemyPool =new List<GameObject>();
         hivePool =new List<GameObject>();
         radarRadius =radar.GetComponent<RectTransform>().rect.width/2.0f;
@@ -64,6 +64,10 @@ public class PlayerRadar : MonoBehaviour
     void Update()
     {
         delay -=Time.deltaTime;
+        if (player==null)
+        {
+            player =GameObject.FindWithTag("Player").transform;
+        }
         if (delay <0f)
         {
             Image[] images =GetComponentsInChildren<Image>();
@@ -115,7 +119,7 @@ public class PlayerRadar : MonoBehaviour
             foreach (Image image in images)
                 image.color =new Color(1f, 1f, 1f, delay/secondsDelay);
         }
-        radarPlayer.transform.rotation =player.rotation;
+        GameObject.Find("FirePoint").transform.rotation =player.rotation;
     }
     
     void OnDrawGizmos()

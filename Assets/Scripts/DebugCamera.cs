@@ -23,26 +23,10 @@ public class DebugCamera : MonoBehaviour
 
     void Update()
     {
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Period))
-        {
-            lookAway =!lookAway;
-            if (lookAway)
-            {
-                debugVmCam.Follow =null;
-                perfectCamera.assetsPPU =6;
-            }
-            else
-            {
-                debugVmCam.Follow =playerFollow;
-                perfectCamera.assetsPPU =28;
-            }
-        }
 
         if (Input.GetKeyDown(KeyCode.Slash))
         {
             gameManager.DebugFastForwardTime();
         }
-#endif
     }
 }

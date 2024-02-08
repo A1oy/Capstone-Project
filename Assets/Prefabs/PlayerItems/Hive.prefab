@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sr: {fileID: 4076290684103387666}
-  honeyToGenerate: 10
+  honeyToGenerate: 8
   cooldown: 15
   timeToGenerate: 25
   emptyHive: {fileID: 1705196482, guid: 9a3369f9b19574e4688ee28f146b5903, type: 3}
