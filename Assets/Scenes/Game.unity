@@ -2825,7 +2825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &620560204
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4293,10 +4293,10 @@ MonoBehaviour:
     - animal: {fileID: 1013991671}
       probabilityOfSpawning: 0.39
     - animal: {fileID: 1013991674}
-      probabilityOfSpawning: 0.22
+      probabilityOfSpawning: 0.169
     - animal: {fileID: 1013991673}
       probabilityOfSpawning: 0.06
-    cooldown: 5
+    cooldown: 6
     spawnRate: 12
     spawnMaxAmount: 60
   - startAtWave: 10
@@ -20220,7 +20220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1342070420
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44004,6 +44004,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FakePlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 4171763242807627289, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4327987276609819253, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -44597,7 +44601,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 620560205}
         m_TargetAssemblyTypeName: PauseController, Assembly-CSharp
-        m_MethodName: QuitGame
+        m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -44661,7 +44665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2080403627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45623,7 +45627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3128416110433347007, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: honey
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3128416110433347007, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: cooldown
@@ -45783,7 +45787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4171763242807627289, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4327987276609819253, guid: 793cb5b314a5eb84e99f8ded8f4f835b, type: 3}
       propertyPath: m_IsTrigger

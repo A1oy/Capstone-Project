@@ -15,11 +15,11 @@ public class DebugCamera : MonoBehaviour
     [SerializeField]
     Transform playerFollow;    
 
-    [SerializeField]
-    GameUI gameManager;
-
     bool lookAway =false;
 #endif
+
+    [SerializeField]
+    GameUI gameManager;
 
     void Update()
     {

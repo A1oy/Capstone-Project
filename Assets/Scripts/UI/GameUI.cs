@@ -169,10 +169,8 @@ public class GameUI : MonoBehaviour
         return $"Day {day}";
     }
 
-#if UNITY_EDITOR
     public void DebugFastForwardTime()
     {
         time=0.1f;
     }
-#endif
 }

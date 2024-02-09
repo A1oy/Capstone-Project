@@ -61,7 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   damagePrefab: {fileID: 2263030413470850053, guid: 591eb559b20c02040956bb5a6c078d2a, type: 3}
-  maxHealth: 6
+  maxHealth: 3
   invunerable: {fileID: 0}
 --- !u!114 &1235720188764108218
 MonoBehaviour:
@@ -481,7 +481,7 @@ MonoBehaviour:
   - {x: 0.059725784, y: -0.15287939, z: 0}
   m_ShapePathHash: 2030762011
   m_Mesh: {fileID: 0}
-  m_InstanceId: 98868
+  m_InstanceId: 61674
   m_LocalBounds:
     m_Center: {x: 0.0025919303, y: -0.08023979, z: 0}
     m_Extent: {x: 0.09688899, y: 0.0726396, z: 0}
