@@ -42,10 +42,6 @@ public class PlayerRadar : MonoBehaviour
     void Awake()
     {
 ;        delay =secondsDelay;
-        if (player==null)
-        {
-            Debug.Log("Player is null!");
-        }
         enemyPool =new List<GameObject>();
         hivePool =new List<GameObject>();
         radarRadius =radar.GetComponent<RectTransform>().rect.width/2.0f;

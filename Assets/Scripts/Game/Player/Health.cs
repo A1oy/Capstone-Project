@@ -45,7 +45,6 @@ public class Health : MonoBehaviour
             SendMessage("OnDamageTaken", damage, SendMessageOptions.DontRequireReceiver);
             GameObject go = Instantiate(damagePrefab, transform, false);
             if (transform.rotation.eulerAngles.y == 180){
-                Debug.Log(go.transform.rotation.eulerAngles);
                 go.transform.rotation = Quaternion.Euler(0, 0, 0);
             }
             damagePrefab.GetComponent<IDamageValue>().text = $"-{damage}";

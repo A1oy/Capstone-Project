@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
     {
         if (m_gameRoot)
         {
-            AudioController[] controllers =m_gameRoot.GetComponentsInChildren<AudioController>(true);
+            AudioController[] controllers =GameObject.FindObjectsOfType<AudioController>();
             foreach (AudioController audioControl in controllers)
             {
                 audioControl.ChangeVolumes(m_sfxVol, m_musicVol);
@@ -47,6 +47,7 @@ public class AudioManager : MonoBehaviour
 
     public void SetSfxVolume(float volume)
     {
+        Debug.Log(volume);
         m_sfxVol =volume;
         BroadcastChange();
     }
